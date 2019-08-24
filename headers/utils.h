@@ -13,5 +13,9 @@ char NULO;
 void iniciarPalavrasReservadas(char **matriz);
 void iniciarLetras(char *vetor);
 void iniciarNumeros(char *vetor);
+void iniciarOperadores(char *vetor);
+void iniciarSeparadores(char *vetor);
+void iniciarTabelaAscii(char *vetor);
+
 
 #endif // UTILS_H_INCLUDED

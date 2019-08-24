@@ -1,0 +1,7 @@
+#ifndef LEXICO_H_INCLUDED
+#define LEXICO_H_INCLUDED
+
+int LINHA;
+int COLUNA;
+
+#endif // LEXICO_H_INCLUDED

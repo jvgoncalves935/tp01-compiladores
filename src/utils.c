@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../headers/utils.h"
+#include "../headers/automato.h"
 
 int TAM_ASCII = 127;
 char LETRA = 'L';
@@ -67,3 +68,80 @@ void iniciarNumeros(char *vetor){
     }
 }
 
+void iniciarOperadores(char *vetor){
+    vetor[43] = OPERADOR;
+    vetor[42] = OPERADOR;
+    vetor[47] = OPERADOR;
+    vetor[37] = OPERADOR;
+    vetor[61] = OPERADOR;
+    vetor[60] = OPERADOR;
+    vetor[62] = OPERADOR;
+    vetor[33] = OPERADOR;
+    vetor[124] = OPERADOR;
+    vetor[38] = OPERADOR;
+    vetor[126] = OPERADOR;
+    vetor[94] = OPERADOR;
+    vetor[45] = OPERADOR;
+    vetor[63] = OPERADOR;
+}
+
+void iniciarSeparadores(char *vetor){
+    vetor[94] = SEPARADOR;
+    vetor[59] = SEPARADOR;
+}
+
+void iniciarTabelaAscii(char *vetor){
+    iniciarLetras(vetor);
+    iniciarNumeros(vetor);
+    iniciarOperadores(vetor);
+    iniciarSeparadores(vetor);
+}
+
+int listaVazia(Estado *f){
+	if(f->tamanho == 0){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+// F-2 Inicia uma célula para receber um lista.
+void iniciarLista(Estado *aux){
+	//aux->primeiro = (Pessoa *)malloc(sizeof(Pessoa));
+	//aux->primeiro->prox = NULL;
+	//aux->primeiro->ant = NULL;
+    aux->transicoes = NULL;
+	aux->tamanho = 0;
+}
+
+// F-3 Insere valores em uma lista.
+void inserirLista(Estado *f, char *transicao){
+
+	Transicao *aux, *aux2;
+	aux = (Transicao *) malloc(sizeof(Transicao));
+
+	aux->conjunto = transicao;
+	aux->proxima = NULL;
+
+	if(listaVazia(f)){
+		f->transicoes = aux;
+		f->numTransicoes++;
+	}else{
+        aux2 = ultimoLista(f->transicoes);
+		aux2->proxima = aux;
+		f->numTransicoes++;
+	}
+}
+
+Transicao *ultimoLista(Transicao *primeiro){
+    Transicao *aux = primeiro;
+    if(aux == NULL){
+        return NULL;
+    }
+    while(true){
+        if(aux->proxima == NULL){
+            return aux;
+        }
+        aux = aux->proxima;
+    }
+}
