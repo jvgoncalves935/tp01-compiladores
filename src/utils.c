@@ -1,15 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../headers/utils.h"
-#include "../headers/automato.h"
-
-int TAM_ASCII = 127;
+#include <string.h>
+/*
 char LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-char SEPARADOR[] = 'S';
+char SEPARADOR[] = "S";
 char COMENTARIO[] = "//";
-char IDENTIFICADOR[] = 'I';
+char IDENTIFICADOR[] = "I";
 char NUMERO[] = "0123456789";
 char OPERADOR[] = "+*%/=<>!|&~^-?";
 char NULO = '-';
+*/
+
+    int TAM_ASCII = 127;
+    char LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char SEPARADOR[] = "S";
+    char COMENTARIO[] = "//";
+    char IDENTIFICADOR[] = "I";
+    char NUMERO[] = "0123456789";
+    char OPERADOR[] = "+*%/=<>!|&~^-?";
+    char NULO = '-';
 
 void iniciarPalavrasReservadas(char **matriz){
     matriz[0] = "auto";
@@ -100,7 +110,7 @@ void iniciarTabelaAscii(char *vetor){
 */
 
 int listaVazia(Estado *f){
-	if(f->tamanho == 0){
+	if(f->numTransicoes == 0){
 		return 1;
 	}else{
 		return 0;
@@ -111,19 +121,23 @@ int listaVazia(Estado *f){
 void iniciarLista(Estado *aux){
     aux->primeira = (Transicao *) malloc(sizeof(Transicao));
     aux->primeira->proxima = NULL;
-    aux->primeira->ultima = NULL;
-	aux->tamanho = 0;
+    aux->primeira->anterior = NULL;
+    aux->primeira->proximoEstado = 0;
+	aux->numTransicoes = 0;
 }
 
 //Insere valores em uma lista.
-void inserirLista(Estado *f, char *transicao){
+void inserirLista(Estado *f, char *transicao, int tamTransicao, int proxEstado){
 
 	Transicao *aux;
 	aux = (Transicao *) malloc(sizeof(Transicao));
 
-	aux->conjunto = transicao;
+    aux->conjunto = malloc(tamTransicao*(sizeof(char)));
+	strcpy(aux->conjunto,transicao);
+
 	aux->proxima = NULL;
     aux->anterior = NULL;
+    aux->proximoEstado = proxEstado;
 
 	if(listaVazia(f)){
 		f->primeira = aux;

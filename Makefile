@@ -1,7 +1,7 @@
 fileH = headers/
 fileC = src/
 
-objetos = automato.o utils.o lexico.o main.o
+objetos = main.o automato.o lexico.o utils.o
 
 tp1:	$(objetos)
 	gcc $(objetos) -o tp1

@@ -1,14 +1,17 @@
 #ifndef UTILS_H_INCLUDED
 #define UTILS_H_INCLUDED
 
-int TAM_ASCII;
-char LETRA;
-char SEPARADOR;
-char COMENTARIO;
-char IDENTIFICADOR;
-char NUMERO;
-char OPERADOR;
-char NULO;
+#include "../headers/automato.h"
+#include <string.h>
+
+extern int TAM_ASCII;
+extern char LETRA[];
+extern char SEPARADOR[];
+extern char COMENTARIO[];
+extern char IDENTIFICADOR[];
+extern char NUMERO[];
+extern char OPERADOR[];
+extern char NULO;
 
 //void iniciarPalavrasReservadas(char **matriz);
 //void iniciarLetras(char *vetor);
@@ -19,6 +22,6 @@ char NULO;
 
 int listaVazia(Estado *f);
 void iniciarLista(Estado *aux);
-void inserirLista(Estado *f, char *transicao);
+void inserirLista(Estado *f, char *transicao, int tamTransicao, int proxEstado);
 
 #endif // UTILS_H_INCLUDED

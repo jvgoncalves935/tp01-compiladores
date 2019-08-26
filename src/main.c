@@ -3,14 +3,22 @@
 #include <unistd.h> // Biblioteca necessária para utilização do getopt().
 #include "../headers/utils.h"
 #include "../headers/lexico.h"
-#include "../headers/automato.h"
 
 int main(int argc,char **argv){
-    // Função getopt(), (entrada por parâmetros).
+    /*
+	TAM_ASCII = 127;
+    LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    SEPARADOR[] = "S";
+    COMENTARIO[] = "//";
+    IDENTIFICADOR[] = "I";
+    NUMERO[] = "0123456789";
+    OPERADOR[] = "+*%/=<>!|&~^-?";
+    NULO[] = '-';
+    */
 	
-	int optc = 0;
+    int optc = 0;
 	char *argv1 = NULL;
-	
+	// Função getopt(), (entrada por parâmetros).
 	while((optc = getopt(argc, argv, "hc:a:")) != -1){
 		switch(optc){
 			case 'a':
@@ -71,6 +79,26 @@ int main(int argc,char **argv){
     free(arquivo);
 
     //Iniciar autômato.
-    MaquinaEstados automato = iniciarAutomato();
+    MaquinaEstados *automato = malloc(sizeof(MaquinaEstados));
+    automato->estadoAtual = 0;
+    automato->estados = malloc(33*sizeof(Estado));
+    
+    for(i=0;i<33;i++){
+        criarEstado(&automato->estados[i],i);
+    }
+
+    iniciarAutomato(automato);
+
+    for(i=0;i<3;i++){
+        printf("Estado %d\n",i);
+        int j;
+        Transicao *aux = automato->estados[i].primeira;
+        for(j=0;j<automato->estados[i].numTransicoes;j++){
+            printf("[%d] %s\n",j,aux->conjunto);
+            aux = aux->proxima;
+        }
+        printf("\n");
+    }
+
     return 0;
 }

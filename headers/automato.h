@@ -3,6 +3,7 @@
 
 typedef struct transicao{
     char *conjunto;
+    int proximoEstado;
     struct transicao *proxima;
     struct transicao *anterior;
 }Transicao;
@@ -16,12 +17,12 @@ typedef struct estado{
 
 typedef struct maquinaEstados{
     //Trocar pra int
-    char estadoAtual;
+    int estadoAtual;
     Estado *estados;
 }MaquinaEstados;
 
-MaquinaEstados iniciarAutomato();
-
-void adicionarTransicao(int idTransicao, char *conjunto);
+void criarEstado(Estado *estado, int idEstado);
+void adicionarTransicao(MaquinaEstados *maquinaEstados, int idTransicao, char *conjunto);
+void iniciarAutomato(MaquinaEstados *maquinaEstados);
 
 #endif // AUTOMATO_H_INCLUDED
