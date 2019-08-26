@@ -12,14 +12,14 @@ char OPERADOR[] = "+*%/=<>!|&~^-?";
 char NULO = '-';
 */
 
-    int TAM_ASCII = 127;
-    char LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    char SEPARADOR[] = "S";
-    char COMENTARIO[] = "//";
-    char IDENTIFICADOR[] = "I";
-    char NUMERO[] = "0123456789";
-    char OPERADOR[] = "+*%/=<>!|&~^-?";
-    char NULO = '-';
+int TAM_ASCII = 127;
+char LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char SEPARADOR[] = "S";
+char COMENTARIO[] = "//";
+char IDENTIFICADOR[] = "I";
+char NUMERO[] = "0123456789";
+char OPERADOR[] = "+*%/=<>!|&~^-?";
+char NULO = '-';
 
 void iniciarPalavrasReservadas(char **matriz){
     matriz[0] = "auto";
@@ -127,12 +127,12 @@ void iniciarLista(Estado *aux){
 }
 
 //Insere valores em uma lista.
-void inserirLista(Estado *f, char *transicao, int tamTransicao, int proxEstado){
+void inserirLista(Estado *f, char *transicao, int proxEstado){
 
 	Transicao *aux;
 	aux = (Transicao *) malloc(sizeof(Transicao));
 
-    aux->conjunto = malloc(tamTransicao*(sizeof(char)));
+    aux->conjunto = malloc(strlen(transicao)*(sizeof(char)));
 	strcpy(aux->conjunto,transicao);
 
 	aux->proxima = NULL;

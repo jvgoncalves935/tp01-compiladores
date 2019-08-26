@@ -81,15 +81,16 @@ int main(int argc,char **argv){
     //Iniciar autômato.
     MaquinaEstados *automato = malloc(sizeof(MaquinaEstados));
     automato->estadoAtual = 0;
-    automato->estados = malloc(33*sizeof(Estado));
+    automato->estados = malloc(32*sizeof(Estado));
     
     for(i=0;i<33;i++){
         criarEstado(&automato->estados[i],i);
     }
 
     iniciarAutomato(automato);
-
-    for(i=0;i<3;i++){
+    analiseLexica(automato,arquivo);
+    /*
+    for(i=0;i<32;i++){
         printf("Estado %d\n",i);
         int j;
         Transicao *aux = automato->estados[i].primeira;
@@ -99,6 +100,7 @@ int main(int argc,char **argv){
         }
         printf("\n");
     }
+    */
 
     return 0;
 }

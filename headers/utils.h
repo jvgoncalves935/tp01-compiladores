@@ -22,6 +22,6 @@ extern char NULO;
 
 int listaVazia(Estado *f);
 void iniciarLista(Estado *aux);
-void inserirLista(Estado *f, char *transicao, int tamTransicao, int proxEstado);
+void inserirLista(Estado *f, char *transicao, int proxEstado);
 
 #endif // UTILS_H_INCLUDED

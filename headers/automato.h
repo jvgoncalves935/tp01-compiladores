@@ -24,5 +24,6 @@ typedef struct maquinaEstados{
 void criarEstado(Estado *estado, int idEstado);
 void adicionarTransicao(MaquinaEstados *maquinaEstados, int idTransicao, char *conjunto);
 void iniciarAutomato(MaquinaEstados *maquinaEstados);
+void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *valido)
 
 #endif // AUTOMATO_H_INCLUDED
