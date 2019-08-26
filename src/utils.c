@@ -3,12 +3,12 @@
 #include "../headers/automato.h"
 
 int TAM_ASCII = 127;
-char LETRA = 'L';
-char SEPARADOR = 'S';
-char COMENTARIO = 'C';
-char IDENTIFICADOR = 'I';
-char NUMERO = 'N';
-char OPERADOR = 'O';
+char LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char SEPARADOR[] = 'S';
+char COMENTARIO[] = "//";
+char IDENTIFICADOR[] = 'I';
+char NUMERO[] = "0123456789";
+char OPERADOR[] = "+*%/=<>!|&~^-?";
 char NULO = '-';
 
 void iniciarPalavrasReservadas(char **matriz){
@@ -46,6 +46,7 @@ void iniciarPalavrasReservadas(char **matriz){
     matriz[31] = "if";
 }
 
+/*
 void iniciarLetras(char *vetor){
     int i;
     for(i = 0; i < 128; i++){
@@ -96,6 +97,7 @@ void iniciarTabelaAscii(char *vetor){
     iniciarOperadores(vetor);
     iniciarSeparadores(vetor);
 }
+*/
 
 int listaVazia(Estado *f){
 	if(f->tamanho == 0){
@@ -105,34 +107,37 @@ int listaVazia(Estado *f){
 	}
 }
 
-// F-2 Inicia uma célula para receber um lista.
+//Inicia uma célula para receber um lista.
 void iniciarLista(Estado *aux){
-	//aux->primeiro = (Pessoa *)malloc(sizeof(Pessoa));
-	//aux->primeiro->prox = NULL;
-	//aux->primeiro->ant = NULL;
-    aux->transicoes = NULL;
+    aux->primeira = (Transicao *) malloc(sizeof(Transicao));
+    aux->primeira->proxima = NULL;
+    aux->primeira->ultima = NULL;
 	aux->tamanho = 0;
 }
 
-// F-3 Insere valores em uma lista.
+//Insere valores em uma lista.
 void inserirLista(Estado *f, char *transicao){
 
-	Transicao *aux, *aux2;
+	Transicao *aux;
 	aux = (Transicao *) malloc(sizeof(Transicao));
 
 	aux->conjunto = transicao;
 	aux->proxima = NULL;
+    aux->anterior = NULL;
 
 	if(listaVazia(f)){
-		f->transicoes = aux;
+		f->primeira = aux;
+        f->ultima = aux;
 		f->numTransicoes++;
 	}else{
-        aux2 = ultimoLista(f->transicoes);
-		aux2->proxima = aux;
+        aux->anterior = f->ultima;
+        f->ultima->proxima = aux;
+        f->ultima = aux;
 		f->numTransicoes++;
 	}
 }
 
+/*
 Transicao *ultimoLista(Transicao *primeiro){
     Transicao *aux = primeiro;
     if(aux == NULL){
@@ -145,3 +150,4 @@ Transicao *ultimoLista(Transicao *primeiro){
         aux = aux->proxima;
     }
 }
+*/

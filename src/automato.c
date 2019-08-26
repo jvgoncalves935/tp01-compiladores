@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../headers/automato.h"
+#include "../headers/utils.h"
 
 MaquinaEstados iniciarAutomato(){
     MaquinaEstados automato;
@@ -7,3 +8,6 @@ MaquinaEstados iniciarAutomato(){
     return automato;
 }
 
+void adicionarTransicao(int idTransicao, char *conjunto){
+    //usar strcpy
+}

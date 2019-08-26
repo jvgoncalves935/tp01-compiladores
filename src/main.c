@@ -31,7 +31,7 @@ int main(int argc,char **argv){
 	}
 
     int i;
-    char tabela_ascii[TAM_ASCII];
+    //char tabela_ascii[TAM_ASCII];
     //char comentario = '//';
     //char literal = ''','"';
     
@@ -42,7 +42,7 @@ int main(int argc,char **argv){
     }
 
     //iniciarPalavrasReservadas(palavras_reservadas);
-    iniciarTabelaAscii(tabela_ascii);
+    //iniciarTabelaAscii(tabela_ascii);
 
     char temp;
     int tamanho_arquivo = 0;
