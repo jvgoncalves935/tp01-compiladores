@@ -14,12 +14,15 @@ char NULO = '-';
 
 int TAM_ASCII = 127;
 char LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-char SEPARADOR[] = "S";
+char SEPARADOR[] = ";\n\t ";
 char COMENTARIO[] = "//";
 char IDENTIFICADOR[] = "I";
 char NUMERO[] = "0123456789";
 char OPERADOR[] = "+*%/=<>!|&~^-?";
 char NULO = '-';
+int LINHA = 1;
+int COLUNA = 1;
+char BUFFER[1024];
 
 void iniciarPalavrasReservadas(char **matriz){
     matriz[0] = "auto";

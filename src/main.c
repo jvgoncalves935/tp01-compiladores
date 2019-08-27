@@ -5,17 +5,6 @@
 #include "../headers/lexico.h"
 
 int main(int argc,char **argv){
-    /*
-	TAM_ASCII = 127;
-    LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    SEPARADOR[] = "S";
-    COMENTARIO[] = "//";
-    IDENTIFICADOR[] = "I";
-    NUMERO[] = "0123456789";
-    OPERADOR[] = "+*%/=<>!|&~^-?";
-    NULO[] = '-';
-    */
-	
     int optc = 0;
 	char *argv1 = NULL;
 	// Função getopt(), (entrada por parâmetros).
@@ -49,7 +38,7 @@ int main(int argc,char **argv){
         palavras_reservadas[i] = malloc(15*sizeof(char));
     }
 
-    //iniciarPalavrasReservadas(palavras_reservadas);
+    iniciarPalavrasReservadas(palavras_reservadas);
     //iniciarTabelaAscii(tabela_ascii);
 
     char temp;
@@ -73,10 +62,12 @@ int main(int argc,char **argv){
     i=0;
     fclose(arq);
 
+    /*
     for(i=0;i<tamanho_arquivo;i++){
         printf("%c",arquivo[i]);
     }
     free(arquivo);
+    */
 
     //Iniciar autômato.
     MaquinaEstados *automato = malloc(sizeof(MaquinaEstados));

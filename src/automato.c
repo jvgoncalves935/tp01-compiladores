@@ -13,17 +13,21 @@ void adicionarTransicao(MaquinaEstados *maquinaEstados, int idTransicao, char *c
 
 void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *valido){
     int i;
-    Transicao *aux = maquinaEstados->estados[maquinaEstados->estadoAtual]->primeira;
+    Transicao *aux = maquinaEstados->estados[maquinaEstados->estadoAtual].primeira;
     int achou = 0;
     for(i=0;i<maquinaEstados->estados[maquinaEstados->estadoAtual].numTransicoes;i++){
         int j;
         for(j=0;aux->conjunto[j]!='\0';j++){
             if(aux->conjunto[j] == token){
                 maquinaEstados->estadoAtual = aux->proximoEstado;
+                strcat(BUFFER,&token);
                 achou = 1;
                 break;
             }
         }
+        printf("%s\n",BUFFER);
+        getchar();
+        strcpy(BUFFER,"\0");
         if(achou){
             break;
         }
@@ -35,6 +39,18 @@ void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *va
 }
 
 void iniciarAutomato(MaquinaEstados *maquinaEstados){
+    inserirLista(&maquinaEstados->estados[0],"$",1);
+    inserirLista(&maquinaEstados->estados[0],"_",1);
+    inserirLista(&maquinaEstados->estados[0],LETRA,1);
+
+    inserirLista(&maquinaEstados->estados[1],LETRA,1);
+    inserirLista(&maquinaEstados->estados[1],"_",1);
+    inserirLista(&maquinaEstados->estados[1],NUMERO,1);
+    inserirLista(&maquinaEstados->estados[1],SEPARADOR,0);
+
+
+    //inserirLista(&maquinaEstados->estados[],,);
+    /*
     inserirLista(&maquinaEstados->estados[0],"#",19);
 
     inserirLista(&maquinaEstados->estados[1],LETRA,2);
@@ -132,4 +148,5 @@ void iniciarAutomato(MaquinaEstados *maquinaEstados){
     inserirLista(&maquinaEstados->estados[31],"#",19);
     inserirLista(&maquinaEstados->estados[31],LETRA,1);
     //inserirLista(&maquinaEstados->estados[],,);
+    */
 }

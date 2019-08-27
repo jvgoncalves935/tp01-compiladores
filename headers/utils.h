@@ -12,6 +12,10 @@ extern char IDENTIFICADOR[];
 extern char NUMERO[];
 extern char OPERADOR[];
 extern char NULO;
+extern int LINHA;
+extern int COLUNA;
+extern char BUFFER[];
+
 
 //void iniciarPalavrasReservadas(char **matriz);
 //void iniciarLetras(char *vetor);
@@ -20,6 +24,7 @@ extern char NULO;
 //void iniciarSeparadores(char *vetor);
 //void iniciarTabelaAscii(char *vetor);
 
+void iniciarPalavrasReservadas(char **matriz);
 int listaVazia(Estado *f);
 void iniciarLista(Estado *aux);
 void inserirLista(Estado *f, char *transicao, int proxEstado);
