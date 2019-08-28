@@ -48,13 +48,19 @@ void iniciarAutomato(MaquinaEstados *maquinaEstados){
     inserirLista(&maquinaEstados->estados[0],"_",1);
     inserirLista(&maquinaEstados->estados[0],LETRA,1);
     inserirLista(&maquinaEstados->estados[0],SEPARADOR,0);
+    inserirLista(&maquinaEstados->estados[0],NUMERO,2);
 
     inserirLista(&maquinaEstados->estados[1],LETRA,1);
     inserirLista(&maquinaEstados->estados[1],"_",1);
     inserirLista(&maquinaEstados->estados[1],NUMERO,1);
     inserirLista(&maquinaEstados->estados[1],SEPARADOR,0);
 
+    inserirLista(&maquinaEstados->estados[2],NUMERO,3);
+    inserirLista(&maquinaEstados->estados[2],".",3);
+    inserirLista(&maquinaEstados->estados[2],SEPARADOR,0);
 
+    inserirLista(&maquinaEstados->estados[3],NUMERO,3);
+    inserirLista(&maquinaEstados->estados[3],SEPARADOR,0);
     //inserirLista(&maquinaEstados->estados[],,);
     /*
     inserirLista(&maquinaEstados->estados[0],"#",19);

@@ -1,12 +1,24 @@
 reservada,"int",1,1
 separador," ",1,3
 identificador,"abc",1,5
-separador,";",1,7
-separador,"",1,9
-separador,"\n",1,8
-reservada,"float",2,1
+separador," ",1,7
+numero,"935",1,9
+separador,";",1,11
+separador,"",1,13
+separador,"\n",1,12
+reservada,"int",2,1
+separador," ",2,3
+identificador,"i",2,5
 separador," ",2,5
-identificador,"teste",2,7
-separador," ",2,11
-identificador,"xddd",2,13
-separador,";",2,16
+numero,"0",2,7
+separador,";",2,7
+separador,"",2,9
+separador,"\n",2,8
+reservada,"float",3,1
+separador," ",3,5
+identificador,"teste",3,7
+separador," ",3,11
+identificador,"xddd",3,13
+separador," ",3,16
+numero,"3.14",3,18
+separador,";",3,21

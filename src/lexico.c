@@ -34,6 +34,7 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
     
     //Funcionamento do automato e reconhecimento de tokens
     for(posicao = 0;posicao<tamArquivo;posicao++){
+        printf("%d %s\n",maquinaEstados->estadoAtual,BUFFER);
         alimentarMaquinaEstados(maquinaEstados,arquivo[posicao],&valido,palavras_reservadas,listaToken);
         
         
@@ -99,14 +100,16 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
     if(maquinaEstados->estados[maquinaEstados->estadoAtual].final == 1){
         int achou = 0;
         char tipo[50];
-        
-        printf("%s\n",BUFFER);
         //Identificacao de tipo de token
         if(!achou && strchr(SEPARADOR,BUFFER[0]) != NULL){
             sprintf(tipo,"%s","separador");
             achou = 1; 
         }
-    
+
+        if(!achou && isNumero(BUFFER)){
+            sprintf(tipo,"%s","numero");
+            achou = 1;  
+        }
         
         if(!achou && isPalavraReservada(BUFFER,palavrasReservadas)){
             sprintf(tipo,"%s","reservada");
@@ -120,4 +123,14 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
         
         strcpy(BUFFER,"\0");
     }
+}
+
+int isNumero(char *str){
+    int i;
+    for(i=0;i<strlen(str);i++){
+        if((str[i] < 48 || str[i] > 57) && (str[i] != '.')){
+            return 0;
+        }
+    }
+    return 1;
 }

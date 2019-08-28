@@ -11,5 +11,6 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
 void escreverArquivoTokens(FILE *arq, ListaToken *listaToken);
 int isPalavraReservada(char *str, char **palavrasReservadas);
 void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas, ListaToken *listaToken);
+int isNumero(char *str);
 
 #endif // LEXICO_H_INCLUDED
