@@ -1,1 +1,1 @@
-come vaiem123;
+int come vaiem123 xd float xddddddd

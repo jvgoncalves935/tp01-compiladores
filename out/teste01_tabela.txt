@@ -1,0 +1,6 @@
+reservada,"int",1,1
+reservada,"come",1,5
+reservada,"vaiem123",1,10
+reservada,"xd",1,19
+reservada,"float",1,22
+reservada,"xddddddd",1,28

@@ -20,14 +20,15 @@ void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *va
         for(j=0;aux->conjunto[j]!='\0';j++){
             if(aux->conjunto[j] == token){
                 maquinaEstados->estadoAtual = aux->proximoEstado;
-                strcat(BUFFER,&token);
+                //printf("%s\t... %c\n",BUFFER,token);
+                printf("%c",token);
+                if(strchr(SEPARADOR,token) == NULL){
+                    sprintf(BUFFER,"%s%c",BUFFER,token);
+                }
                 achou = 1;
                 break;
             }
         }
-        printf("%s\n",BUFFER);
-        getchar();
-        strcpy(BUFFER,"\0");
         if(achou){
             break;
         }
@@ -39,6 +40,7 @@ void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *va
 }
 
 void iniciarAutomato(MaquinaEstados *maquinaEstados){
+    setEstadoFinal(maquinaEstados,0);
     inserirLista(&maquinaEstados->estados[0],"$",1);
     inserirLista(&maquinaEstados->estados[0],"_",1);
     inserirLista(&maquinaEstados->estados[0],LETRA,1);

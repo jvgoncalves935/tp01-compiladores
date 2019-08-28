@@ -10,6 +10,7 @@ typedef struct transicao{
 
 typedef struct estado{
     int id;
+    int final;
     Transicao *primeira;
     Transicao *ultima;
     int numTransicoes;

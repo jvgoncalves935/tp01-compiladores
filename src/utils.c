@@ -14,7 +14,7 @@ char NULO = '-';
 
 int TAM_ASCII = 127;
 char LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-char SEPARADOR[] = ";\n\t ";
+char SEPARADOR[] = " ;\n\t";
 char COMENTARIO[] = "//";
 char IDENTIFICADOR[] = "I";
 char NUMERO[] = "0123456789";
@@ -127,6 +127,7 @@ void iniciarLista(Estado *aux){
     aux->primeira->anterior = NULL;
     aux->primeira->proximoEstado = 0;
 	aux->numTransicoes = 0;
+    aux->final = 0;
 }
 
 //Insere valores em uma lista.
@@ -152,6 +153,57 @@ void inserirLista(Estado *f, char *transicao, int proxEstado){
         f->ultima = aux;
 		f->numTransicoes++;
 	}
+}
+
+int listaVaziaToken(ListaToken *f){
+	if(f->numTokens == 0){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+//Inicia uma célula para receber um lista.
+void iniciarListaToken(ListaToken *aux){
+    aux->primeira = (Token *) malloc(sizeof(Token));
+    aux->primeira->proxima = NULL;
+    aux->primeira->anterior = NULL;
+    aux->primeira->linha = 0;
+    aux->primeira->coluna = 0;
+	aux->numTokens = 0;
+}
+
+//Insere valores em uma lista.
+void inserirListaToken(ListaToken *f, char *valor, char *valorBruto, int _linha, int _coluna){
+
+	Token *aux;
+	aux = (Token *) malloc(sizeof(Token));
+
+    aux->valor = malloc(strlen(valor)*(sizeof(char)));
+	strcpy(aux->valor,valor);
+
+    aux->valorBruto = malloc(strlen(valorBruto)*(sizeof(char)));
+	strcpy(aux->valorBruto,valorBruto);
+
+	aux->proxima = NULL;
+    aux->anterior = NULL;
+    aux->linha = _linha;
+    aux->coluna = _coluna;
+
+	if(listaVaziaToken(f)){
+		f->primeira = aux;
+        f->ultima = aux;
+		f->numTokens++;
+	}else{
+        aux->anterior = f->ultima;
+        f->ultima->proxima = aux;
+        f->ultima = aux;
+		f->numTokens++;
+	}
+}
+
+void setEstadoFinal(MaquinaEstados *maquinaEstados, int estado){
+    maquinaEstados->estados[estado].final = 1;
 }
 
 /*

@@ -79,7 +79,7 @@ int main(int argc,char **argv){
     }
 
     iniciarAutomato(automato);
-    analiseLexica(automato,arquivo);
+    analiseLexica(automato,arquivo,argv1);
     /*
     for(i=0;i<32;i++){
         printf("Estado %d\n",i);
