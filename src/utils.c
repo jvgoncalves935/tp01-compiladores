@@ -175,7 +175,6 @@ void iniciarListaToken(ListaToken *aux){
 
 //Insere valores em uma lista.
 void inserirListaToken(ListaToken *f, char *valor, char *valorBruto, int _linha, int _coluna){
-
 	Token *aux;
 	aux = (Token *) malloc(sizeof(Token));
 

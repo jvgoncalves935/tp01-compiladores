@@ -32,13 +32,6 @@ int main(int argc,char **argv){
     //char comentario = '//';
     //char literal = ''','"';
     
-
-    char **palavras_reservadas = malloc(32*(sizeof(char *)));
-    for(i=0;i<28;i++){
-        palavras_reservadas[i] = malloc(15*sizeof(char));
-    }
-
-    iniciarPalavrasReservadas(palavras_reservadas);
     //iniciarTabelaAscii(tabela_ascii);
 
     char temp;

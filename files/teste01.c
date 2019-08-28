@@ -1,1 +1,2 @@
-int come vaiem123 xd float xddddddd
+int abc;
+float teste xddd;

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../headers/utils.h"
+#include "../headers/lexico.h"
 
 void criarEstado(Estado *estado, int idEstado){
     estado->id = idEstado;
@@ -11,7 +12,7 @@ void adicionarTransicao(MaquinaEstados *maquinaEstados, int idTransicao, char *c
     //Estado *e = malloc(sizeof(Estado));
 }
 
-void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *valido){
+void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *valido, char **palavrasReservadas, ListaToken *listaToken){
     int i;
     Transicao *aux = maquinaEstados->estados[maquinaEstados->estadoAtual].primeira;
     int achou = 0;
@@ -20,10 +21,12 @@ void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *va
         for(j=0;aux->conjunto[j]!='\0';j++){
             if(aux->conjunto[j] == token){
                 maquinaEstados->estadoAtual = aux->proximoEstado;
-                //printf("%s\t... %c\n",BUFFER,token);
-                printf("%c",token);
                 if(strchr(SEPARADOR,token) == NULL){
                     sprintf(BUFFER,"%s%c",BUFFER,token);
+                }else{
+                    identificarToken(maquinaEstados,palavrasReservadas,listaToken);
+                    sprintf(BUFFER,"%c",token);
+                    identificarToken(maquinaEstados,palavrasReservadas,listaToken);
                 }
                 achou = 1;
                 break;
@@ -44,6 +47,7 @@ void iniciarAutomato(MaquinaEstados *maquinaEstados){
     inserirLista(&maquinaEstados->estados[0],"$",1);
     inserirLista(&maquinaEstados->estados[0],"_",1);
     inserirLista(&maquinaEstados->estados[0],LETRA,1);
+    inserirLista(&maquinaEstados->estados[0],SEPARADOR,0);
 
     inserirLista(&maquinaEstados->estados[1],LETRA,1);
     inserirLista(&maquinaEstados->estados[1],"_",1);
