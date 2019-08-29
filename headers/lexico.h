@@ -12,5 +12,7 @@ void escreverArquivoTokens(FILE *arq, ListaToken *listaToken);
 int isPalavraReservada(char *str, char **palavrasReservadas);
 void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas, ListaToken *listaToken);
 int isNumero(char *str);
+char *tipoSeparador(char str);
+int isOperador(char *str);
 
 #endif // LEXICO_H_INCLUDED

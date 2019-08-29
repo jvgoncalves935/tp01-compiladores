@@ -102,7 +102,8 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
         char tipo[50];
         //Identificacao de tipo de token
         if(!achou && strchr(SEPARADOR,BUFFER[0]) != NULL){
-            sprintf(tipo,"%s","separador");
+            char *aux = tipoSeparador(BUFFER[0]);
+            sprintf(tipo,"%s",aux);
             achou = 1; 
         }
 
@@ -133,4 +134,27 @@ int isNumero(char *str){
         }
     }
     return 1;
+}
+
+char *tipoSeparador(char str){
+    switch(str){
+        case ' ': return "espaco";
+        case ';': return "ponto_virgula";
+        case '\n': return "quebra_linha";
+        case '\t': return "tabulacao";
+        case '(': return "abre_parenteses";
+        case ')': return "fecha_parenteses";
+        case '[': return "abre_colchetes";
+        case ']': return "fecha_colchetes";
+        case '{': return "abre_chaves";
+        case '}': return "fecha_chaves";
+        default: return "bugxd";
+    }
+}
+
+int isOperador(char *str){
+    int i;
+    for(i=0;i<strlen(str);i++){
+        //TERMINAR XD
+    }
 }
