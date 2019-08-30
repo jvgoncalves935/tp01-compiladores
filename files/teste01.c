@@ -1,5 +1,5 @@
 int main(){
-	int abc = 935;
+	char abc = "935";
 	int i = 0;
 	float teste xddd = 3.14;
 	i += abc;
@@ -7,5 +7,4 @@ int main(){
 	if(i < 0){
 		a = 0;
 	}else{
-		a = 1;
-	}
+		a = abc;

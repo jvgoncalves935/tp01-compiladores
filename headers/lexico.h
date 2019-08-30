@@ -16,5 +16,6 @@ char *tipoSeparador(char str);
 int isOperador(char *str);
 void iniciarMensagensErro(MaquinaEstados *maquinaEstados);
 void adicionarMensagemErro(MaquinaEstados *maquinaEstados, char *mensagem, int estado);
+int isLiteralAspasDuplas(char *str);
 
 #endif // LEXICO_H_INCLUDED

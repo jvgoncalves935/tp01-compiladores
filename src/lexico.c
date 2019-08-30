@@ -111,6 +111,11 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
             achou = 1; 
         }
 
+        if(!achou && isLiteralAspasDuplas(BUFFER)){
+            sprintf(tipo,"%s","aspas_duplas");
+            achou = 1;  
+        }
+
         if(!achou && isOperador(BUFFER)){
             sprintf(tipo,"%s","operador");
             achou = 1;  
@@ -173,6 +178,15 @@ int isOperador(char *str){
     }
     if(achou == strlen(str)){
         return 1;
+    }
+    return 0;
+}
+
+int isLiteralAspasDuplas(char *str){
+    if(strlen(str) > 2){
+        if(str[0] == '\"' && str[strlen(str)-1] == '\"'){
+            return 1;
+        }
     }
     return 0;
 }

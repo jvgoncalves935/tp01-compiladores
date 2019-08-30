@@ -6,15 +6,15 @@ fecha_parenteses,")",1,9
 abre_chaves,"{",1,10
 quebra_linha,"\n",1,11
 tabulacao,"\t",2,0
-int,"int",2,2
-espaco," ",2,4
-identificador,"abc",2,6
-espaco," ",2,8
-operador,"=",2,10
-espaco," ",2,10
-numero,"935",2,12
-ponto_virgula,";",2,14
-quebra_linha,"\n",2,15
+char,"char",2,2
+espaco," ",2,5
+identificador,"abc",2,7
+espaco," ",2,9
+operador,"=",2,11
+espaco," ",2,11
+aspas_duplas,""935"",2,13
+ponto_virgula,";",2,17
+quebra_linha,"\n",2,18
 tabulacao,"\t",3,0
 int,"int",3,2
 espaco," ",3,4
@@ -92,10 +92,5 @@ identificador,"a",10,3
 espaco," ",10,3
 operador,"=",10,5
 espaco," ",10,5
-numero,"1",10,7
-ponto_virgula,";",10,7
-quebra_linha,"\n",10,8
-tabulacao,"\t",11,0
-fecha_chaves,"}",11,1
-quebra_linha,"\n",11,2
-operador,"!",12,1
+identificador,"abc",10,7
+ponto_virgula,";",10,9
