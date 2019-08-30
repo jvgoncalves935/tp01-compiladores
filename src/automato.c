@@ -64,6 +64,8 @@ void iniciarAutomato(MaquinaEstados *maquinaEstados){
     inserirLista(&maquinaEstados->estados[0],"|",14);
     inserirLista(&maquinaEstados->estados[0],"&",15);
     inserirLista(&maquinaEstados->estados[0],"\"",16);
+    inserirLista(&maquinaEstados->estados[0],"'",18);
+    inserirLista(&maquinaEstados->estados[0],"#",21);
     
 
     inserirLista(&maquinaEstados->estados[1],LETRA,1);
@@ -128,6 +130,35 @@ void iniciarAutomato(MaquinaEstados *maquinaEstados){
     inserirLista(&maquinaEstados->estados[17],"'",16);
     inserirLista(&maquinaEstados->estados[17],"\\",16);
     inserirLista(&maquinaEstados->estados[17],"\"",16);
+
+    inserirLista(&maquinaEstados->estados[18],LETRA,19);
+    inserirLista(&maquinaEstados->estados[18],OPERADOR,19);
+    inserirLista(&maquinaEstados->estados[18],SEPARADOR,19);
+    inserirLista(&maquinaEstados->estados[18],NUMERO,19);
+    inserirLista(&maquinaEstados->estados[18],"'",19);
+    inserirLista(&maquinaEstados->estados[18],"\"",19);
+    inserirLista(&maquinaEstados->estados[18],"\\",20);
+
+    inserirLista(&maquinaEstados->estados[19],"'",0);
+
+    inserirLista(&maquinaEstados->estados[20],LETRA,19);
+    inserirLista(&maquinaEstados->estados[20],OPERADOR,19);
+    inserirLista(&maquinaEstados->estados[20],SEPARADOR,19);
+    inserirLista(&maquinaEstados->estados[20],NUMERO,19);
+    inserirLista(&maquinaEstados->estados[20],"'",19);
+    inserirLista(&maquinaEstados->estados[20],"\"",19);
+    inserirLista(&maquinaEstados->estados[20],"\\",20);
+
+    
+    inserirLista(&maquinaEstados->estados[21],"\n",0);
+    inserirLista(&maquinaEstados->estados[21],".",21);
+    inserirLista(&maquinaEstados->estados[21],LETRA,21);
+    inserirLista(&maquinaEstados->estados[21],OPERADOR,21);
+    inserirLista(&maquinaEstados->estados[21],SEPARADOR,21);
+    inserirLista(&maquinaEstados->estados[21],NUMERO,21);
+    inserirLista(&maquinaEstados->estados[21],"'",21);
+    inserirLista(&maquinaEstados->estados[21],"\"",21);
+    inserirLista(&maquinaEstados->estados[21],"\\",21);
     //inserirLista(&maquinaEstados->estados[],,);
     /*
     inserirLista(&maquinaEstados->estados[0],"#",19);

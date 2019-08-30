@@ -116,6 +116,11 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
             achou = 1;  
         }
 
+        if(!achou && isLiteralAspasSimples(BUFFER)){
+            sprintf(tipo,"%s","aspas_simples");
+            achou = 1;  
+        }
+
         if(!achou && isOperador(BUFFER)){
             sprintf(tipo,"%s","operador");
             achou = 1;  
@@ -129,6 +134,11 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
         if(!achou && isPalavraReservada(BUFFER,palavrasReservadas)){
             sprintf(tipo,"%s",BUFFER);
             achou = 1;
+        }
+
+        if(!achou && isDiretiva(BUFFER)){
+            sprintf(tipo,"%s","diretiva");
+            achou = 1;  
         }
         
         if(!achou){
@@ -163,6 +173,8 @@ char *tipoSeparador(char str){
         case ']': return "fecha_colchetes";
         case '{': return "abre_chaves";
         case '}': return "fecha_chaves";
+        case ',': return "virgula";
+        case '.': return "ponto";
         default: return "null";
     }
 }
@@ -187,6 +199,22 @@ int isLiteralAspasDuplas(char *str){
         if(str[0] == '\"' && str[strlen(str)-1] == '\"'){
             return 1;
         }
+    }
+    return 0;
+}
+
+int isLiteralAspasSimples(char *str){
+    if(strlen(str) > 2){
+        if(str[0] == '\'' && str[strlen(str)-1] == '\''){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int isDiretiva(char *str){
+    if(str[0] == '#'){
+        return 1;
     }
     return 0;
 }

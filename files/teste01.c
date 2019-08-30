@@ -1,4 +1,6 @@
+#includestdioh
 int main(){
+	char a = 'a';
 	char abc = "935";
 	int i = 0;
 	float teste xddd = 3.14;
