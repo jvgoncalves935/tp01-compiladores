@@ -14,5 +14,7 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
 int isNumero(char *str);
 char *tipoSeparador(char str);
 int isOperador(char *str);
+void iniciarMensagensErro(MaquinaEstados *maquinaEstados);
+void adicionarMensagemErro(MaquinaEstados *maquinaEstados, char *mensagem, int estado);
 
 #endif // LEXICO_H_INCLUDED

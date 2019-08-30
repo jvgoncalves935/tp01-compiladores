@@ -100,10 +100,14 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
     if(maquinaEstados->estados[maquinaEstados->estadoAtual].final == 1){
         int achou = 0;
         char tipo[50];
+        int isNull = 0;
         //Identificacao de tipo de token
         if(!achou && strchr(SEPARADOR,BUFFER[0]) != NULL){
             char *aux = tipoSeparador(BUFFER[0]);
             sprintf(tipo,"%s",aux);
+            if(strcmp(aux,"null") == 0){
+                isNull = 1;
+            }
             achou = 1; 
         }
 
@@ -120,8 +124,9 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
         if(!achou){
             sprintf(tipo,"%s","identificador");
         }
-        inserirListaToken(listaToken,tipo,BUFFER,LINHA,COLUNA-(strlen(BUFFER)));
-        
+        if(!isNull){
+            inserirListaToken(listaToken,tipo,BUFFER,LINHA,COLUNA-(strlen(BUFFER)));
+        }
         strcpy(BUFFER,"\0");
     }
 }
@@ -148,13 +153,21 @@ char *tipoSeparador(char str){
         case ']': return "fecha_colchetes";
         case '{': return "abre_chaves";
         case '}': return "fecha_chaves";
-        default: return "bugxd";
+        default: return "null";
     }
 }
 
 int isOperador(char *str){
     int i;
+    int achou = 0;
     for(i=0;i<strlen(str);i++){
-        //TERMINAR XD
+        if(strchr(OPERADOR,str[i]) != NULL){
+            achou++;
+            continue;
+        }
     }
+    if(achou == 2){
+        return 1;
+    }
+    return 0;
 }
