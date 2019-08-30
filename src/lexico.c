@@ -111,13 +111,18 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
             achou = 1; 
         }
 
+        if(!achou && isOperador(BUFFER)){
+            sprintf(tipo,"%s","operador");
+            achou = 1;  
+        }
+
         if(!achou && isNumero(BUFFER)){
             sprintf(tipo,"%s","numero");
             achou = 1;  
         }
         
         if(!achou && isPalavraReservada(BUFFER,palavrasReservadas)){
-            sprintf(tipo,"%s","reservada");
+            sprintf(tipo,"%s",BUFFER);
             achou = 1;
         }
         
@@ -166,7 +171,7 @@ int isOperador(char *str){
             continue;
         }
     }
-    if(achou == 2){
+    if(achou == strlen(str)){
         return 1;
     }
     return 0;

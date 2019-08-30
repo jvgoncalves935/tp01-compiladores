@@ -1,5 +1,11 @@
 int main(){
-	int abc 935;
-	int i 0;
-	float teste xddd 3.14;
-}
+	int abc = 935;
+	int i = 0;
+	float teste xddd = 3.14;
+	i += abc;
+	i = i - abc + 2;
+	if(i < 0){
+		a = 0;
+	}else{
+		a = 1;
+	}
