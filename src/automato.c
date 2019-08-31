@@ -93,6 +93,8 @@ void iniciarAutomato(MaquinaEstados *maquinaEstados){
 
     inserirLista(&maquinaEstados->estados[7],SEPARADOR,0);
     inserirLista(&maquinaEstados->estados[7],"=",0);
+    inserirLista(&maquinaEstados->estados[7],"/",22);
+    inserirLista(&maquinaEstados->estados[7],"*",23);
 
     inserirLista(&maquinaEstados->estados[8],SEPARADOR,0);
     inserirLista(&maquinaEstados->estados[8],"=",0);
@@ -159,6 +161,51 @@ void iniciarAutomato(MaquinaEstados *maquinaEstados){
     inserirLista(&maquinaEstados->estados[21],"'",21);
     inserirLista(&maquinaEstados->estados[21],"\"",21);
     inserirLista(&maquinaEstados->estados[21],"\\",21);
+
+    inserirLista(&maquinaEstados->estados[22],"\n",0);
+    inserirLista(&maquinaEstados->estados[22],".",22);
+    inserirLista(&maquinaEstados->estados[22],LETRA,22);
+    inserirLista(&maquinaEstados->estados[22],OPERADOR,22);
+    inserirLista(&maquinaEstados->estados[22],SEPARADOR,22);
+    inserirLista(&maquinaEstados->estados[22],NUMERO,22);
+    inserirLista(&maquinaEstados->estados[22],"'",22);
+    inserirLista(&maquinaEstados->estados[22],"\"",22);
+    inserirLista(&maquinaEstados->estados[22],"\\",22);
+
+    inserirLista(&maquinaEstados->estados[23],"*",24);
+    inserirLista(&maquinaEstados->estados[23],"/",25);
+    inserirLista(&maquinaEstados->estados[23],"\n",23);
+    inserirLista(&maquinaEstados->estados[23],".",23);
+    inserirLista(&maquinaEstados->estados[23],LETRA,23);
+    inserirLista(&maquinaEstados->estados[23],OPERADOR,23);
+    inserirLista(&maquinaEstados->estados[23],SEPARADOR,23);
+    inserirLista(&maquinaEstados->estados[23],NUMERO,23);
+    inserirLista(&maquinaEstados->estados[23],"'",23);
+    inserirLista(&maquinaEstados->estados[23],"\"",23);
+    inserirLista(&maquinaEstados->estados[23],"\\",23);
+
+    inserirLista(&maquinaEstados->estados[24],"/",0);
+    inserirLista(&maquinaEstados->estados[24],"\n",23);
+    inserirLista(&maquinaEstados->estados[24],".",23);
+    inserirLista(&maquinaEstados->estados[24],LETRA,23);
+    inserirLista(&maquinaEstados->estados[24],OPERADOR,23);
+    inserirLista(&maquinaEstados->estados[24],SEPARADOR,23);
+    inserirLista(&maquinaEstados->estados[24],NUMERO,23);
+    inserirLista(&maquinaEstados->estados[24],"'",23);
+    inserirLista(&maquinaEstados->estados[24],"\"",23);
+    inserirLista(&maquinaEstados->estados[24],"\\",23);
+
+    inserirLista(&maquinaEstados->estados[25],"*",26);
+    inserirLista(&maquinaEstados->estados[25],"/",23);
+    inserirLista(&maquinaEstados->estados[25],"\n",23);
+    inserirLista(&maquinaEstados->estados[25],".",23);
+    inserirLista(&maquinaEstados->estados[25],LETRA,23);
+    inserirLista(&maquinaEstados->estados[25],OPERADOR,23);
+    inserirLista(&maquinaEstados->estados[25],SEPARADOR,23);
+    inserirLista(&maquinaEstados->estados[25],NUMERO,23);
+    inserirLista(&maquinaEstados->estados[25],"'",23);
+    inserirLista(&maquinaEstados->estados[25],"\"",23);
+    inserirLista(&maquinaEstados->estados[25],"\\",23);
     //inserirLista(&maquinaEstados->estados[],,);
     /*
     inserirLista(&maquinaEstados->estados[0],"#",19);

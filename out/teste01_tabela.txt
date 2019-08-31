@@ -1,108 +1,113 @@
 diretiva,"#includestdioh",1,1
 quebra_linha,"\n",1,14
-int,"int",2,1
-espaco," ",2,3
-identificador,"main",2,5
-abre_parenteses,"(",2,8
-fecha_parenteses,")",2,9
-abre_chaves,"{",2,10
-quebra_linha,"\n",2,11
-tabulacao,"\t",3,0
-char,"char",3,2
-espaco," ",3,5
-identificador,"a",3,7
-espaco," ",3,7
-operador,"=",3,9
-espaco," ",3,9
-aspas_simples,"'a'",3,11
-ponto_virgula,";",3,13
-quebra_linha,"\n",3,14
-tabulacao,"\t",4,0
-char,"char",4,2
-espaco," ",4,5
-identificador,"abc",4,7
-espaco," ",4,9
-operador,"=",4,11
-espaco," ",4,11
-aspas_duplas,""935"",4,13
-ponto_virgula,";",4,17
-quebra_linha,"\n",4,18
-tabulacao,"\t",5,0
-int,"int",5,2
-espaco," ",5,4
-identificador,"i",5,6
-espaco," ",5,6
-operador,"=",5,8
-espaco," ",5,8
-numero,"0",5,10
-ponto_virgula,";",5,10
+comentario,"//comevaiemxd",2,1
+quebra_linha,"\n",2,13
+comentario,"/*xdddddddd*/",3,1
+quebra_linha,"\n",3,13
+quebra_linha,"\n",4,0
+int,"int",5,1
+espaco," ",5,3
+identificador,"main",5,5
+abre_parenteses,"(",5,8
+fecha_parenteses,")",5,9
+abre_chaves,"{",5,10
 quebra_linha,"\n",5,11
 tabulacao,"\t",6,0
-float,"float",6,2
-espaco," ",6,6
-identificador,"teste",6,8
-espaco," ",6,12
-identificador,"xddd",6,14
-espaco," ",6,17
-operador,"=",6,19
-espaco," ",6,19
-ponto,".14",6,22
-ponto_virgula,";",6,24
-quebra_linha,"\n",6,25
+char,"char",6,2
+espaco," ",6,5
+identificador,"a",6,7
+espaco," ",6,7
+operador,"=",6,9
+espaco," ",6,9
+aspas_simples,"'a'",6,11
+ponto_virgula,";",6,13
+quebra_linha,"\n",6,14
 tabulacao,"\t",7,0
-identificador,"i",7,2
-espaco," ",7,2
-operador,"+=",7,4
+char,"char",7,2
 espaco," ",7,5
 identificador,"abc",7,7
-ponto_virgula,";",7,9
-quebra_linha,"\n",7,10
+espaco," ",7,9
+operador,"=",7,11
+espaco," ",7,11
+aspas_duplas,""935"",7,13
+ponto_virgula,";",7,17
+quebra_linha,"\n",7,18
 tabulacao,"\t",8,0
-identificador,"i",8,2
-espaco," ",8,2
-operador,"=",8,4
+int,"int",8,2
 espaco," ",8,4
 identificador,"i",8,6
 espaco," ",8,6
-operador,"-",8,8
+operador,"=",8,8
 espaco," ",8,8
-identificador,"abc",8,10
-espaco," ",8,12
-operador,"+",8,14
-espaco," ",8,14
-numero,"2",8,16
-ponto_virgula,";",8,16
-quebra_linha,"\n",8,17
+numero,"0",8,10
+ponto_virgula,";",8,10
+quebra_linha,"\n",8,11
 tabulacao,"\t",9,0
-if,"if",9,2
-abre_parenteses,"(",9,3
-identificador,"i",9,5
-espaco," ",9,5
-operador,"<",9,7
-espaco," ",9,7
-numero,"0",9,9
-fecha_parenteses,")",9,9
-abre_chaves,"{",9,10
-quebra_linha,"\n",9,11
+float,"float",9,2
+espaco," ",9,6
+identificador,"teste",9,8
+espaco," ",9,12
+identificador,"xddd",9,14
+espaco," ",9,17
+operador,"=",9,19
+espaco," ",9,19
+ponto,".14",9,22
+ponto_virgula,";",9,24
+quebra_linha,"\n",9,25
 tabulacao,"\t",10,0
-tabulacao,"\t",10,1
-identificador,"a",10,3
-espaco," ",10,3
-operador,"=",10,5
+identificador,"i",10,2
+espaco," ",10,2
+operador,"+=",10,4
 espaco," ",10,5
-numero,"0",10,7
-ponto_virgula,";",10,7
-quebra_linha,"\n",10,8
+identificador,"abc",10,7
+ponto_virgula,";",10,9
+quebra_linha,"\n",10,10
 tabulacao,"\t",11,0
-fecha_chaves,"}",11,1
-else,"else",11,3
-abre_chaves,"{",11,6
-quebra_linha,"\n",11,7
+identificador,"i",11,2
+espaco," ",11,2
+operador,"=",11,4
+espaco," ",11,4
+identificador,"i",11,6
+espaco," ",11,6
+operador,"-",11,8
+espaco," ",11,8
+identificador,"abc",11,10
+espaco," ",11,12
+operador,"+",11,14
+espaco," ",11,14
+numero,"2",11,16
+ponto_virgula,";",11,16
+quebra_linha,"\n",11,17
 tabulacao,"\t",12,0
-tabulacao,"\t",12,1
-identificador,"a",12,3
-espaco," ",12,3
-operador,"=",12,5
+if,"if",12,2
+abre_parenteses,"(",12,3
+identificador,"i",12,5
 espaco," ",12,5
-identificador,"abc",12,7
-ponto_virgula,";",12,9
+operador,"<",12,7
+espaco," ",12,7
+numero,"0",12,9
+fecha_parenteses,")",12,9
+abre_chaves,"{",12,10
+quebra_linha,"\n",12,11
+tabulacao,"\t",13,0
+tabulacao,"\t",13,1
+identificador,"a",13,3
+espaco," ",13,3
+operador,"=",13,5
+espaco," ",13,5
+numero,"0",13,7
+ponto_virgula,";",13,7
+quebra_linha,"\n",13,8
+tabulacao,"\t",14,0
+fecha_chaves,"}",14,1
+else,"else",14,3
+abre_chaves,"{",14,6
+quebra_linha,"\n",14,7
+tabulacao,"\t",15,0
+tabulacao,"\t",15,1
+identificador,"a",15,3
+espaco," ",15,3
+operador,"=",15,5
+espaco," ",15,5
+identificador,"abc",15,7
+ponto_virgula,";",15,9

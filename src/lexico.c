@@ -136,6 +136,11 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
             achou = 1;
         }
 
+        if(!achou && isComentario(BUFFER)){
+            sprintf(tipo,"%s","comentario");
+            achou = 1;  
+        }
+        
         if(!achou && isDiretiva(BUFFER)){
             sprintf(tipo,"%s","diretiva");
             achou = 1;  
@@ -214,6 +219,22 @@ int isLiteralAspasSimples(char *str){
 
 int isDiretiva(char *str){
     if(str[0] == '#'){
+        return 1;
+    }
+    return 0;
+}
+
+int isComentario(char *str){
+    if(strlen(str) < 3){
+        return 0;
+    }
+    if(str[0] == '/' && str[1] == '/'){
+        return 1;
+    }
+    if(strlen(str) < 4){
+        return 0;
+    }
+    if(str[0] == '/' && str[1] == '*' && str[strlen(str)-2] == '*' && str[strlen(str)-1] == '/'){
         return 1;
     }
     return 0;

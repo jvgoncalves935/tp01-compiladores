@@ -19,5 +19,6 @@ void adicionarMensagemErro(MaquinaEstados *maquinaEstados, char *mensagem, int e
 int isLiteralAspasDuplas(char *str);
 int isLiteralAspasSimples(char *str);
 int isDiretiva(char *str);
+int isComentario(char *str);
 
 #endif // LEXICO_H_INCLUDED

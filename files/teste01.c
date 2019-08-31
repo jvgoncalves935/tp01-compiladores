@@ -1,4 +1,7 @@
 #includestdioh
+//comevaiemxd
+/*xdddddddd*/
+
 int main(){
 	char a = 'a';
 	char abc = "935";
