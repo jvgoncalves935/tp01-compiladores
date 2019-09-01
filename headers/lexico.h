@@ -20,5 +20,7 @@ int isLiteralAspasDuplas(char *str);
 int isLiteralAspasSimples(char *str);
 int isDiretiva(char *str);
 int isComentario(char *str);
+char *erroEstadoAtual(int estado);
+void erroAnaliseSintatica(int estadoAtual, int linha, int coluna);
 
 #endif // LEXICO_H_INCLUDED

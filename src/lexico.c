@@ -7,6 +7,7 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
     int posicao;
     int valido = 1;
     int i;
+    int numErros = 0;
     strcpy(BUFFER,"\0");
 
     //Iniciar palavras reservadas
@@ -39,7 +40,13 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         
         
         if(!valido){
-            break;
+            erroAnaliseSintatica(maquinaEstados->estadoAtual,LINHA,COLUNA);
+            
+            //Resetar o automato para o Estado 0 e limpar o buffer.
+            maquinaEstados->estadoAtual = 0;
+            strcpy(BUFFER,"\0");
+            numErros++;
+            valido = 1;
         }
         if(arquivo[posicao] != '\n'){
             COLUNA++;
@@ -60,13 +67,13 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         valido = 0;
     }
 
-    if(valido){
+    if(numErros == 0){
         printf("\nAnalise Lexica: SUCESSO.\n");
         FILE *arq = fopen(nomeArquivoFinal,"w");
         escreverArquivoTokens(arq,listaToken);
         fclose(arq);
     }else{
-        printf("\nAnalise Lexica: ERRO. Linha %d, Coluna %d.\n",LINHA,COLUNA);
+        printf("\nAnalise Lexica: ERRO.\n");
     }
 }
 
@@ -238,4 +245,41 @@ int isComentario(char *str){
         return 1;
     }
     return 0;
+}
+
+char *erroEstadoAtual(int estado){
+    switch(estado){
+        case 0: return "Caracter invalido.";
+        case 1: return "Letra invalida para identificador.";
+        case 2: return "Caracter invalido para numero.";
+        case 3: return "Caracter invalido para numero.";
+        case 4: return "Caracter invalido para operador '+'.";
+        case 5: return "Caracter invalido para operador '-'.";
+        case 6: return "Caracter invalido para operador '*'.";
+        case 7: return "Caracter invalido para operador '/'.";
+        case 8: return "Caracter invalido para operador '='.";
+        case 9: return "Caracter invalido para operador '<'.";
+        case 10: return "Caracter invalido para operador '>'.";
+        case 11: return "Caracter invalido para operador '%'.";
+        case 12: return "Caracter invalido para operador ''.";
+        case 13: return "Caracter invalido para operador '!'.";
+        case 14: return "Caracter invalido para operador '|'.";
+        case 15: return "Caracter invalido para operador '&'.";
+        case 16: return "Caracter invalido para literal '\"'.";
+        case 17: return "Caracter invalido para literal '\"'.";
+        case 18: return "Caracter invalido para literal '\''.";
+        case 19: return "Caracter invalido para literal '\''.";
+        case 20: return "Caracter invalido para literal '\\'.";
+        case 21: return "Caracter invalido para diretiva.";
+        case 22: return "Caracter invalido para comentario.";
+        case 23: return "Caracter invalido para comentario.";
+        case 24: return "Caracter invalido para comentario.";
+        case 25: return "Caracter invalido para comentario.";
+        case 26: return "Nao eh possivel colocar comentario dentro de comentario.";
+        default: return "Erro desconhecido.";
+    }
+}
+
+void erroAnaliseSintatica(int estadoAtual, int linha, int coluna){
+    printf("Linha %d, Coluna %d: %s\n",linha,coluna,erroEstadoAtual(estadoAtual));
 }
