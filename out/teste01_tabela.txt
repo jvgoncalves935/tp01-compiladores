@@ -1,5 +1,5 @@
-diretiva,"#includestdioh",1,1
-quebra_linha,"\n",1,14
+diretiva,"#include <stdio.h>",1,1
+quebra_linha,"\n",1,18
 comentario,"//comevaiemxd",2,1
 quebra_linha,"\n",2,13
 comentario,"/*xdddddddd*/",3,1
@@ -51,7 +51,7 @@ identificador,"xddd",9,14
 espaco," ",9,17
 operador,"=",9,19
 espaco," ",9,19
-ponto,".14",9,22
+numero,"3.14",9,21
 ponto_virgula,";",9,24
 quebra_linha,"\n",9,25
 tabulacao,"\t",10,0
@@ -111,3 +111,8 @@ operador,"=",15,5
 espaco," ",15,5
 identificador,"abc",15,7
 ponto_virgula,";",15,9
+quebra_linha,"\n",15,10
+tabulacao,"\t",16,0
+fecha_chaves,"}",16,1
+quebra_linha,"\n",16,2
+fecha_chaves,"}",17,0

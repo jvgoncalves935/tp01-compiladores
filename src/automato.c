@@ -25,8 +25,13 @@ void alimentarMaquinaEstados(MaquinaEstados *maquinaEstados, char token, int *va
                     sprintf(BUFFER,"%s%c",BUFFER,token);
                 }else{
                     identificarToken(maquinaEstados,palavrasReservadas,listaToken);
-                    sprintf(BUFFER,"%c",token);
-                    identificarToken(maquinaEstados,palavrasReservadas,listaToken);
+                    
+                    if(maquinaEstados->estados[maquinaEstados->estadoAtual].final == 1){
+                        sprintf(BUFFER,"%c",token);    
+                        identificarToken(maquinaEstados,palavrasReservadas,listaToken);
+                    }else{
+                        sprintf(BUFFER,"%s%c",BUFFER,token);
+                    }
                 }
                 achou = 1;
                 break;

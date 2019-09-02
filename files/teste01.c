@@ -1,4 +1,4 @@
-#includestdioh
+#include <stdio.h>
 //comevaiemxd
 /*xdddddddd*/
 
@@ -13,3 +13,5 @@ int main(){
 		a = 0;
 	}else{
 		a = abc;
+	}
+}
