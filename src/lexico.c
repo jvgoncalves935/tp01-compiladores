@@ -35,7 +35,7 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
     
     //Funcionamento do automato e reconhecimento de tokens
     for(posicao = 0;posicao<tamArquivo;posicao++){
-        printf("%d %s\n",maquinaEstados->estadoAtual,BUFFER);
+        //printf("%d %s\n",maquinaEstados->estadoAtual,BUFFER);
         alimentarMaquinaEstados(maquinaEstados,arquivo[posicao],&valido,palavras_reservadas,listaToken);
         
         
@@ -178,6 +178,7 @@ char *tipoSeparador(char str){
         case ' ': return "espaco";
         case ';': return "ponto_virgula";
         case '\n': return "quebra_linha";
+        case '\r': return "retorno_de_carruagem";
         case '\t': return "tabulacao";
         case '(': return "abre_parenteses";
         case ')': return "fecha_parenteses";
@@ -187,6 +188,7 @@ char *tipoSeparador(char str){
         case '}': return "fecha_chaves";
         case ',': return "virgula";
         case '.': return "ponto";
+        case ':': return "dois_pontos";
         default: return "null";
     }
 }

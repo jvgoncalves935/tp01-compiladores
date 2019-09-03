@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h> // Biblioteca necessária para utilização do getopt().
+#include <unistd.h> // Biblioteca necessaria para utilizacao do getopt().
 #include "../headers/utils.h"
 #include "../headers/lexico.h"
 
 int main(int argc,char **argv){
     int optc = 0;
 	char *argv1 = NULL;
-	// Função getopt(), (entrada por parâmetros).
+	// Funcao getopt(), (entrada por parametros).
 	while((optc = getopt(argc, argv, "hc:a:")) != -1){
 		switch(optc){
 			case 'a':
@@ -15,15 +15,15 @@ int main(int argc,char **argv){
 				break;
 			case 'h':
 				printf("%s -h \"Ajuda\".\nExemplo de entrada:\n./tp1 -a ARQUIVO\n-a arquivo .c para "
-				"análise.\n",argv[0]);
+				"analise.\n",argv[0]);
 				exit(0);
 			default:
-				printf("Opção inválida.\nUtilize -h para ajuda.\n");
+				printf("Opcao invalida.\nUtilize -h para ajuda.\n");
 				exit(0);
 		}
 	}
 	if(argc < 2){
-		printf("Nenhum arquivo foi inserido.\nUtilize o parâmetro -h para ajuda.\n");
+		printf("Nenhum arquivo foi inserido.\nUtilize o parametro -h para ajuda.\n");
 		exit(0);
 	}
 
@@ -62,7 +62,7 @@ int main(int argc,char **argv){
     free(arquivo);
     */
 
-    //Iniciar autômato.
+    //Iniciar automato.
     MaquinaEstados *automato = malloc(sizeof(MaquinaEstados));
     automato->estadoAtual = 0;
     automato->estados = malloc(32*sizeof(Estado));

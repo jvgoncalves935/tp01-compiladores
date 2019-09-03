@@ -14,7 +14,7 @@ char NULO = '-';
 
 int TAM_ASCII = 127;
 char LETRA[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-char SEPARADOR[] = " ;\n\t()[]{}.,";
+char SEPARADOR[] = " ;\n\r\t()[]{}.,:";
 char COMENTARIO[] = "//";
 char IDENTIFICADOR[] = "I";
 char NUMERO[] = "0123456789";
