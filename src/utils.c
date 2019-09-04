@@ -120,7 +120,7 @@ int listaVazia(Estado *f){
 	}
 }
 
-//Inicia uma célula para receber um lista.
+//Inicia uma celula para receber um lista.
 void iniciarLista(Estado *aux){
     aux->primeira = (Transicao *) malloc(sizeof(Transicao));
     aux->primeira->proxima = NULL;
@@ -163,7 +163,7 @@ int listaVaziaToken(ListaToken *f){
 	}
 }
 
-//Inicia uma célula para receber um lista.
+//Inicia uma celula para receber um lista.
 void iniciarListaToken(ListaToken *aux){
     aux->primeira = (Token *) malloc(sizeof(Token));
     aux->primeira->proxima = NULL;

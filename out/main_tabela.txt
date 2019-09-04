@@ -684,7 +684,7 @@ numero,"0",70,11
 ponto_virgula,";",70,11
 identificador,"i",70,13
 operador,"<",70,14
-numero,"33",70,15
+numero,"32",70,15
 ponto_virgula,";",70,16
 identificador,"i",70,18
 operador,"++",70,19
@@ -755,3 +755,30 @@ espaco," ",76,0
 espaco," ",76,1
 espaco," ",76,2
 espaco," ",76,3
+comentario,"/*
+    for(i=0;i<32;i++){
+        printf("Estado %d\n",i);
+        int j;
+        Transicao *aux = automato->estados[i].primeira;
+        for(j=0;j<automato->estados[i].numTransicoes;j++){
+            printf("[%d] %s\n",j,aux->conjunto);
+            aux = aux->proxima;
+        }
+        printf("\n");
+    }
+    */",87,-318
+retorno_de_carruagem,"",87,6
+quebra_linha,"\n",87,7
+retorno_de_carruagem,"",88,0
+quebra_linha,"\n",88,1
+espaco," ",89,0
+espaco," ",89,1
+espaco," ",89,2
+espaco," ",89,3
+return,"return",89,5
+espaco," ",89,10
+numero,"0",89,12
+ponto_virgula,";",89,12
+retorno_de_carruagem,"",89,13
+quebra_linha,"\n",89,14
+fecha_chaves,"}",90,0
