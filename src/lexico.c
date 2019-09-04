@@ -79,7 +79,7 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
 
 void escreverArquivoTokens(FILE *arq, ListaToken *listaToken){
     Token *aux = listaToken->primeira;
-    char teste[100];
+    char teste[1024];
     while(aux != NULL){
         sprintf(teste,"%s",aux->valorBruto);
         if(!strcmp(teste,"\n")){

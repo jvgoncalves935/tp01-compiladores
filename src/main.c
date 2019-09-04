@@ -67,7 +67,7 @@ int main(int argc,char **argv){
     automato->estadoAtual = 0;
     automato->estados = malloc(32*sizeof(Estado));
     
-    for(i=0;i<33;i++){
+    for(i=0;i<32;i++){
         criarEstado(&automato->estados[i],i);
     }
 
