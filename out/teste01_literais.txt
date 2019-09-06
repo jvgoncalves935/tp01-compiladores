@@ -1,0 +1,2 @@
+aspas_simples,"'a'",9,11
+aspas_duplas,""935"",10,13

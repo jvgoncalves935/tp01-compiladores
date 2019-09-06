@@ -1,0 +1,12 @@
+operador,"=",3,7
+operador,"=",9,9
+operador,"=",10,11
+operador,"=",11,8
+operador,"=",12,19
+operador,"+=",13,4
+operador,"=",14,4
+operador,"-",14,8
+operador,"+",14,14
+operador,"<",15,7
+operador,"=",16,5
+operador,"=",18,5

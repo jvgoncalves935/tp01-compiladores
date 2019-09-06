@@ -1,0 +1,82 @@
+diretiva,"#include <stdio.h>",1,1
+quebra_linha,"\n",1,18
+diretiva,"#include <stdio.h>",2,1
+quebra_linha,"\n",2,18
+espaco," ",3,3
+ponto_virgula,";",3,8
+quebra_linha,"\n",3,9
+quebra_linha,"\n",4,0
+quebra_linha,"\n",5,13
+quebra_linha,"\n",6,13
+quebra_linha,"\n",7,0
+espaco," ",8,3
+abre_parenteses,"(",8,8
+fecha_parenteses,")",8,9
+abre_chaves,"{",8,10
+quebra_linha,"\n",8,11
+tabulacao,"\t",9,0
+espaco," ",9,5
+espaco," ",9,7
+espaco," ",9,9
+ponto_virgula,";",9,13
+quebra_linha,"\n",9,14
+tabulacao,"\t",10,0
+espaco," ",10,5
+espaco," ",10,9
+espaco," ",10,11
+ponto_virgula,";",10,17
+quebra_linha,"\n",10,18
+tabulacao,"\t",11,0
+espaco," ",11,4
+espaco," ",11,6
+espaco," ",11,8
+ponto_virgula,";",11,10
+quebra_linha,"\n",11,11
+tabulacao,"\t",12,0
+espaco," ",12,6
+espaco," ",12,12
+espaco," ",12,17
+espaco," ",12,19
+ponto_virgula,";",12,24
+quebra_linha,"\n",12,25
+tabulacao,"\t",13,0
+espaco," ",13,2
+espaco," ",13,5
+ponto_virgula,";",13,9
+quebra_linha,"\n",13,10
+tabulacao,"\t",14,0
+espaco," ",14,2
+espaco," ",14,4
+espaco," ",14,6
+espaco," ",14,8
+espaco," ",14,12
+espaco," ",14,14
+ponto_virgula,";",14,16
+quebra_linha,"\n",14,17
+tabulacao,"\t",15,0
+abre_parenteses,"(",15,3
+espaco," ",15,5
+espaco," ",15,7
+fecha_parenteses,")",15,9
+abre_chaves,"{",15,10
+quebra_linha,"\n",15,11
+tabulacao,"\t",16,0
+tabulacao,"\t",16,1
+espaco," ",16,3
+espaco," ",16,5
+ponto_virgula,";",16,7
+quebra_linha,"\n",16,8
+tabulacao,"\t",17,0
+fecha_chaves,"}",17,1
+abre_chaves,"{",17,6
+quebra_linha,"\n",17,7
+tabulacao,"\t",18,0
+tabulacao,"\t",18,1
+espaco," ",18,3
+espaco," ",18,5
+ponto_virgula,";",18,9
+quebra_linha,"\n",18,10
+tabulacao,"\t",19,0
+fecha_chaves,"}",19,1
+quebra_linha,"\n",19,2
+fecha_chaves,"}",20,0

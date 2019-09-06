@@ -70,14 +70,45 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
     if(numErros == 0){
         printf("\nAnalise Lexica: SUCESSO.\n");
         FILE *arq = fopen(nomeArquivoFinal,"w");
-        escreverArquivoTokens(arq,listaToken);
+        char nomeArquivoIdentificadores[100];
+        char nomeArquivoReservadas[100];
+        char nomeArquivoSeparadores[100];
+        char nomeArquivoOperadores[100];
+        char nomeArquivoLiterais[100];
+        char nomeArquivoComentarios[100];
+        char nomeArquivoNumeros[100];
+        sprintf(nomeArquivoIdentificadores,"%s%s%s","out/",nomeArquivo03,"_identificadores.txt");
+        sprintf(nomeArquivoReservadas,"%s%s%s","out/",nomeArquivo03,"_reservadas.txt");
+        sprintf(nomeArquivoSeparadores,"%s%s%s","out/",nomeArquivo03,"_separadores.txt");
+        sprintf(nomeArquivoNumeros,"%s%s%s","out/",nomeArquivo03,"_numeros.txt");
+        sprintf(nomeArquivoOperadores,"%s%s%s","out/",nomeArquivo03,"_operadores.txt");
+        sprintf(nomeArquivoLiterais,"%s%s%s","out/",nomeArquivo03,"_literais.txt");
+        sprintf(nomeArquivoComentarios,"%s%s%s","out/",nomeArquivo03,"_comentarios.txt");
+
+        FILE *arqIdentificadores = fopen(nomeArquivoIdentificadores,"w");
+        FILE *arqReservadas = fopen(nomeArquivoReservadas,"w");
+        FILE *arqSeparadores = fopen(nomeArquivoSeparadores,"w");
+        FILE *arqNumeros = fopen(nomeArquivoNumeros,"w");
+        FILE *arqOperadores = fopen(nomeArquivoOperadores,"w");
+        FILE *arqLiterais = fopen(nomeArquivoLiterais,"w");
+        FILE *arqComentarios = fopen(nomeArquivoComentarios,"w");
+        
+        escreverArquivoTokens(arq,arqIdentificadores,arqReservadas,arqNumeros,arqSeparadores,arqOperadores,arqLiterais,arqComentarios,listaToken,palavras_reservadas);
+
         fclose(arq);
+        fclose(arqIdentificadores);
+        fclose(arqReservadas);
+        fclose(arqSeparadores);
+        fclose(arqNumeros);
+        fclose(arqOperadores);
+        fclose(arqLiterais);
+        fclose(arqComentarios);
     }else{
         printf("\nAnalise Lexica: ERRO.\n");
     }
 }
 
-void escreverArquivoTokens(FILE *arq, ListaToken *listaToken){
+void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *arqReservados, FILE *arqNumeros, FILE *arqSeparadores, FILE *arqOperadores, FILE *arqLiterais, FILE *arqComentarios, ListaToken *listaToken, char **palavras_reservadas){
     Token *aux = listaToken->primeira;
     char teste[2048];
     while(aux != NULL){
@@ -88,7 +119,49 @@ void escreverArquivoTokens(FILE *arq, ListaToken *listaToken){
         if(!strcmp(teste,"\t")){
            sprintf(teste,"\\t"); 
         }
-        fprintf(arq,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        fprintf(arquivoTokens,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        int achou = 0;
+
+        if(!achou && isPalavraReservada(aux->valor,palavras_reservadas)){
+            achou = 1;
+            fprintf(arqReservados,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
+        if(!achou && !strcmp(aux->valor,"numero")){
+            achou = 1;
+            fprintf(arqNumeros,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
+        if(!achou && !strcmp(aux->valor,"identificador")){
+            achou = 1;
+            fprintf(arqIdentificadores,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
+        if(!achou && !strcmp(aux->valor,"operador")){
+            achou = 1;
+            fprintf(arqOperadores,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
+        if(!achou && !strcmp(aux->valor,"aspas_simples")){
+            achou = 1;
+            fprintf(arqLiterais,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
+        if(!achou && !strcmp(aux->valor,"aspas_duplas")){
+            achou = 1;
+            fprintf(arqLiterais,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
+        if(!achou && !strcmp(aux->valor,"comentario")){
+            achou = 1;
+            fprintf(arqComentarios,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
+        if(!achou){
+            achou = 1;
+            fprintf(arqSeparadores,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
         aux = aux->proxima;
     }
 }
