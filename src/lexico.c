@@ -77,6 +77,8 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         char nomeArquivoLiterais[100];
         char nomeArquivoComentarios[100];
         char nomeArquivoNumeros[100];
+        char nomeArquivoDiretiva[100];
+
         sprintf(nomeArquivoIdentificadores,"%s%s%s","out/",nomeArquivo03,"_identificadores.txt");
         sprintf(nomeArquivoReservadas,"%s%s%s","out/",nomeArquivo03,"_reservadas.txt");
         sprintf(nomeArquivoSeparadores,"%s%s%s","out/",nomeArquivo03,"_separadores.txt");
@@ -84,6 +86,7 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         sprintf(nomeArquivoOperadores,"%s%s%s","out/",nomeArquivo03,"_operadores.txt");
         sprintf(nomeArquivoLiterais,"%s%s%s","out/",nomeArquivo03,"_literais.txt");
         sprintf(nomeArquivoComentarios,"%s%s%s","out/",nomeArquivo03,"_comentarios.txt");
+        sprintf(nomeArquivoDiretiva,"%s%s%s","out/",nomeArquivo03,"_diretiva.txt");
 
         FILE *arqIdentificadores = fopen(nomeArquivoIdentificadores,"w");
         FILE *arqReservadas = fopen(nomeArquivoReservadas,"w");
@@ -92,8 +95,9 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         FILE *arqOperadores = fopen(nomeArquivoOperadores,"w");
         FILE *arqLiterais = fopen(nomeArquivoLiterais,"w");
         FILE *arqComentarios = fopen(nomeArquivoComentarios,"w");
+        FILE *arqDiretiva = fopen(nomeArquivoDiretiva,"w");
         
-        escreverArquivoTokens(arq,arqIdentificadores,arqReservadas,arqNumeros,arqSeparadores,arqOperadores,arqLiterais,arqComentarios,listaToken,palavras_reservadas);
+        escreverArquivoTokens(arq,arqIdentificadores,arqReservadas,arqNumeros,arqSeparadores,arqOperadores,arqLiterais,arqComentarios,arqDiretiva,listaToken,palavras_reservadas);
 
         fclose(arq);
         fclose(arqIdentificadores);
@@ -103,12 +107,13 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         fclose(arqOperadores);
         fclose(arqLiterais);
         fclose(arqComentarios);
+        fclose(arqDiretiva);
     }else{
         printf("\nAnalise Lexica: ERRO.\n");
     }
 }
 
-void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *arqReservados, FILE *arqNumeros, FILE *arqSeparadores, FILE *arqOperadores, FILE *arqLiterais, FILE *arqComentarios, ListaToken *listaToken, char **palavras_reservadas){
+void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *arqReservados, FILE *arqNumeros, FILE *arqSeparadores, FILE *arqOperadores, FILE *arqLiterais, FILE *arqComentarios, FILE *arqDiretiva, ListaToken *listaToken, char **palavras_reservadas){
     Token *aux = listaToken->primeira;
     char teste[2048];
     while(aux != NULL){
@@ -155,6 +160,11 @@ void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *
         if(!achou && !strcmp(aux->valor,"comentario")){
             achou = 1;
             fprintf(arqComentarios,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
+        }
+
+        if(!achou && !strcmp(aux->valor,"diretiva")){
+            achou = 1;
+            fprintf(arqDiretiva,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
         }
 
         if(!achou){

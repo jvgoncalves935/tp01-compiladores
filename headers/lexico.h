@@ -8,7 +8,7 @@
 
 
 void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArquivo);
-void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *arqReservados, FILE *arqNumeros, FILE *arqSeparadores, FILE *arqOperadores, FILE *arqLiterais, FILE *arqComentarios, ListaToken *listaToken, char **palavras_reservadas);
+void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *arqReservados, FILE *arqNumeros, FILE *arqSeparadores, FILE *arqOperadores, FILE *arqLiterais, FILE *arqComentarios, FILE *arqDiretiva, ListaToken *listaToken, char **palavras_reservadas);
 int isPalavraReservada(char *str, char **palavrasReservadas);
 void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas, ListaToken *listaToken);
 int isNumero(char *str);
