@@ -20,3 +20,42 @@ Instruções:
       ./out/teste01_numeros.txt (Lista de Números)
       ./out/teste01_operadores.txt (Lista de Operadores)
       ./out/teste01_separadores (Lista de Separadores)
+ 
+ # Tabela de Tokens
+ 
+| Token                | Classe        | Conjunto                                                                 |
+|----------------------|---------------|--------------------------------------------------------------------------|
+| identificador        | Identificador | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ                     |
+| numero               | Numero        | 0123456789,'.'                                                           |
+| diretiva             | Diretiva      | Linha que inicia com '#'                                                 |
+| comentario           | Comentario    | Linha que inicia com "//" ou conjunto com qualquer caracter entre "/**/" |
+| aspas_simples        | Literal       | Caracter entre ''                                                        |
+| aspas_duplas         | Literal       | Conjunto com qualquer caracter entre ""                                  |
+| espaco               | Separador     | ' '                                                                      |
+| ponto_virgula        | Separador     | ';'                                                                      |
+| quebra_linha         | Separador     | '\n'                                                                     |
+| retorno_de_carruagem | Separador     | '\r'                                                                     |
+| tabulacao            | Separador     | '\t'                                                                     |
+| abre_parenteses      | Separador     | '('                                                                      |
+| fecha_parenteses     | Separador     | ')'                                                                      |
+| abre_colchetes       | Separador     | '['                                                                      |
+| fecha_colchetes      | Separador     | ']'                                                                      |
+| abre_chaves          | Separador     | '{'                                                                      |
+| fecha_chaves         | Separador     | '}'                                                                      |
+| ponto                | Separador     | '.'                                                                      |
+| virgula              | Separador     | ','                                                                      |
+| dois_pontos          | Separador     | ':'                                                                      |
+| operador             | Operador      | '+','*','%','/','=','<','>','!','|','&','~','^','-','?'                  |
+| (nome da palavra)    | Reservada     | (conjunto de palavras reservadas)                                        |
+
+# Lista de Palavras Reservadas
+
+| auto     | break    | case     | char   |
+|----------|----------|----------|--------|
+| const    | continue | default  | do     |
+| int      | long     | register | return |
+| short    | signed   | sizeof   | static |
+| struct   | switch   | typedef  | union  |
+| unsigned | void     | volatile | while  |
+| double   | else     | enum     | extern |
+| float    | for      | goto     | if     |
