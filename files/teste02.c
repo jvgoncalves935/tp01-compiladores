@@ -1,10 +1,21 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>
+int xd=3;
+
+//teste xdç
+/*xdddddddd*/
 
 int main(){
-    int teste = 1;
-    int abc = 2;
-    int xd = teste + abc;
-    printf("teste xddddddddddd %d",xd);
-    return 0;
+	char a = 'a';
+	char abc = "935";
+	int i = 0;
+	//á
+	float teste xddd = 3.14;
+	i += abc;
+	i = i - abc + 2;
+	if(i < 0){
+		a = 0;
+	}else{
+		a = abc;
+	}
 }

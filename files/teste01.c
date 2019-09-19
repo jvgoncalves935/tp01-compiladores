@@ -2,7 +2,7 @@
 #include <stdio.h>
 int xd=3;
 
-//comevaiemxd
+//teste xd
 /*xdddddddd*/
 
 int main(){

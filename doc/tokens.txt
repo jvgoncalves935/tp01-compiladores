@@ -1,9 +1,6 @@
 Token					Classe			Conjunto
-
 identificador			Identificador	abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 numero					Numero			0123456789,'.'
-(nome da palavra)		Reservada		"auto","break","case","char","const","continue","default","do","int","long","register","return","short","signed","sizeof","static","struct","switch","typedef","union","unsigned","void","volatile","while","double","else","enum","extern","float","for","goto","if"
-operador				Operador		'+','*','%','/','=','<','>','!','|','&','~','^','-','?'
 diretiva				Diretiva		Linha que inicia com '#'
 comentario				Comentario		Linha que inicia com "//" ou conjunto com qualquer caracter entre "/**/"
 aspas_simples			Literal			Caracter entre ''
@@ -22,3 +19,15 @@ fecha_chaves			Separador		'}'
 ponto					Separador		'.'
 virgula					Separador		','
 dois_pontos				Separador		':'
+operador				Operador		'+','*','%','/','=','<','>','!','|','&','~','^','-','?'
+(nome da palavra)		Reservada		(conjunto de palavras reservadas)
+(nome da palavra)		Reservada		"auto","break","case","char","const","continue","default","do","int","long","register","return","short","signed","sizeof","static","struct","switch","typedef","union","unsigned","void","volatile","while","double","else","enum","extern","float","for","goto","if"
+
+auto		break		case		char
+const		continue	default		do
+int			long		register	return
+short		signed		sizeof		static
+struct		switch		typedef		union
+unsigned	void		volatile	while
+double		else		enum		extern
+float		for			goto		if

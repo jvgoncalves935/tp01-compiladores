@@ -1,0 +1,12 @@
+aspas_duplas,""hc:a:"",11,35
+aspas_simples,"'a'",13,9
+aspas_simples,"'h'",16,9
+aspas_duplas,""%s -h \"Ajuda\".\nExemplo de entrada:\n./tp1 -a ARQUIVO\n-a arquivo .c para "",17,12
+aspas_duplas,""analise.\n"",18,5
+aspas_duplas,""Opcao invalida.\nUtilize -h para ajuda.\n"",21,12
+aspas_duplas,""Nenhum arquivo foi inserido.\nUtilize o parametro -h para ajuda.\n"",26,10
+aspas_duplas,""r"",41,29
+aspas_duplas,""%c"",42,22
+aspas_duplas,""r"",49,23
+aspas_duplas,""%c"",51,22
+aspas_duplas,""%c"",60,16

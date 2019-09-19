@@ -1,0 +1,20 @@
+comentario,"// Funcao getopt(), (entrada por parametros).",10,2
+comentario,"//char tabela",31,5
+comentario,"//char comentario = '//';",32,5
+comentario,"//char literal = ''','"';",33,5
+comentario,"//iniciarTabelaAscii(tabela",35,5
+comentario,"//Descobrir tamanho do arquivo",40,5
+comentario,"//Armazenar o arquivo em vetor",47,5
+comentario,"//Iniciar automato.",65,5
+comentario,"/*
+    for(i=0;i<32;i++){
+        printf("Estado %d\n",i);
+        int j;
+        Transicao *aux = automato->estados[i].primeira;
+        for(j=0;j<automato->estados[i].numTransicoes;j++){
+            printf("[%d] %s\n",j,aux->conjunto);
+            aux = aux->proxima;
+        }
+        printf("\n");
+    }
+    */",87,-307
