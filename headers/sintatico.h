@@ -3,5 +3,6 @@
 
 #include "../headers/automato.h"
 
+void analiseSintatica(ListaToken *listaToken, ListaToken *listaTokenIdentificadores);
 
 #endif // SINTATICO_H_INCLUDED

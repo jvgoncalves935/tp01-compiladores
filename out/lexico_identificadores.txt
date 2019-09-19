@@ -3,6 +3,10 @@ identificador,"MaquinaEstados",5,20
 identificador,"maquinaEstados",5,36
 identificador,"arquivo",5,58
 identificador,"nomeArquivo",5,73
+identificador,"ListaToken",5,86
+identificador,"listaToken",5,98
+identificador,"ListaToken",5,110
+identificador,"listaTokenIdentificadores",5,122
 identificador,"tamArquivo",6,9
 identificador,"strlen",6,22
 identificador,"arquivo",6,29
@@ -47,296 +51,297 @@ identificador,"txt",30,69
 identificador,"");
 
     //Inicializar lista de tokens
-    ListaToken *listaToken = malloc(sizeof(ListaToken));
     iniciarListaToken(listaToken);
 
     //Funcionamento do automato e reconhecimento de tokens
     for(posicao = 0;posicao<tamArquivo;posicao++){
         
-        alimentarMaquinaEstados(maquinaEstados,arquivo[posicao],&valido,palavras",39,-250
-identificador,"_reservadas",39,81
-identificador,"listaToken",39,93
-identificador,"!valido",42,12
-identificador,"erroAnaliseSintatica",43,13
-identificador,"maquinaEstados",43,34
-identificador,"estadoAtual",43,50
-identificador,"LINHA",43,62
-identificador,"COLUNA",43,68
-identificador,"maquinaEstados",46,13
-identificador,"estadoAtual",46,29
-identificador,"strcpy",47,13
-identificador,"BUFFER",47,20
-identificador,"numErros",48,13
-identificador,"valido",49,13
-identificador,"arquivo",51,12
-identificador,"posicao",51,20
-identificador,"COLUNA",52,13
-identificador,"LINHA",54,13
-identificador,"COLUNA",55,13
-identificador,"strlen",60,8
-identificador,"BUFFER",60,15
-identificador,"identificarToken",61,9
-identificador,"maquinaEstados",61,26
-identificador,"palavras_reservadas",61,41
-identificador,"listaToken",61,61
-identificador,"maquinaEstados",66,8
-identificador,"estados",66,24
-identificador,"maquinaEstados",66,32
-identificador,"estadoAtual",66,48
-identificador,"final",66,61
-identificador,"valido",67,9
-identificador,"numErros",70,8
-identificador,"printf",71,9
-identificador,"FILE",72,9
-identificador,"arq",72,15
-identificador,"fopen",72,21
-identificador,"nomeArquivoFinal",72,27
-identificador,"nomeArquivoIdentificadores",73,14
-identificador,"nomeArquivoReservadas",74,14
-identificador,"nomeArquivoSeparadores",75,14
-identificador,"nomeArquivoOperadores",76,14
-identificador,"nomeArquivoLiterais",77,14
-identificador,"nomeArquivoComentarios",78,14
-identificador,"nomeArquivoNumeros",79,14
-identificador,"nomeArquivoDiretiva",80,14
-identificador,"sprintf",82,9
-identificador,"nomeArquivoIdentificadores",82,17
-identificador,"nomeArquivo03",82,60
-identificador,""",82,74
-identificador,"_identificadores",82,75
-identificador,"txt",82,92
+        alimentarMaquinaEstados(maquinaEstados,arquivo[posicao],&valido,palavras",38,-193
+identificador,"_reservadas",38,81
+identificador,"listaToken",38,93
+identificador,"!valido",41,12
+identificador,"erroAnaliseSintatica",42,13
+identificador,"maquinaEstados",42,34
+identificador,"estadoAtual",42,50
+identificador,"LINHA",42,62
+identificador,"COLUNA",42,68
+identificador,"maquinaEstados",45,13
+identificador,"estadoAtual",45,29
+identificador,"strcpy",46,13
+identificador,"BUFFER",46,20
+identificador,"numErros",47,13
+identificador,"valido",48,13
+identificador,"arquivo",50,12
+identificador,"posicao",50,20
+identificador,"COLUNA",51,13
+identificador,"LINHA",53,13
+identificador,"COLUNA",54,13
+identificador,"strlen",59,8
+identificador,"BUFFER",59,15
+identificador,"identificarToken",60,9
+identificador,"maquinaEstados",60,26
+identificador,"palavras_reservadas",60,41
+identificador,"listaToken",60,61
+identificador,"maquinaEstados",65,8
+identificador,"estados",65,24
+identificador,"maquinaEstados",65,32
+identificador,"estadoAtual",65,48
+identificador,"final",65,61
+identificador,"valido",66,9
+identificador,"numErros",69,8
+identificador,"printf",70,9
+identificador,"FILE",71,9
+identificador,"arq",71,15
+identificador,"fopen",71,21
+identificador,"nomeArquivoFinal",71,27
+identificador,"nomeArquivoIdentificadores",72,14
+identificador,"nomeArquivoReservadas",73,14
+identificador,"nomeArquivoSeparadores",74,14
+identificador,"nomeArquivoOperadores",75,14
+identificador,"nomeArquivoLiterais",76,14
+identificador,"nomeArquivoComentarios",77,14
+identificador,"nomeArquivoNumeros",78,14
+identificador,"nomeArquivoDiretiva",79,14
+identificador,"sprintf",81,9
+identificador,"nomeArquivoIdentificadores",81,17
+identificador,"nomeArquivo03",81,60
+identificador,""",81,74
+identificador,"_identificadores",81,75
+identificador,"txt",81,92
 identificador,"");
-        sprintf(nomeArquivoReservadas,"%",83,-3
-identificador,"s",83,41
-identificador,"s",83,43
-identificador,"s",83,45
-identificador,"","out",83,46
-identificador,"",nomeArquivo03,"_reservadas",83,53
-identificador,"txt",83,82
+        sprintf(nomeArquivoReservadas,"%",82,-3
+identificador,"s",82,41
+identificador,"s",82,43
+identificador,"s",82,45
+identificador,"","out",82,46
+identificador,"",nomeArquivo03,"_reservadas",82,53
+identificador,"txt",82,82
 identificador,"");
-        sprintf(nomeArquivoSeparadores,"%",84,-3
+        sprintf(nomeArquivoSeparadores,"%",83,-3
+identificador,"s",83,42
+identificador,"s",83,44
+identificador,"s",83,46
+identificador,"","out",83,47
+identificador,"",nomeArquivo03,"_separadores",83,54
+identificador,"txt",83,84
+identificador,"");
+        sprintf(nomeArquivoNumeros,"%",84,-3
+identificador,"s",84,38
+identificador,"s",84,40
 identificador,"s",84,42
-identificador,"s",84,44
-identificador,"s",84,46
-identificador,"","out",84,47
-identificador,"",nomeArquivo03,"_separadores",84,54
-identificador,"txt",84,84
+identificador,"","out",84,43
+identificador,"",nomeArquivo03,"_numeros",84,50
+identificador,"txt",84,76
 identificador,"");
-        sprintf(nomeArquivoNumeros,"%",85,-3
-identificador,"s",85,38
-identificador,"s",85,40
-identificador,"s",85,42
-identificador,"","out",85,43
-identificador,"",nomeArquivo03,"_numeros",85,50
-identificador,"txt",85,76
+        sprintf(nomeArquivoOperadores,"%",85,-3
+identificador,"s",85,41
+identificador,"s",85,43
+identificador,"s",85,45
+identificador,"","out",85,46
+identificador,"",nomeArquivo03,"_operadores",85,53
+identificador,"txt",85,82
 identificador,"");
-        sprintf(nomeArquivoOperadores,"%",86,-3
+        sprintf(nomeArquivoLiterais,"%",86,-3
+identificador,"s",86,39
 identificador,"s",86,41
 identificador,"s",86,43
-identificador,"s",86,45
-identificador,"","out",86,46
-identificador,"",nomeArquivo03,"_operadores",86,53
-identificador,"txt",86,82
+identificador,"","out",86,44
+identificador,"",nomeArquivo03,"_literais",86,51
+identificador,"txt",86,78
 identificador,"");
-        sprintf(nomeArquivoLiterais,"%",87,-3
-identificador,"s",87,39
-identificador,"s",87,41
-identificador,"s",87,43
-identificador,"","out",87,44
-identificador,"",nomeArquivo03,"_literais",87,51
-identificador,"txt",87,78
+        sprintf(nomeArquivoComentarios,"%",87,-3
+identificador,"s",87,42
+identificador,"s",87,44
+identificador,"s",87,46
+identificador,"","out",87,47
+identificador,"",nomeArquivo03,"_comentarios",87,54
+identificador,"txt",87,84
 identificador,"");
-        sprintf(nomeArquivoComentarios,"%",88,-3
-identificador,"s",88,42
-identificador,"s",88,44
-identificador,"s",88,46
-identificador,"","out",88,47
-identificador,"",nomeArquivo03,"_comentarios",88,54
-identificador,"txt",88,84
-identificador,"");
-        sprintf(nomeArquivoDiretiva,"%",89,-3
-identificador,"s",89,39
-identificador,"s",89,41
-identificador,"s",89,43
-identificador,"","out",89,44
-identificador,"",nomeArquivo03,"_diretiva",89,51
-identificador,"txt",89,78
+        sprintf(nomeArquivoDiretiva,"%",88,-3
+identificador,"s",88,39
+identificador,"s",88,41
+identificador,"s",88,43
+identificador,"","out",88,44
+identificador,"",nomeArquivo03,"_diretiva",88,51
+identificador,"txt",88,78
 identificador,"");
 
-        FILE *arqIdentificadores = fopen(nomeArquivoIdentificadores,"w",91,-4
+        FILE *arqIdentificadores = fopen(nomeArquivoIdentificadores,"w",90,-4
 identificador,"");
-        FILE *arqReservadas = fopen(nomeArquivoReservadas,"w",92,-3
+        FILE *arqReservadas = fopen(nomeArquivoReservadas,"w",91,-3
 identificador,"");
-        FILE *arqSeparadores = fopen(nomeArquivoSeparadores,"w",93,-3
+        FILE *arqSeparadores = fopen(nomeArquivoSeparadores,"w",92,-3
 identificador,"");
-        FILE *arqNumeros = fopen(nomeArquivoNumeros,"w",94,-3
+        FILE *arqNumeros = fopen(nomeArquivoNumeros,"w",93,-3
 identificador,"");
-        FILE *arqOperadores = fopen(nomeArquivoOperadores,"w",95,-3
+        FILE *arqOperadores = fopen(nomeArquivoOperadores,"w",94,-3
 identificador,"");
-        FILE *arqLiterais = fopen(nomeArquivoLiterais,"w",96,-3
+        FILE *arqLiterais = fopen(nomeArquivoLiterais,"w",95,-3
 identificador,"");
-        FILE *arqComentarios = fopen(nomeArquivoComentarios,"w",97,-3
+        FILE *arqComentarios = fopen(nomeArquivoComentarios,"w",96,-3
 identificador,"");
-        FILE *arqDiretiva = fopen(nomeArquivoDiretiva,"w",98,-3
+        FILE *arqDiretiva = fopen(nomeArquivoDiretiva,"w",97,-3
 identificador,"");
 
-        escreverArquivoTokens(arq,arqIdentificadores,arqReservadas,arqNumeros,arqSeparadores,arqOperadores,arqLiterais,arqComentarios,arqDiretiva,listaToken,palavras",100,-4
-identificador,"_reservadas",100,166
-identificador,"fclose",102,9
-identificador,"arq",102,16
-identificador,"fclose",103,9
-identificador,"arqIdentificadores",103,16
-identificador,"fclose",104,9
-identificador,"arqReservadas",104,16
+
+        
+        iniciarListaToken(listaTokenIdentificadores);
+
+        escreverArquivoTokens(arq,arqIdentificadores,arqReservadas,arqNumeros,arqSeparadores,arqOperadores,arqLiterais,arqComentarios,arqDiretiva,listaToken,palavras",103,-69
+identificador,"_reservadas",103,166
+identificador,"listaTokenIdentificadores",103,178
 identificador,"fclose",105,9
-identificador,"arqSeparadores",105,16
+identificador,"arq",105,16
 identificador,"fclose",106,9
-identificador,"arqNumeros",106,16
+identificador,"arqIdentificadores",106,16
 identificador,"fclose",107,9
-identificador,"arqOperadores",107,16
+identificador,"arqReservadas",107,16
 identificador,"fclose",108,9
-identificador,"arqLiterais",108,16
+identificador,"arqSeparadores",108,16
 identificador,"fclose",109,9
-identificador,"arqComentarios",109,16
+identificador,"arqNumeros",109,16
 identificador,"fclose",110,9
-identificador,"arqDiretiva",110,16
-identificador,"printf",112,9
-identificador,"_reservadas",116,38
-identificador,"freeListaToken",117,5
-identificador,"listaToken",117,20
-identificador,"freeMaquinaEstados",118,5
-identificador,"maquinaEstados",118,24
-identificador,"escreverArquivoTokens",122,6
-identificador,"FILE",122,28
-identificador,"arquivoTokens",122,34
-identificador,"FILE",122,49
-identificador,"arqIdentificadores",122,55
-identificador,"FILE",122,75
-identificador,"arqReservados",122,81
-identificador,"FILE",122,96
-identificador,"arqNumeros",122,102
-identificador,"FILE",122,114
-identificador,"arqSeparadores",122,120
-identificador,"FILE",122,136
-identificador,"arqOperadores",122,142
-identificador,"FILE",122,157
-identificador,"arqLiterais",122,163
-identificador,"FILE",122,176
-identificador,"arqComentarios",122,182
-identificador,"FILE",122,198
-identificador,"arqDiretiva",122,204
-identificador,"ListaToken",122,217
-identificador,"listaToken",122,229
-identificador,"palavras_reservadas",122,248
-identificador,"Token",123,5
-identificador,"aux",123,12
-identificador,"listaToken",123,18
-identificador,"primeira",123,30
-identificador,"teste",124,10
-identificador,"aux",125,11
-identificador,"NULL",125,18
-identificador,"sprintf",126,9
-identificador,"teste",126,17
-identificador,"aux",126,28
-identificador,"valorBruto",126,33
-identificador,"!strcmp",127,12
-identificador,"teste",127,20
-identificador,"sprintf",128,12
-identificador,"teste",128,20
-identificador,"!strcmp",130,12
-identificador,"teste",130,20
-identificador,"sprintf",131,12
+identificador,"arqOperadores",110,16
+identificador,"fclose",111,9
+identificador,"arqLiterais",111,16
+identificador,"fclose",112,9
+identificador,"arqComentarios",112,16
+identificador,"fclose",113,9
+identificador,"arqDiretiva",113,16
+identificador,"printf",115,9
+identificador,"_reservadas",119,38
+identificador,"freeListaToken",120,5
+identificador,"listaToken",120,20
+identificador,"freeListaToken",121,5
+identificador,"listaTokenIdentificadores",121,20
+identificador,"freeMaquinaEstados",122,5
+identificador,"maquinaEstados",122,24
+identificador,"escreverArquivoTokens",126,6
+identificador,"FILE",126,28
+identificador,"arquivoTokens",126,34
+identificador,"FILE",126,49
+identificador,"arqIdentificadores",126,55
+identificador,"FILE",126,75
+identificador,"arqReservados",126,81
+identificador,"FILE",126,96
+identificador,"arqNumeros",126,102
+identificador,"FILE",126,114
+identificador,"arqSeparadores",126,120
+identificador,"FILE",126,136
+identificador,"arqOperadores",126,142
+identificador,"FILE",126,157
+identificador,"arqLiterais",126,163
+identificador,"FILE",126,176
+identificador,"arqComentarios",126,182
+identificador,"FILE",126,198
+identificador,"arqDiretiva",126,204
+identificador,"ListaToken",126,217
+identificador,"listaToken",126,229
+identificador,"palavras_reservadas",126,248
+identificador,"ListaToken",126,269
+identificador,"listaTokenIdentificadores",126,281
+identificador,"Token",127,5
+identificador,"aux",127,12
+identificador,"listaToken",127,18
+identificador,"primeira",127,30
+identificador,"teste",128,10
+identificador,"aux",129,11
+identificador,"NULL",129,18
+identificador,"sprintf",130,9
+identificador,"teste",130,17
+identificador,"aux",130,28
+identificador,"valorBruto",130,33
+identificador,"!strcmp",131,12
 identificador,"teste",131,20
-identificador,"fprintf",133,9
-identificador,"arquivoTokens",133,17
-identificador,"aux",133,51
-identificador,"valor",133,56
-identificador,"teste",133,62
-identificador,"aux",133,68
-identificador,"linha",133,73
-identificador,"aux",133,79
-identificador,"coluna",133,84
-identificador,"achou",134,13
-identificador,"!achou",136,12
-identificador,"isPalavraReservada",136,22
-identificador,"aux",136,41
-identificador,"valor",136,46
-identificador,"palavras_reservadas",136,52
-identificador,"achou",137,13
-identificador,"fprintf",138,13
-identificador,"arqReservados",138,21
-identificador,"aux",138,55
-identificador,"valor",138,60
-identificador,"teste",138,66
-identificador,"aux",138,72
-identificador,"linha",138,77
-identificador,"aux",138,83
-identificador,"coluna",138,88
-identificador,"!achou",141,12
-identificador,"!strcmp",141,22
-identificador,"aux",141,30
-identificador,"valor",141,35
-identificador,"achou",142,13
-identificador,"fprintf",143,13
-identificador,"arqNumeros",143,21
-identificador,"aux",143,52
-identificador,"valor",143,57
-identificador,"teste",143,63
-identificador,"aux",143,69
-identificador,"linha",143,74
-identificador,"aux",143,80
-identificador,"coluna",143,85
-identificador,"!achou",146,12
-identificador,"!strcmp",146,22
-identificador,"aux",146,30
-identificador,"valor",146,35
-identificador,"achou",147,13
-identificador,"fprintf",148,13
-identificador,"arqIdentificadores",148,21
-identificador,"aux",148,60
-identificador,"valor",148,65
-identificador,"teste",148,71
-identificador,"aux",148,77
-identificador,"linha",148,82
-identificador,"aux",148,88
-identificador,"coluna",148,93
-identificador,"!achou",151,12
-identificador,"!strcmp",151,22
-identificador,"aux",151,30
-identificador,"valor",151,35
-identificador,"achou",152,13
+identificador,"sprintf",132,12
+identificador,"teste",132,20
+identificador,"!strcmp",134,12
+identificador,"teste",134,20
+identificador,"sprintf",135,12
+identificador,"teste",135,20
+identificador,"fprintf",137,9
+identificador,"arquivoTokens",137,17
+identificador,"aux",137,51
+identificador,"valor",137,56
+identificador,"teste",137,62
+identificador,"aux",137,68
+identificador,"linha",137,73
+identificador,"aux",137,79
+identificador,"coluna",137,84
+identificador,"achou",138,13
+identificador,"!achou",140,12
+identificador,"isPalavraReservada",140,22
+identificador,"aux",140,41
+identificador,"valor",140,46
+identificador,"palavras_reservadas",140,52
+identificador,"achou",141,13
+identificador,"fprintf",142,13
+identificador,"arqReservados",142,21
+identificador,"aux",142,55
+identificador,"valor",142,60
+identificador,"teste",142,66
+identificador,"aux",142,72
+identificador,"linha",142,77
+identificador,"aux",142,83
+identificador,"coluna",142,88
+identificador,"!achou",145,12
+identificador,"!strcmp",145,22
+identificador,"aux",145,30
+identificador,"valor",145,35
+identificador,"achou",146,13
+identificador,"fprintf",147,13
+identificador,"arqNumeros",147,21
+identificador,"aux",147,52
+identificador,"valor",147,57
+identificador,"teste",147,63
+identificador,"aux",147,69
+identificador,"linha",147,74
+identificador,"aux",147,80
+identificador,"coluna",147,85
+identificador,"!achou",150,12
+identificador,"!strcmp",150,22
+identificador,"aux",150,30
+identificador,"valor",150,35
+identificador,"achou",151,13
+identificador,"inserirListaToken",152,13
+identificador,"listaTokenIdentificadores",152,31
+identificador,"aux",152,57
+identificador,"valor",152,62
+identificador,"aux",152,68
+identificador,"valorBruto",152,73
+identificador,"aux",152,84
+identificador,"linha",152,89
+identificador,"aux",152,95
+identificador,"coluna",152,100
 identificador,"fprintf",153,13
-identificador,"arqOperadores",153,21
-identificador,"aux",153,55
-identificador,"valor",153,60
-identificador,"teste",153,66
-identificador,"aux",153,72
-identificador,"linha",153,77
-identificador,"aux",153,83
-identificador,"coluna",153,88
+identificador,"arqIdentificadores",153,21
+identificador,"aux",153,60
+identificador,"valor",153,65
+identificador,"teste",153,71
+identificador,"aux",153,77
+identificador,"linha",153,82
+identificador,"aux",153,88
+identificador,"coluna",153,93
 identificador,"!achou",156,12
 identificador,"!strcmp",156,22
 identificador,"aux",156,30
 identificador,"valor",156,35
-identificador,""aspas",156,41
-identificador,"_simples",156,47
-identificador,"")){
-            achou = 1;
-            fprintf(arqLiterais,"%",158,-27
-identificador,"s",158,35
-identificador,"aux",158,53
-identificador,"valor",158,58
-identificador,"teste",158,64
-identificador,"aux",158,70
-identificador,"linha",158,75
-identificador,"aux",158,81
-identificador,"coluna",158,86
+identificador,"achou",157,13
+identificador,"fprintf",158,13
+identificador,"arqOperadores",158,21
+identificador,"aux",158,55
+identificador,"valor",158,60
+identificador,"teste",158,66
+identificador,"aux",158,72
+identificador,"linha",158,77
+identificador,"aux",158,83
+identificador,"coluna",158,88
 identificador,"!achou",161,12
 identificador,"!strcmp",161,22
 identificador,"aux",161,30
 identificador,"valor",161,35
 identificador,""aspas",161,41
-identificador,"_duplas",161,47
+identificador,"_simples",161,47
 identificador,"")){
             achou = 1;
             fprintf(arqLiterais,"%",163,-27
@@ -352,152 +357,169 @@ identificador,"!achou",166,12
 identificador,"!strcmp",166,22
 identificador,"aux",166,30
 identificador,"valor",166,35
-identificador,"achou",167,13
-identificador,"fprintf",168,13
-identificador,"arqComentarios",168,21
-identificador,"aux",168,56
-identificador,"valor",168,61
-identificador,"teste",168,67
-identificador,"aux",168,73
-identificador,"linha",168,78
-identificador,"aux",168,84
-identificador,"coluna",168,89
+identificador,""aspas",166,41
+identificador,"_duplas",166,47
+identificador,"")){
+            achou = 1;
+            fprintf(arqLiterais,"%",168,-27
+identificador,"s",168,35
+identificador,"aux",168,53
+identificador,"valor",168,58
+identificador,"teste",168,64
+identificador,"aux",168,70
+identificador,"linha",168,75
+identificador,"aux",168,81
+identificador,"coluna",168,86
 identificador,"!achou",171,12
 identificador,"!strcmp",171,22
 identificador,"aux",171,30
 identificador,"valor",171,35
 identificador,"achou",172,13
 identificador,"fprintf",173,13
-identificador,"arqDiretiva",173,21
-identificador,"aux",173,53
-identificador,"valor",173,58
-identificador,"teste",173,64
-identificador,"aux",173,70
-identificador,"linha",173,75
-identificador,"aux",173,81
-identificador,"coluna",173,86
+identificador,"arqComentarios",173,21
+identificador,"aux",173,56
+identificador,"valor",173,61
+identificador,"teste",173,67
+identificador,"aux",173,73
+identificador,"linha",173,78
+identificador,"aux",173,84
+identificador,"coluna",173,89
 identificador,"!achou",176,12
+identificador,"!strcmp",176,22
+identificador,"aux",176,30
+identificador,"valor",176,35
 identificador,"achou",177,13
 identificador,"fprintf",178,13
-identificador,"arqSeparadores",178,21
-identificador,"aux",178,56
-identificador,"valor",178,61
-identificador,"teste",178,67
-identificador,"aux",178,73
-identificador,"linha",178,78
-identificador,"aux",178,84
-identificador,"coluna",178,89
-identificador,"aux",181,9
-identificador,"aux",181,15
-identificador,"proxima",181,20
-identificador,"isPalavraReservada",185,5
-identificador,"str",185,30
-identificador,"palavrasReservadas",185,42
-identificador,"i",186,9
-identificador,"i",187,9
-identificador,"i",187,13
-identificador,"i",187,18
-identificador,"!strcmp",188,12
-identificador,"str",188,20
-identificador,"palavrasReservadas",188,24
-identificador,"i",188,43
-identificador,"identificarToken",195,6
-identificador,"MaquinaEstados",195,23
-identificador,"maquinaEstados",195,39
-identificador,"palavrasReservadas",195,62
-identificador,"ListaToken",195,82
-identificador,"listaToken",195,94
-identificador,"maquinaEstados",196,8
-identificador,"estados",196,24
-identificador,"maquinaEstados",196,32
-identificador,"estadoAtual",196,48
-identificador,"final",196,61
-identificador,"achou",197,13
-identificador,"tipo",198,14
-identificador,"isNull",199,13
-identificador,"!achou",201,12
-identificador,"strchr",201,22
-identificador,"SEPARADOR",201,29
-identificador,"BUFFER",201,39
-identificador,"NULL",201,53
-identificador,"aux",202,19
-identificador,"tipoSeparador",202,25
-identificador,"BUFFER",202,39
-identificador,"sprintf",203,13
-identificador,"tipo",203,21
-identificador,"aux",203,31
-identificador,"strcmp",204,16
-identificador,"aux",204,23
-identificador,"isNull",205,17
-identificador,"achou",207,13
-identificador,"!achou",210,12
-identificador,"isLiteralAspasDuplas",210,22
-identificador,"BUFFER",210,43
-identificador,"sprintf",211,13
-identificador,"tipo",211,21
-identificador,""aspas",211,31
-identificador,"_duplas",211,37
+identificador,"arqDiretiva",178,21
+identificador,"aux",178,53
+identificador,"valor",178,58
+identificador,"teste",178,64
+identificador,"aux",178,70
+identificador,"linha",178,75
+identificador,"aux",178,81
+identificador,"coluna",178,86
+identificador,"!achou",181,12
+identificador,"achou",182,13
+identificador,"fprintf",183,13
+identificador,"arqSeparadores",183,21
+identificador,"aux",183,56
+identificador,"valor",183,61
+identificador,"teste",183,67
+identificador,"aux",183,73
+identificador,"linha",183,78
+identificador,"aux",183,84
+identificador,"coluna",183,89
+identificador,"aux",186,9
+identificador,"aux",186,15
+identificador,"proxima",186,20
+identificador,"isPalavraReservada",190,5
+identificador,"str",190,30
+identificador,"palavrasReservadas",190,42
+identificador,"i",191,9
+identificador,"i",192,9
+identificador,"i",192,13
+identificador,"i",192,18
+identificador,"!strcmp",193,12
+identificador,"str",193,20
+identificador,"palavrasReservadas",193,24
+identificador,"i",193,43
+identificador,"identificarToken",200,6
+identificador,"MaquinaEstados",200,23
+identificador,"maquinaEstados",200,39
+identificador,"palavrasReservadas",200,62
+identificador,"ListaToken",200,82
+identificador,"listaToken",200,94
+identificador,"maquinaEstados",201,8
+identificador,"estados",201,24
+identificador,"maquinaEstados",201,32
+identificador,"estadoAtual",201,48
+identificador,"final",201,61
+identificador,"achou",202,13
+identificador,"tipo",203,14
+identificador,"isNull",204,13
+identificador,"!achou",206,12
+identificador,"strchr",206,22
+identificador,"SEPARADOR",206,29
+identificador,"BUFFER",206,39
+identificador,"NULL",206,53
+identificador,"aux",207,19
+identificador,"tipoSeparador",207,25
+identificador,"BUFFER",207,39
+identificador,"sprintf",208,13
+identificador,"tipo",208,21
+identificador,"aux",208,31
+identificador,"strcmp",209,16
+identificador,"aux",209,23
+identificador,"isNull",210,17
+identificador,"achou",212,13
+identificador,"!achou",215,12
+identificador,"isLiteralAspasDuplas",215,22
+identificador,"BUFFER",215,43
+identificador,"sprintf",216,13
+identificador,"tipo",216,21
+identificador,""aspas",216,31
+identificador,"_duplas",216,37
 identificador,"");
             achou = 1;
         }
 
         if(!achou && isLiteralAspasSimples(BUFFER)){
-            sprintf(tipo,"%",216,-90
-identificador,"s",216,28
-identificador,"","aspas_simples",216,29
+            sprintf(tipo,"%",221,-90
+identificador,"s",221,28
+identificador,"","aspas_simples",221,29
 identificador,"");
             achou = 1;
         }
 
         if(!achou && isOperador(BUFFER)){
-            sprintf(tipo,"%",221,-79
-identificador,"s",221,28
-identificador,"","operador",221,29
+            sprintf(tipo,"%",226,-79
+identificador,"s",226,28
+identificador,"","operador",226,29
 identificador,"");
             achou = 1;
         }
 
         if(!achou && isNumero(BUFFER)){
-            sprintf(tipo,"%",226,-77
-identificador,"s",226,28
-identificador,"","numero",226,29
+            sprintf(tipo,"%",231,-77
+identificador,"s",231,28
+identificador,"","numero",231,29
 identificador,"");
             achou = 1;
         }
 
         if(!achou && isPalavraReservada(BUFFER,palavrasReservadas)){
-            sprintf(tipo,"%",231,-106
-identificador,"s",231,28
+            sprintf(tipo,"%",236,-106
+identificador,"s",236,28
 identificador,"",BUFFER);
             achou = 1;
         }
 
         if(!achou && isComentario(BUFFER)){
-            sprintf(tipo,"%",236,-88
-identificador,"s",236,28
-identificador,"","comentario",236,29
+            sprintf(tipo,"%",241,-88
+identificador,"s",241,28
+identificador,"","comentario",241,29
 identificador,"");
             achou = 1;
         }
 
         if(!achou && isDiretiva(BUFFER)){
-            sprintf(tipo,"%",241,-79
-identificador,"s",241,28
-identificador,"","diretiva",241,29
+            sprintf(tipo,"%",246,-79
+identificador,"s",246,28
+identificador,"","diretiva",246,29
 identificador,"");
             achou = 1;
         }
 
         if(!achou){
-            sprintf(tipo,"%",246,-57
-identificador,"s",246,28
-identificador,"","identificador",246,29
+            sprintf(tipo,"%",251,-57
+identificador,"s",251,28
+identificador,"","identificador",251,29
 identificador,"");
         }
         if(!isNull){
             inserirListaToken(listaToken,tipo,BUFFER,LINHA,COLUNA-(strlen(BUFFER)));
         }
-        strcpy(BUFFER,"0",251,-128
+        strcpy(BUFFER,"0",256,-128
 identificador,"");
     }
 }
@@ -514,35 +536,35 @@ int isNumero(char *str){
 
 char *tipoSeparador(char str){
     switch(str){
-        case ' ': return "espaco",267,-244
+        case ' ': return "espaco",272,-244
 identificador,"";
-        case ';': return "ponto_virgula",268,-2
+        case ';': return "ponto_virgula",273,-2
 identificador,"";
-        case '\n': return "quebra_linha",269,-2
+        case '\n': return "quebra_linha",274,-2
 identificador,"";
-        case '\r': return "retorno_de_carruagem",270,-2
+        case '\r': return "retorno_de_carruagem",275,-2
 identificador,"";
-        case '\t': return "tabulacao",271,-2
+        case '\t': return "tabulacao",276,-2
 identificador,"";
-        case '(': return "abre_parenteses",272,-2
+        case '(': return "abre_parenteses",277,-2
 identificador,"";
-        case ')': return "fecha_parenteses",273,-2
+        case ')': return "fecha_parenteses",278,-2
 identificador,"";
-        case '[': return "abre_colchetes",274,-2
+        case '[': return "abre_colchetes",279,-2
 identificador,"";
-        case ']': return "fecha_colchetes",275,-2
+        case ']': return "fecha_colchetes",280,-2
 identificador,"";
-        case '{': return "abre_chaves",276,-2
+        case '{': return "abre_chaves",281,-2
 identificador,"";
-        case '}': return "fecha_chaves",277,-2
+        case '}': return "fecha_chaves",282,-2
 identificador,"";
-        case ',': return "virgula",278,-2
+        case ',': return "virgula",283,-2
 identificador,"";
-        case '.': return "ponto",279,-2
+        case '.': return "ponto",284,-2
 identificador,"";
-        case ':': return "dois_pontos",280,-2
+        case ':': return "dois_pontos",285,-2
 identificador,"";
-        default: return "null",281,-2
+        default: return "null",286,-2
 identificador,"";
     }
 }
@@ -581,32 +603,32 @@ int isLiteralAspasSimples(char *str){
 }
 
 int isDiretiva(char *str){
-    if(str[0] == '",319,-653
-identificador,"isComentario",325,5
-identificador,"str",325,24
-identificador,"strlen",326,8
-identificador,"str",326,15
-identificador,"str",329,8
-identificador,"str",329,25
-identificador,"strlen",332,8
-identificador,"str",332,15
-identificador,"str",335,8
-identificador,"str",335,25
-identificador,"str",335,42
-identificador,"strlen",335,46
-identificador,"str",335,53
-identificador,"str",335,71
-identificador,"strlen",335,75
-identificador,"str",335,82
-identificador,"erroEstadoAtual",341,7
-identificador,"estado",341,27
-identificador,"estado",342,12
-identificador,"erroAnaliseSintatica",374,6
-identificador,"estadoAtual",374,31
-identificador,"linha",374,48
-identificador,"coluna",374,59
-identificador,"printf",375,5
-identificador,"linha",375,40
-identificador,"coluna",375,46
-identificador,"erroEstadoAtual",375,53
-identificador,"estadoAtual",375,69
+    if(str[0] == '",324,-653
+identificador,"isComentario",330,5
+identificador,"str",330,24
+identificador,"strlen",331,8
+identificador,"str",331,15
+identificador,"str",334,8
+identificador,"str",334,25
+identificador,"strlen",337,8
+identificador,"str",337,15
+identificador,"str",340,8
+identificador,"str",340,25
+identificador,"str",340,42
+identificador,"strlen",340,46
+identificador,"str",340,53
+identificador,"str",340,71
+identificador,"strlen",340,75
+identificador,"str",340,82
+identificador,"erroEstadoAtual",346,7
+identificador,"estado",346,27
+identificador,"estado",347,12
+identificador,"erroAnaliseSintatica",379,6
+identificador,"estadoAtual",379,31
+identificador,"linha",379,48
+identificador,"coluna",379,59
+identificador,"printf",380,5
+identificador,"linha",380,40
+identificador,"coluna",380,46
+identificador,"erroEstadoAtual",380,53
+identificador,"estadoAtual",380,69

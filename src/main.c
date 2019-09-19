@@ -3,6 +3,7 @@
 #include <unistd.h> // Biblioteca necessaria para utilizacao do getopt().
 #include "../headers/utils.h"
 #include "../headers/lexico.h"
+#include "../headers/sintatico.h"
 
 int main(int argc,char **argv){
     int optc = 0;
@@ -72,8 +73,14 @@ int main(int argc,char **argv){
         criarEstado(&automato->estados[i],i);
     }
 
+    ListaToken *listaToken = malloc(sizeof(ListaToken));
+
+    //Inicializar lista de tokens (identificadores)
+    ListaToken *listaTokenIdentificadores = malloc(sizeof(ListaToken));
+
     iniciarAutomato(automato);
-    analiseLexica(automato,arquivo,argv1);
+    analiseLexica(automato,arquivo,argv1,listaToken,listaTokenIdentificadores);
+    analiseSintatica(listaToken,listaTokenIdentificadores);
     /*
     for(i=0;i<32;i++){
         printf("Estado %d\n",i);

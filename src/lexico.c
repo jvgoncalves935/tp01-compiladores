@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArquivo){
+void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArquivo, ListaToken *listaToken, ListaToken *listaTokenIdentificadores){
     int tamArquivo = strlen(arquivo);
     int posicao;
     int valido = 1;
@@ -30,7 +30,6 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
     sprintf(nomeArquivoFinal,"%s%s%s","out/",nomeArquivo03,"_tabela.txt");
 
     //Inicializar lista de tokens
-    ListaToken *listaToken = malloc(sizeof(ListaToken));
     iniciarListaToken(listaToken);
 
     //Funcionamento do automato e reconhecimento de tokens
@@ -97,7 +96,11 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         FILE *arqComentarios = fopen(nomeArquivoComentarios,"w");
         FILE *arqDiretiva = fopen(nomeArquivoDiretiva,"w");
 
-        escreverArquivoTokens(arq,arqIdentificadores,arqReservadas,arqNumeros,arqSeparadores,arqOperadores,arqLiterais,arqComentarios,arqDiretiva,listaToken,palavras_reservadas);
+
+        
+        iniciarListaToken(listaTokenIdentificadores);
+
+        escreverArquivoTokens(arq,arqIdentificadores,arqReservadas,arqNumeros,arqSeparadores,arqOperadores,arqLiterais,arqComentarios,arqDiretiva,listaToken,palavras_reservadas,listaTokenIdentificadores);
 
         fclose(arq);
         fclose(arqIdentificadores);
@@ -115,11 +118,12 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
     //Liberacao de memoria.
     //freePalavrasReservadas(palavras_reservadas);
     freeListaToken(listaToken);
+    freeListaToken(listaTokenIdentificadores);
     freeMaquinaEstados(maquinaEstados);
     
 }
 
-void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *arqReservados, FILE *arqNumeros, FILE *arqSeparadores, FILE *arqOperadores, FILE *arqLiterais, FILE *arqComentarios, FILE *arqDiretiva, ListaToken *listaToken, char **palavras_reservadas){
+void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *arqReservados, FILE *arqNumeros, FILE *arqSeparadores, FILE *arqOperadores, FILE *arqLiterais, FILE *arqComentarios, FILE *arqDiretiva, ListaToken *listaToken, char **palavras_reservadas, ListaToken *listaTokenIdentificadores){
     Token *aux = listaToken->primeira;
     char teste[2048];
     while(aux != NULL){
@@ -145,6 +149,7 @@ void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *
 
         if(!achou && !strcmp(aux->valor,"identificador")){
             achou = 1;
+            inserirListaToken(listaTokenIdentificadores,aux->valor,aux->valorBruto,aux->linha,aux->coluna);
             fprintf(arqIdentificadores,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
         }
 

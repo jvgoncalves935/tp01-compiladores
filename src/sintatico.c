@@ -2,6 +2,6 @@
 #include <stdlib.h>
 #include "../headers/sintatico.h"
 
-void analiseSintatica(ListaToken *listaToken){
-    printf("Analise Sintatica: xd.");
+void analiseSintatica(ListaToken *listaToken, ListaToken *listaTokenIdentificadores){
+    printf("Analise Sintatica: xd.\n");
 }
