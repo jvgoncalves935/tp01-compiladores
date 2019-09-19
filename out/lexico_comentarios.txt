@@ -1,0 +1,9 @@
+comentario,"//Iniciar palavras reservadas",13,5
+comentario,"//Gerar string com o caminho do arquivo de saida",21,5
+comentario,"//Resetar o automato para o Estado 0 e limpar o buffer.",45,13
+comentario,"//O buffer ainda nao esta vazio",59,5
+comentario,"//inserirListaToken(listaToken,"reservada",BUFFER,LINHA,COLUNA-(strlen(BUFFER)));",62,9
+comentario,"//Fim do arquivo mas o estado nao eh final",65,5
+comentario,"//Liberacao de memoria.",115,5
+comentario,"//freePalavrasReservadas(palavras",116,5
+comentario,"//Identificacao de tipo de token",200,9

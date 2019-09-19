@@ -7,6 +7,7 @@
 int main(int argc,char **argv){
     int optc = 0;
 	char *argv1 = NULL;
+
 	// Funcao getopt(), (entrada por parametros).
 	while((optc = getopt(argc, argv, "hc:a:")) != -1){
 		switch(optc){
@@ -65,9 +66,9 @@ int main(int argc,char **argv){
     //Iniciar automato.
     MaquinaEstados *automato = malloc(sizeof(MaquinaEstados));
     automato->estadoAtual = 0;
-    automato->estados = malloc(32*sizeof(Estado));
+    automato->estados = malloc(NUM_ESTADOS*sizeof(Estado));
     
-    for(i=0;i<32;i++){
+    for(i=0;i<NUM_ESTADOS;i++){
         criarEstado(&automato->estados[i],i);
     }
 

@@ -1,0 +1,72 @@
+aspas_duplas,""\0"",11,19
+aspas_duplas,""/"",22,46
+aspas_duplas,""%s"",25,31
+aspas_duplas,""/"",26,37
+aspas_duplas,""."",28,48
+aspas_duplas,""%s%s%s"",30,30
+aspas_duplas,""out/"",30,39
+aspas_duplas,""\0"",47,27
+aspas_simples,"'\n'",51,32
+aspas_duplas,""\nAnalise Lexica: SUCESSO.\n"",71,16
+aspas_duplas,""w"",72,44
+aspas_duplas,""%s%s%s"",82,44
+aspas_duplas,""out/"",82,53
+aspas_duplas,""\nAnalise Lexica: ERRO.\n"",112,16
+aspas_duplas,""%s"",126,23
+aspas_duplas,""\n"",127,26
+aspas_duplas,""\\n"",128,26
+aspas_duplas,""\t"",130,26
+aspas_duplas,""\\t"",131,26
+aspas_duplas,""%s,\"%s\",%d,%d\n"",133,31
+aspas_duplas,""%s,\"%s\",%d,%d\n"",138,35
+aspas_duplas,""numero"",141,41
+aspas_duplas,""%s,\"%s\",%d,%d\n"",143,32
+aspas_duplas,""identificador"",146,41
+aspas_duplas,""%s,\"%s\",%d,%d\n"",148,40
+aspas_duplas,""operador"",151,41
+aspas_duplas,""%s,\"%s\",%d,%d\n"",153,35
+aspas_duplas,""%s\",%d,%d\n"",158,38
+aspas_duplas,""%s\",%d,%d\n"",163,38
+aspas_duplas,""comentario"",166,41
+aspas_duplas,""%s,\"%s\",%d,%d\n"",168,36
+aspas_duplas,""diretiva"",171,41
+aspas_duplas,""%s,\"%s\",%d,%d\n"",173,33
+aspas_duplas,""%s,\"%s\",%d,%d\n"",178,36
+aspas_duplas,""%s"",203,26
+aspas_duplas,""null"",204,27
+aspas_duplas,""%s"",211,26
+aspas_simples,"'/'",329,18
+aspas_simples,"'/'",329,35
+aspas_simples,"'/'",335,18
+aspas_simples,"'*'",335,35
+aspas_simples,"'*'",335,64
+aspas_simples,"'/'",335,93
+aspas_duplas,""Caracter invalido."",343,24
+aspas_duplas,""Letra invalida para identificador."",344,24
+aspas_duplas,""Caracter invalido para numero."",345,24
+aspas_duplas,""Caracter invalido para numero."",346,24
+aspas_duplas,""Caracter invalido para operador '+'."",347,24
+aspas_duplas,""Caracter invalido para operador '-'."",348,24
+aspas_duplas,""Caracter invalido para operador '*'."",349,24
+aspas_duplas,""Caracter invalido para operador '/'."",350,24
+aspas_duplas,""Caracter invalido para operador '='."",351,24
+aspas_duplas,""Caracter invalido para operador '<'."",352,24
+aspas_duplas,""Caracter invalido para operador '>'."",353,25
+aspas_duplas,""Caracter invalido para operador '%'."",354,25
+aspas_duplas,""Caracter invalido para operador ''."",355,25
+aspas_duplas,""Caracter invalido para operador '!'."",356,25
+aspas_duplas,""Caracter invalido para operador '|'."",357,25
+aspas_duplas,""Caracter invalido para operador '&'."",358,25
+aspas_duplas,""Caracter invalido para literal '\"'."",359,25
+aspas_duplas,""Caracter invalido para literal '\"'."",360,25
+aspas_duplas,""Caracter invalido para literal '\''."",361,25
+aspas_duplas,""Caracter invalido para literal '\''."",362,25
+aspas_duplas,""Caracter invalido para literal '\\'."",363,25
+aspas_duplas,""Caracter invalido para diretiva."",364,25
+aspas_duplas,""Caracter invalido para comentario."",365,25
+aspas_duplas,""Caracter invalido para comentario."",366,25
+aspas_duplas,""Caracter invalido para comentario."",367,25
+aspas_duplas,""Caracter invalido para comentario."",368,25
+aspas_duplas,""Nao eh possivel colocar comentario dentro de comentario."",369,25
+aspas_duplas,""Erro desconhecido."",370,25
+aspas_duplas,""Linha %d, Coluna %d: %s\n"",375,12

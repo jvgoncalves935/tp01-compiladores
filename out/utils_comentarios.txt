@@ -6,7 +6,7 @@ char IDENTIFICADOR[] = "I";
 char NUMERO[] = "0123456789";
 char OPERADOR[] = "+*%/=<>!|&~^-?";
 char NULO = '-';
-*/",13,-242
+*/",13,-234
 comentario,"/*
 void iniciarLetras(char *vetor){
     int i;
@@ -58,11 +58,20 @@ void iniciarTabelaAscii(char *vetor){
     iniciarOperadores(vetor);
     iniciarSeparadores(vetor);
 }
-*/",113,-1056
-comentario,"//Inicia uma celula para receber um lista.",123,1
-comentario,"//Insere valores em uma lista.",133,1
-comentario,"//Inicia uma celula para receber um lista.",166,1
-comentario,"//Insere valores em uma lista.",176,1
+*/",114,-1005
+comentario,"//Inicia uma celula para receber um lista.",124,1
+comentario,"//Insere valores em uma lista.",134,1
+comentario,"//Inicia uma celula para receber um lista.",167,1
+comentario,"//Insere valores em uma lista.",177,1
+comentario,"//printf("%ld -- %d %d\n",strlen(valor),LINHA,COLUNA);",182,5
+comentario,"//printf("%s\n",aux->valorBruto);",233,9
+comentario,"//printf("%s\n",aux->valorBruto);",240,5
+comentario,"//printf("-----Estado %d\n",i);",252,9
+comentario,"//printf("[%s]\n",aux->conjunto);",266,13
+comentario,"//printf("{%s}\n",aux->conjunto);",272,9
+comentario,"//printf("\n");",274,9
+comentario,"//free(estado",276,9
+comentario,"//printf("Maquina estados xd\n");",278,5
 comentario,"/*
 Transicao *ultimoLista(Transicao *primeiro){
     Transicao *aux = primeiro;
@@ -76,4 +85,4 @@ Transicao *ultimoLista(Transicao *primeiro){
         aux = aux->proxima;
     }
 }
-*/",221,-260
+*/",295,-247

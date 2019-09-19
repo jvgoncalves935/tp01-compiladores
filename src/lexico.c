@@ -32,16 +32,16 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
     //Inicializar lista de tokens
     ListaToken *listaToken = malloc(sizeof(ListaToken));
     iniciarListaToken(listaToken);
-    
+
     //Funcionamento do automato e reconhecimento de tokens
     for(posicao = 0;posicao<tamArquivo;posicao++){
-        //printf("%d %s\n",maquinaEstados->estadoAtual,BUFFER);
+        
         alimentarMaquinaEstados(maquinaEstados,arquivo[posicao],&valido,palavras_reservadas,listaToken);
-        
-        
+
+
         if(!valido){
             erroAnaliseSintatica(maquinaEstados->estadoAtual,LINHA,COLUNA);
-            
+
             //Resetar o automato para o Estado 0 e limpar o buffer.
             maquinaEstados->estadoAtual = 0;
             strcpy(BUFFER,"\0");
@@ -56,7 +56,7 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         }
     }
 
-    //O buffer ainda não está vazio
+    //O buffer ainda nao esta vazio
     if(strlen(BUFFER) > 0){
         identificarToken(maquinaEstados,palavras_reservadas,listaToken);
         //inserirListaToken(listaToken,"reservada",BUFFER,LINHA,COLUNA-(strlen(BUFFER)));
@@ -96,7 +96,7 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
         FILE *arqLiterais = fopen(nomeArquivoLiterais,"w");
         FILE *arqComentarios = fopen(nomeArquivoComentarios,"w");
         FILE *arqDiretiva = fopen(nomeArquivoDiretiva,"w");
-        
+
         escreverArquivoTokens(arq,arqIdentificadores,arqReservadas,arqNumeros,arqSeparadores,arqOperadores,arqLiterais,arqComentarios,arqDiretiva,listaToken,palavras_reservadas);
 
         fclose(arq);
@@ -111,6 +111,12 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
     }else{
         printf("\nAnalise Lexica: ERRO.\n");
     }
+
+    //Liberacao de memoria.
+    //freePalavrasReservadas(palavras_reservadas);
+    freeListaToken(listaToken);
+    freeMaquinaEstados(maquinaEstados);
+    
 }
 
 void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *arqReservados, FILE *arqNumeros, FILE *arqSeparadores, FILE *arqOperadores, FILE *arqLiterais, FILE *arqComentarios, FILE *arqDiretiva, ListaToken *listaToken, char **palavras_reservadas){
@@ -119,10 +125,10 @@ void escreverArquivoTokens(FILE *arquivoTokens, FILE *arqIdentificadores, FILE *
     while(aux != NULL){
         sprintf(teste,"%s",aux->valorBruto);
         if(!strcmp(teste,"\n")){
-           sprintf(teste,"\\n"); 
+           sprintf(teste,"\\n");
         }
         if(!strcmp(teste,"\t")){
-           sprintf(teste,"\\t"); 
+           sprintf(teste,"\\t");
         }
         fprintf(arquivoTokens,"%s,\"%s\",%d,%d\n",aux->valor,teste,aux->linha,aux->coluna);
         int achou = 0;
@@ -198,29 +204,29 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
             if(strcmp(aux,"null") == 0){
                 isNull = 1;
             }
-            achou = 1; 
+            achou = 1;
         }
 
         if(!achou && isLiteralAspasDuplas(BUFFER)){
             sprintf(tipo,"%s","aspas_duplas");
-            achou = 1;  
+            achou = 1;
         }
 
         if(!achou && isLiteralAspasSimples(BUFFER)){
             sprintf(tipo,"%s","aspas_simples");
-            achou = 1;  
+            achou = 1;
         }
 
         if(!achou && isOperador(BUFFER)){
             sprintf(tipo,"%s","operador");
-            achou = 1;  
+            achou = 1;
         }
 
         if(!achou && isNumero(BUFFER)){
             sprintf(tipo,"%s","numero");
-            achou = 1;  
+            achou = 1;
         }
-        
+
         if(!achou && isPalavraReservada(BUFFER,palavrasReservadas)){
             sprintf(tipo,"%s",BUFFER);
             achou = 1;
@@ -228,14 +234,14 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
 
         if(!achou && isComentario(BUFFER)){
             sprintf(tipo,"%s","comentario");
-            achou = 1;  
+            achou = 1;
         }
-        
+
         if(!achou && isDiretiva(BUFFER)){
             sprintf(tipo,"%s","diretiva");
-            achou = 1;  
+            achou = 1;
         }
-        
+
         if(!achou){
             sprintf(tipo,"%s","identificador");
         }

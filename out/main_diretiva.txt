@@ -1,0 +1,5 @@
+diretiva,"#include <stdio.h>",1,1
+diretiva,"#include <stdlib.h>",2,1
+diretiva,"#include <unistd.h> // Biblioteca necessaria para utilizacao do getopt().",3,1
+diretiva,"#include "../headers/utils.h"",4,1
+diretiva,"#include "../headers/lexico.h"",5,1

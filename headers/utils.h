@@ -15,6 +15,7 @@ extern char NULO;
 extern int LINHA;
 extern int COLUNA;
 extern char BUFFER[];
+extern int NUM_ESTADOS;
 
 
 //void iniciarPalavrasReservadas(char **matriz);
@@ -33,5 +34,9 @@ void iniciarListaToken(ListaToken *aux);
 int listaVaziaToken(ListaToken *f);
 void inserirListaToken(ListaToken *f, char *valor, char *valorBruto, int _linha, int _coluna);
 void setEstadoFinal(MaquinaEstados *maquinaEstados, int estado);
+
+void freePalavrasReservadas(char **palavrasReservadas);
+void freeListaToken(ListaToken *listaToken);
+void freeMaquinaEstados(MaquinaEstados *maquinaEstados);
 
 #endif // UTILS_H_INCLUDED

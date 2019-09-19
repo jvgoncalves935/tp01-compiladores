@@ -1,7 +1,7 @@
 fileH = headers/
 fileC = src/
 
-objetos = main.o automato.o lexico.o utils.o
+objetos = main.o automato.o lexico.o utils.o sintatico.o
 
 tp1:	$(objetos)
 	gcc $(objetos) -o tp1
@@ -17,6 +17,9 @@ lexico.o:	$(fileH)lexico.h $(fileC)lexico.c
 	
 automato.o:	$(fileH)automato.h $(fileC)automato.c
 	gcc -c -g -Wall -O3 $(fileC)automato.c
+
+sintatico.o: $(fileH)sintatico.h $(fileC)sintatico.c
+	gcc -c -g -Wall -O3 $(fileC)sintatico.c
 
 clean:
 	rm -rf *.o

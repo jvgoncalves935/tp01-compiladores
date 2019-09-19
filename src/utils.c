@@ -23,6 +23,7 @@ char NULO = '-';
 int LINHA = 1;
 int COLUNA = 1;
 char BUFFER[1024];
+int NUM_ESTADOS = 26;
 
 void iniciarPalavrasReservadas(char **matriz){
     matriz[0] = "auto";
@@ -136,7 +137,7 @@ void inserirLista(Estado *f, char *transicao, int proxEstado){
 	Transicao *aux;
 	aux = (Transicao *) malloc(sizeof(Transicao));
 
-    aux->conjunto = malloc(strlen(transicao)*(sizeof(char)));
+    aux->conjunto = malloc((strlen(transicao)+1)*(sizeof(char)));
 	strcpy(aux->conjunto,transicao);
 
 	aux->proxima = NULL;
@@ -165,7 +166,7 @@ int listaVaziaToken(ListaToken *f){
 
 //Inicia uma celula para receber um lista.
 void iniciarListaToken(ListaToken *aux){
-    aux->primeira = (Token *) malloc(sizeof(Token));
+    aux->primeira = malloc(sizeof(Token));
     aux->primeira->proxima = NULL;
     aux->primeira->anterior = NULL;
     aux->primeira->linha = 0;
@@ -176,12 +177,14 @@ void iniciarListaToken(ListaToken *aux){
 //Insere valores em uma lista.
 void inserirListaToken(ListaToken *f, char *valor, char *valorBruto, int _linha, int _coluna){
 	Token *aux;
-	aux = (Token *) malloc(sizeof(Token));
+	aux = malloc(1*sizeof(Token));
 
-    aux->valor = malloc(strlen(valor)*(sizeof(char)));
+    //printf("%ld -- %d %d\n",strlen(valor),LINHA,COLUNA);
+    aux->valor = malloc((strlen(valor)+1)*(sizeof(char)));
+    
 	strcpy(aux->valor,valor);
 
-    aux->valorBruto = malloc(strlen(valorBruto)*(sizeof(char)));
+    aux->valorBruto = malloc((strlen(valorBruto)+1)*(sizeof(char)));
 	strcpy(aux->valorBruto,valorBruto);
 
 	aux->proxima = NULL;
@@ -203,6 +206,77 @@ void inserirListaToken(ListaToken *f, char *valor, char *valorBruto, int _linha,
 
 void setEstadoFinal(MaquinaEstados *maquinaEstados, int estado){
     maquinaEstados->estados[estado].final = 1;
+}
+
+void freePalavrasReservadas(char **palavrasReservadas){
+    int i;
+    for(i=0;i<32;i++){
+        printf("%p\n",&palavrasReservadas[i]);
+        free(&palavrasReservadas[i]);
+    }
+    free(palavrasReservadas);
+    printf("come vaiem\n");
+}
+
+void freeListaToken(ListaToken *listaToken){
+    if(listaToken == NULL){
+        return;
+    }
+
+    Token *aux = listaToken->primeira;
+    if(aux == NULL){
+        return;
+    }
+
+    Token *aux2 = aux->proxima;
+    while(aux2 != NULL){
+        //printf("%s\n",aux->valorBruto);
+        free(aux->valor);
+        free(aux->valorBruto);
+        free(aux);
+        aux = aux2;
+        aux2 = aux2->proxima;
+    }
+    //printf("%s\n",aux->valorBruto);
+    free(aux);
+}
+
+void freeMaquinaEstados(MaquinaEstados *maquinaEstados){
+    int i;
+    if(maquinaEstados == NULL){
+        return;
+    }
+    Estado *estado_aux;
+    Transicao *aux,*aux2;
+    for(i=0;i<NUM_ESTADOS;i++){
+        //printf("-----Estado %d\n",i);
+        estado_aux = &maquinaEstados->estados[i];
+        
+        if(estado_aux == NULL){
+            continue;
+        }
+
+        aux = estado_aux->primeira;
+        if(aux == NULL){
+            continue;
+        }
+
+        aux2 = aux->proxima;
+        while(aux2 != NULL){
+            //printf("[%s]\n",aux->conjunto);
+            free(aux->conjunto);
+            free(aux);
+            aux = aux2;
+            aux2 = aux2->proxima;
+        }
+        //printf("{%s}\n",aux->conjunto);
+        free(aux);
+        //printf("\n");
+
+        //free(estado_aux);
+    }
+    //printf("Maquina estados xd\n");
+    free(maquinaEstados);
 }
 
 /*
