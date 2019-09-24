@@ -117,8 +117,7 @@ void analiseLexica(MaquinaEstados *maquinaEstados, char *arquivo, char *nomeArqu
 
     //Liberacao de memoria.
     //freePalavrasReservadas(palavras_reservadas);
-    freeListaToken(listaToken);
-    freeListaToken(listaTokenIdentificadores);
+    
     freeMaquinaEstados(maquinaEstados);
     
 }

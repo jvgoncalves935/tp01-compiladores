@@ -6,4 +6,4 @@ comentario,"//inserirListaToken(listaToken,"reservada",BUFFER,LINHA,COLUNA-(strl
 comentario,"//Fim do arquivo mas o estado nao eh final",64,5
 comentario,"//Liberacao de memoria.",118,5
 comentario,"//freePalavrasReservadas(palavras",119,5
-comentario,"//Identificacao de tipo de token",205,9
+comentario,"//Identificacao de tipo de token",204,9
