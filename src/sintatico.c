@@ -38,7 +38,7 @@ void consumirToken(ListaToken *listaToken){
         listaToken->primeira = NULL;
     }
 
-    printf("Consumir Token %s\n",aux->valorBruto);
+    //printf("Consumir Token %s\n",aux->valorBruto);
 
     free(aux->valor);
     free(aux->valorBruto);
