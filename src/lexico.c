@@ -250,10 +250,19 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
             sprintf(tipo,"%s","identificador");
         }
         if(!isNull){
-            inserirListaToken(listaToken,tipo,BUFFER,LINHA,COLUNA-(strlen(BUFFER)));
+            if(!isTokenDescartavel(tipo)){
+                inserirListaToken(listaToken,tipo,BUFFER,LINHA,COLUNA-(strlen(BUFFER)));
+            }
         }
         strcpy(BUFFER,"\0");
     }
+}
+
+int isTokenDescartavel(char *tipo){
+    if(!strcmp(tipo,"espaco") || !strcmp(tipo,"quebra_linha") || !strcmp(tipo,"tabulacao") || !strcmp(tipo,"comentario")){
+        return 1;
+    }
+    return 0;
 }
 
 int isNumero(char *str){

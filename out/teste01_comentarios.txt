@@ -1,2 +1,0 @@
-comentario,"//teste xd",5,1
-comentario,"/*xdddddddd*/",6,1

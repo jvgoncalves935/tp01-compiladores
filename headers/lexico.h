@@ -22,5 +22,6 @@ int isDiretiva(char *str);
 int isComentario(char *str);
 char *erroEstadoAtual(int estado);
 void erroAnaliseSintatica(int estadoAtual, int linha, int coluna);
+int isTokenDescartavel(char *tipo);
 
 #endif // LEXICO_H_INCLUDED
