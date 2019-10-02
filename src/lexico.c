@@ -222,7 +222,7 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
         }
 
         if(!achou && isOperador(BUFFER)){
-            sprintf(tipo,"%s","operador");
+            sprintf(tipo,"%s",tipoOperador(BUFFER));
             achou = 1;
         }
 
@@ -273,6 +273,38 @@ int isNumero(char *str){
         }
     }
     return 1;
+}
+
+char *tipoOperador(char *str){
+    if(!strcmp(str,"+")){ return "mais"; }
+    if(!strcmp(str,"*")){ return "vezes"; }
+    if(!strcmp(str,"%%")){ return "porcento"; }
+    if(!strcmp(str,"/")){ return "barra"; }
+    if(!strcmp(str,"=")){ return "igual"; }
+    if(!strcmp(str,"<")){ return "menor"; }
+    if(!strcmp(str,">")){ return "maior"; }
+    if(!strcmp(str,"!")){ return "negacao"; }
+    if(!strcmp(str,"|")){ return "or_simples"; }
+    if(!strcmp(str,"&")){ return "and_simples"; }
+    if(!strcmp(str,"~")){ return "til"; }
+    if(!strcmp(str,"^")){ return "circunflexo"; }
+    if(!strcmp(str,"-")){ return "menos"; }
+    if(!strcmp(str,"?")){ return "interrogacao"; }
+    if(!strcmp(str,"+=")){ return "mais_igual"; }
+    if(!strcmp(str,"++")){ return "mais_mais"; }
+    if(!strcmp(str,"-=")){ return "menos_igual"; }
+    if(!strcmp(str,"--")){ return "menos_menos"; }
+    if(!strcmp(str,"*=")){ return "vezes_igual"; }
+    if(!strcmp(str,"**")){ return "vezes_vezes"; }
+    if(!strcmp(str,"/=")){ return "barra_igual"; }
+    if(!strcmp(str,"==")){ return "igual_igual"; }
+    if(!strcmp(str,"<=")){ return "menor_igual"; }
+    if(!strcmp(str,">=")){ return "maior_igual"; }
+    if(!strcmp(str,"||")){ return "or_duplo"; }
+    if(!strcmp(str,"&&")){ return "and_duplo"; }
+
+    return "null_operador";
+    
 }
 
 char *tipoSeparador(char str){

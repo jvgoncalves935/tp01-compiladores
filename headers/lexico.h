@@ -23,5 +23,6 @@ int isComentario(char *str);
 char *erroEstadoAtual(int estado);
 void erroAnaliseSintatica(int estadoAtual, int linha, int coluna);
 int isTokenDescartavel(char *tipo);
+char *tipoOperador(char *str);
 
 #endif // LEXICO_H_INCLUDED
