@@ -259,7 +259,7 @@ void identificarToken(MaquinaEstados *maquinaEstados, char **palavrasReservadas,
 }
 
 int isTokenDescartavel(char *tipo){
-    if(!strcmp(tipo,"espaco") || !strcmp(tipo,"quebra_linha") || !strcmp(tipo,"tabulacao") || !strcmp(tipo,"comentario")){
+    if(!strcmp(tipo,"espaco") || !strcmp(tipo,"quebra_linha") || !strcmp(tipo,"tabulacao") || !strcmp(tipo,"comentario") || !strcmp(tipo,"retorno_de_carruagem")){
         return 1;
     }
     return 0;

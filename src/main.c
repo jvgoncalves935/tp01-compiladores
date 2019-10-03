@@ -61,8 +61,9 @@ int main(int argc,char **argv){
     for(i=0;i<tamanho_arquivo;i++){
         printf("%c",arquivo[i]);
     }
-    free(arquivo);
     */
+    //free(arquivo);
+    
 
     //Iniciar automato.
     MaquinaEstados *automato = malloc(sizeof(MaquinaEstados));
@@ -80,7 +81,9 @@ int main(int argc,char **argv){
 
     iniciarAutomato(automato);
     analiseLexica(automato,arquivo,argv1,listaToken,listaTokenIdentificadores);
-    analiseSintatica(listaToken,listaTokenIdentificadores);
+
+    LISTATOKEN = listaToken;
+    analiseSintatica(listaTokenIdentificadores);
     /*
     for(i=0;i<32;i++){
         printf("Estado %d\n",i);

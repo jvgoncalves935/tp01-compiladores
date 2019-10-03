@@ -1,5 +1,5 @@
-diretiva,"#include <stdio.h>",1,1
-diretiva,"#include <stdio.h>",2,1
+diretiva,"#include <stdio.h>",1,1
+diretiva,"#include <stdio.h>",2,1
 int,"int",3,1
 identificador,"xd",3,5
 igual,"=",3,7
@@ -63,4 +63,3 @@ identificador,"abc",18,7
 ponto_virgula,";",18,9
 fecha_chaves,"}",19,1
 fecha_chaves,"}",20,0
-negacao,"!",20,2

@@ -2,8 +2,10 @@
 #define SINTATICO_H_INCLUDED
 
 #include "../headers/automato.h"
+#include "../headers/utils.h"
 
-void analiseSintatica(ListaToken *listaToken, ListaToken *listaTokenIdentificadores);
-void consumirToken(ListaToken *listaToken);
+void analiseSintatica(ListaToken *listaTokenIdentificadores);
+Token *consumirToken();
+void freePosicao(Token *aux);
 
 #endif // SINTATICO_H_INCLUDED

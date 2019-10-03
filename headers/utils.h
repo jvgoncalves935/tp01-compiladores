@@ -16,6 +16,7 @@ extern int LINHA;
 extern int COLUNA;
 extern char BUFFER[];
 extern int NUM_ESTADOS;
+extern ListaToken *LISTATOKEN;
 
 
 //void iniciarPalavrasReservadas(char **matriz);

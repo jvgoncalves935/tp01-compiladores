@@ -2,44 +2,62 @@
 #include <stdlib.h>
 #include "../headers/sintatico.h"
 
-void analiseSintatica(ListaToken *listaToken, ListaToken *listaTokenIdentificadores){
+void analiseSintatica(ListaToken *listaTokenIdentificadores){
     
-    while(listaToken->primeira != NULL){
-        consumirToken(listaToken);
+    while(LISTATOKEN->primeira != NULL){
+        //Token *aux = NULL;
+        Token *aux = consumirToken();
+        printf("Consumir Token %s\n",aux->valorBruto);
+        freePosicao(aux);
+        
     }
 
-    if(listaToken->primeira == NULL){
-        free(listaToken);
+    if(LISTATOKEN->primeira == NULL){
+        //freePosicao(LISTATOKEN->primeira);
+        free(LISTATOKEN);
         printf("Analise Sintatica: SUCESSO.\n");
     }else{
+        //printf("come vaiem %s\n",LISTATOKEN->primeira->valorBruto);
         printf("Analise Sintatica: ERRO.\n");
     }
     
-    //freeListaToken(listaToken);
-    //freeListaToken(listaTokenIdentificadores);
+    //freeLISTATOKEN(LISTATOKEN);
+    //freeLISTATOKEN(LISTATOKENIdentificadores);
 }
 
-void consumirToken(ListaToken *listaToken){
-    if(listaToken == NULL){
+Token *consumirToken(){
+    Token *tok = NULL;
+    if(LISTATOKEN == NULL){
         printf("Lista de tokens vazia!");
-        return;
+        return tok;
     }
 
-    Token *aux = listaToken->primeira;
+    Token *aux = LISTATOKEN->primeira;
+    tok = aux;
+    
+    //memcpy(tok,aux,sizeof(Token));
     if(aux == NULL){
         printf("Lista de tokens vazia!");
-        return;
+        return tok;
     }
 
-    if(listaToken->primeira->proxima != NULL){
-        listaToken->primeira = listaToken->primeira->proxima;
-        listaToken->primeira->anterior = NULL;
+    
+
+    if(LISTATOKEN->primeira->proxima != NULL){
+        LISTATOKEN->primeira = LISTATOKEN->primeira->proxima;
+        LISTATOKEN->primeira->anterior = NULL;
     }else{
-        listaToken->primeira = NULL;
+        
+        LISTATOKEN->primeira = NULL;
+        //return NULL;
     }
 
     //printf("Consumir Token %s\n",aux->valorBruto);
 
+    return tok;
+}
+
+void freePosicao(Token *aux){
     free(aux->valor);
     free(aux->valorBruto);
     free(aux);

@@ -29,4 +29,3 @@ igual,"=",18,5
 ponto_virgula,";",18,9
 fecha_chaves,"}",19,1
 fecha_chaves,"}",20,0
-negacao,"!",20,2
