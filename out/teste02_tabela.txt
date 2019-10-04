@@ -1,0 +1,8 @@
+if,"if",1,1
+abre_parenteses,"(",1,2
+identificador,"a",1,4
+mais,"+",1,5
+identificador,"b",1,6
+vezes,"*",1,7
+identificador,"c",1,8
+fecha_parenteses,")",1,8

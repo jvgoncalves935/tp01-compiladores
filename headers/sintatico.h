@@ -5,7 +5,19 @@
 #include "../headers/utils.h"
 
 void analiseSintatica(ListaToken *listaTokenIdentificadores);
-Token *consumirToken();
-void freePosicao(Token *aux);
+void consumirToken(int cont);
+int tokenIgual(Token *token, char *str);
+int tokenDiferente(Token *token, char *str);
+void erroSintatico(Token *token, char *erro);
+Token *getToken();
+void printfSintatico(int cont, char *str);
+
+void verificarCondicaoInicial(int cont);
+void verificarCondicao(int cont);
+void verificarExpressao(int cont);
+void verificarExpressaoFinal(int cont);
+void verificarCondicaoLinha(int cont);
+void verificarExpressaoLinha(int cont);
+
 
 #endif // SINTATICO_H_INCLUDED

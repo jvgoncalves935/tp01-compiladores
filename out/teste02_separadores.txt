@@ -1,0 +1,4 @@
+abre_parenteses,"(",1,2
+mais,"+",1,5
+vezes,"*",1,7
+fecha_parenteses,")",1,8

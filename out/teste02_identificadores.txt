@@ -1,0 +1,3 @@
+identificador,"a",1,4
+identificador,"b",1,6
+identificador,"c",1,8
