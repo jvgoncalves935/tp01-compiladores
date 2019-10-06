@@ -1,4 +1,10 @@
-﻿<condicaoInicial> 	::=	if <condicao>
+﻿<linguagem>			::= <funcao> /*enquanto lista de tokens não estiver vazia*/
+<funcao>			::= <tipo> identificador <statement>
+<tipo>				::= int	|
+						float |
+						char |
+						double
+<statement>		 	::=	if <condicao>
 <condicao> 			::=	<expressao> <condicaoLinha>
 <expressao>			::=	<expressaoFinal> <expressaoLinha>
 <expressaoFinal> 	::= abre_parenteses <condicao> fecha_parenteses |
@@ -8,6 +14,7 @@
 <expressaoLinha>	::= vezes <expressaoFinal> <condicaoLinha> |
 						ε
 
-
+---------------------------------------------------------------------------------
+<funcao>			::= <tipo> identificador ( <listaArg> ) <statementComposto> 
 
 |ε		

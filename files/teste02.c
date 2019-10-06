@@ -1,1 +1,1 @@
-if(a+b*c)
+int comeVaiem(){} if(a+b*c)

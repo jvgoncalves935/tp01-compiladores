@@ -4,16 +4,15 @@
 
 void analiseSintatica(ListaToken *listaTokenIdentificadores){
     
-    while(LISTATOKEN->primeira != NULL){
+    //while(LISTATOKEN->primeira != NULL){
         //Token *aux = NULL;
         /*
         Token *aux = consumirToken();
         printf("Consumir Token %s\n",aux->valorBruto);
         freePosicao(aux);
         */
-       verificarCondicaoInicial(0);
-        
-    }
+    //}
+    verificarLinguagem(0);
 
     if(LISTATOKEN->primeira == NULL){
         //freePosicao(LISTATOKEN->primeira);
@@ -118,8 +117,76 @@ void erroSintatico(Token *token, char *erro){
     exit(0);
 }
 
-void verificarCondicaoInicial(int cont){
-    printfSintatico(cont,"verificarCondicaoInicial");
+void verificarLinguagem(int cont){
+    while(LISTATOKEN->primeira != NULL){
+        printfSintatico(cont,"verificarLinguagem");
+        verificarFuncao(cont+1);
+    }
+}
+
+void verificarFuncao(int cont){
+    printfSintatico(cont,"verificarFuncao");
+    verificarTipo(cont+1);
+
+    Token *aux = getToken();
+    if(tokenIgual(aux,"identificador")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um identificador).");
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"abre_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um abre_parenteses).");
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"fecha_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um fecha_parenteses).");
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"abre_chaves")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um abre_chaves).");
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"fecha_chaves")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um fecha_chaves).");
+    }
+
+    verificarStatement(cont+1);
+}
+
+void verificarTipo(int cont){
+    printfSintatico(cont,"verificarTipo");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"int")){
+        consumirToken(cont); return;
+    }
+    if(tokenIgual(aux,"float")){
+        consumirToken(cont); return;
+    }
+    if(tokenIgual(aux,"char")){
+        consumirToken(cont); return;
+    }
+    if(tokenIgual(aux,"double")){
+        consumirToken(cont); return;
+    }
+    erroSintatico(aux,"Tipo invalido para funcao.");
+    
+}
+
+void verificarStatement(int cont){
+    printfSintatico(cont,"verificarStatement");
     Token *aux = getToken();
     if(tokenIgual(aux,"if")){
         consumirToken(cont);

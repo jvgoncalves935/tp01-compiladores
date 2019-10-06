@@ -1,4 +1,8 @@
-abre_parenteses,"(",1,2
-mais,"+",1,5
-vezes,"*",1,7
-fecha_parenteses,")",1,8
+abre_parenteses,"(",1,13
+fecha_parenteses,")",1,14
+abre_chaves,"{",1,15
+fecha_chaves,"}",1,16
+abre_parenteses,"(",1,20
+mais,"+",1,23
+vezes,"*",1,25
+fecha_parenteses,")",1,26
