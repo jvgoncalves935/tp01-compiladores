@@ -1,0 +1,13 @@
+﻿<condicaoInicial> 	::=	if <condicao>
+<condicao> 			::=	<expressao> <condicaoLinha>
+<expressao>			::=	<expressaoFinal> <expressaoLinha>
+<expressaoFinal> 	::= abre_parenteses <condicao> fecha_parenteses |
+						identificador
+<condicaoLinha>		::= mais <expressao> <condicaoLinha> |
+						ε
+<expressaoLinha>	::= vezes <expressaoFinal> <condicaoLinha> |
+						ε
+
+
+
+|ε		

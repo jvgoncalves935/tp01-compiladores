@@ -33,7 +33,7 @@ Token *getToken(){
         return NULL;
     }
     if(LISTATOKEN == NULL){
-        printf("Lista de tokens vazia!");
+        //printf("Lista de tokens vazia!");
         FLAG_SINTATICO = 0;
         return NULL;
     }
@@ -41,7 +41,7 @@ Token *getToken(){
     Token *aux = LISTATOKEN->primeira;
     //memcpy(tok,aux,sizeof(Token));
     if(aux == NULL){
-        printf("Lista de tokens vazia!");
+        //printf("Lista de tokens vazia!");
         FLAG_SINTATICO = 0;
         return NULL;
     }
@@ -54,7 +54,7 @@ void consumirToken(int cont){
         return;
     }
     if(LISTATOKEN == NULL){
-        printf("Lista de tokens vazia!");
+        //printf("Lista de tokens vazia!");
         FLAG_SINTATICO = 0;
         return;
     }
@@ -63,7 +63,7 @@ void consumirToken(int cont){
     
     //memcpy(tok,aux,sizeof(Token));
     if(aux == NULL){
-        printf("Lista de tokens vazia!");
+        //printf("Lista de tokens vazia!");
         FLAG_SINTATICO = 0;
         return;
     }
@@ -143,7 +143,7 @@ void verificarExpressao(int cont){
 }
 
 void verificarExpressaoFinal(int cont){
-    printfSintatico(cont,"verificarExpressaoFinal (");
+    printfSintatico(cont,"verificarExpressaoFinal");
     //token == (
     Token *aux = getToken();
     if(tokenIgual(aux,"abre_parenteses")){
@@ -151,7 +151,7 @@ void verificarExpressaoFinal(int cont){
         
         verificarCondicao(cont+1);
         aux = getToken();
-        printfSintatico(cont,"verificarExpressaoFinal )");
+        printfSintatico(cont,"verificarExpressaoFinal");
         //token == )
         if(tokenIgual(aux,"fecha_parenteses")){
             consumirToken(cont);
@@ -169,7 +169,7 @@ void verificarExpressaoFinal(int cont){
 }
 
 void verificarCondicaoLinha(int cont){
-    printfSintatico(cont,"verificarCondicaoLinha +");
+    printfSintatico(cont,"verificarCondicaoLinha");
     //token == +
     Token *aux = getToken();
     if(tokenIgual(aux,"mais")){
@@ -182,7 +182,7 @@ void verificarCondicaoLinha(int cont){
 }
 
 void verificarExpressaoLinha(int cont){
-    printfSintatico(cont,"verificarExpressaoLinha *");
+    printfSintatico(cont,"verificarExpressaoLinha");
     //token == *
     Token *aux = getToken();
     if(tokenIgual(aux,"vezes")){
