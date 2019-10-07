@@ -1,1 +1,1 @@
-int comeVaiem(){} if(a+b*c)
+int comeVaiem(int come, float vaiem, double xd){}

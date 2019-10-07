@@ -1,20 +1,30 @@
-﻿<linguagem>			::= <funcao> /*enquanto lista de tokens não estiver vazia*/
-<funcao>			::= <tipo> identificador <statement>
-<tipo>				::= int	|
-						float |
-						char |
-						double
-<statement>		 	::=	if <condicao>
-<condicao> 			::=	<expressao> <condicaoLinha>
-<expressao>			::=	<expressaoFinal> <expressaoLinha>
-<expressaoFinal> 	::= abre_parenteses <condicao> fecha_parenteses |
-						identificador
-<condicaoLinha>		::= mais <expressao> <condicaoLinha> |
-						ε
-<expressaoLinha>	::= vezes <expressaoFinal> <condicaoLinha> |
-						ε
+﻿<linguagem>				::= <funcao> /*enquanto lista de tokens não estiver vazia*/
+<funcao>				::= <tipo> identificador abre_parenteses <listaArg> fecha_parenteses abre_chaves fecha_chaves
+<tipo>					::= int	|
+							float |
+							char |
+							double
+<listaArg>				::= <arg> |
+							virgula <listaArg>
+<arg>					::= <tipo> identificador
+<declaracao>			::= <tipo> <listaIdentificadores>
+<listaIdentificadores>	::= identificador |
+							identificador virgula <listaIdentificadores>
+<statementFinal>		::= <statementFor> |
+						
+						
+						
+<statement>		 		::=	if <condicao>
+<condicao> 				::=	<expressao> <condicaoLinha>
+<expressao>				::=	<expressaoFinal> <expressaoLinha>
+<expressaoFinal> 		::= abre_parenteses <condicao> fecha_parenteses |
+							identificador
+<condicaoLinha>			::= mais <expressao> <condicaoLinha> |
+							ε
+<expressaoLinha>		::= vezes <expressaoFinal> <condicaoLinha> |
+							ε
 
 ---------------------------------------------------------------------------------
-<funcao>			::= <tipo> identificador ( <listaArg> ) <statementComposto> 
+<funcao>				::= <tipo> identificador ( <listaArg> ) <statementComposto> 
 
 |ε		
