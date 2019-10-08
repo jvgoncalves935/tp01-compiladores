@@ -241,43 +241,107 @@ void verificarListaIdentificadores(int cont){
     }
 }
 
-void verificarStatementFinal(int cont){
+int verificarStatementFinal(int cont){
     printfSintatico(cont,"verificarStatementFinal");
     Token *aux = getToken();
 
     if(tokenIgual(aux,"for")){
         verificarStatementFor(cont+1);
-        return;
+        return 1;
     }
     if(tokenIgual(aux,"while")){
         verificarStatementWhile(cont+1);
-        return;
+        return 1;
     }
     //FAZER O EXPRESSAOFINALMESMO
     if(tokenIgual(aux,"if")){
         verificarStatementIf(cont+1);
-        return;
+        return 1;
     }
     if(tokenIgual(aux,"abre_chaves")){
         verificarStatementEscopo(cont+1);
-        return;
+        return 1;
     }
     //FAZER O DECLARACAO
     if(tokenIgual(aux,"ponto_virgula")){
         consumirToken(cont);
-        return;
+        return 1;
     }
 
+    return 0;
+
     //Erro no statement
-    erroSintatico(aux,"Expressao invalida em statement.");
+    //erroSintatico(aux,"Expressao invalida em statement.");
 }
 
 void verificarStatementFor(int cont){
     printfSintatico(cont,"verificarStatementFor");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"for")){
+        consumirToken(cont);
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"abre_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em declaracao for (era esperado um abre_parenteses).");
+    }
+
+    verificarExpressaoFinalMesmo(cont+1);
+
+    aux = getToken();
+    if(tokenIgual(aux,"ponto_virgula")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em declaracao for (era esperado um ponto_virgula apos o primeiro parametro).");
+    }
+
+    verificarExpressaoOpcional(cont+1);
+
+    aux = getToken();
+    if(tokenIgual(aux,"ponto_virgula")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em declaracao for (era esperado um ponto_virgula apos o segundo parametro).");
+    }
+
+    verificarExpressaoOpcional(cont+1);
+
+    aux = getToken();
+    if(tokenIgual(aux,"fecha_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em declaracao for (era esperado um fecha_parenteses).");
+    }
+
+    verificarStatementFinal(cont+1);
 }
 
 void verificarStatementWhile(int cont){
     printfSintatico(cont,"verificarStatementWhile");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"while")){
+        consumirToken(cont);
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"abre_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em declaracao while (era esperado um abre_parenteses).");
+    }
+
+    verificarExpressaoFinalMesmo(cont+1);
+
+    aux = getToken();
+    if(tokenIgual(aux,"fecha_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em declaracao while (era esperado um fecha_parenteses).");
+    }
+
+    verificarStatementFinal(cont+1);
 }
 
 void verificarExpressaoFinalMesmo(int cont){
@@ -286,11 +350,81 @@ void verificarExpressaoFinalMesmo(int cont){
 
 void verificarStatementIf(int cont){
     printfSintatico(cont,"verificarStatementIf");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"if")){
+        consumirToken(cont);
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"abre_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em declaracao if (era esperado um abre_parenteses).");
+    }
+
+    verificarExpressaoFinalMesmo(cont+1);
+
+    aux = getToken();
+    if(tokenIgual(aux,"fecha_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em declaracao if (era esperado um fecha_parenteses).");
+    }
+
+    verificarStatementFinal(cont+1);
+
+    verificarParteElse(cont+1);
 }
 
 void verificarStatementEscopo(int cont){
     printfSintatico(cont,"verificarStatementEscopo");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"abre_chaves")){
+        consumirToken(cont);
+    }
+
+    verificarListaStatement(cont+1);
+
+    aux = getToken();
+    if(tokenIgual(aux,"fecha_chaves")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Caracter invalido em statement (era esperado um fecha_chaves).");
+    }
+
 }
+
+
+void verificarExpressaoOpcional(int cont){
+    printfSintatico(cont,"verificarExpressaoOpcional");
+    verificarExpressaoFinalMesmo(cont+1);
+}
+
+void verificarParteElse(int cont){
+    printfSintatico(cont,"verificarParteElse");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"else")){
+        consumirToken(cont);
+        verificarStatementFinal(cont+1);
+    }
+}
+
+void verificarListaStatement(int cont){
+    printfSintatico(cont,"verificarListaStatement");
+    verificarStatementFinal(cont+1);
+    verificarListaStatementLinha(cont+1);
+}
+
+void verificarListaStatementLinha(int cont){
+    int res = verificarStatementFinal(cont+1);
+    if(res == 1){
+        verificarListaStatementLinha(cont+1);
+    }
+}
+
+
+
+
 
 
 

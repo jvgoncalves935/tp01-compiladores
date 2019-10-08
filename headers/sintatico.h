@@ -19,12 +19,16 @@ void verificarListaArg(int cont);
 void verificarArg(int cont);
 void verificarDeclaracao(int cont);
 void verificarListaIdentificadores(int cont);
-void verificarStatementFinal(int cont);
+int verificarStatementFinal(int cont);
 void verificarStatementFor(int cont);
 void verificarStatementWhile(int cont);
 void verificarExpressaoFinalMesmo(int cont);
 void verificarStatementIf(int cont);
 void verificarStatementEscopo(int cont);
+void verificarExpressaoOpcional(int cont);
+void verificarParteElse(int cont);
+void verificarListaStatement(int cont);
+void verificarListaStatementLinha(int cont);
 
 void verificarStatement(int cont);
 void verificarCondicao(int cont);

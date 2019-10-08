@@ -11,6 +11,22 @@
 <listaIdentificadores>	::= identificador |
 							identificador virgula <listaIdentificadores>
 <statementFinal>		::= <statementFor> |
+							<statementWhile> |
+							<expressaoFinalMesmo> ponto_virgula |
+							<statementIf> |
+							<statementEscopo> |
+							<declaracao> |
+							ponto_virgula
+<statementFor>			::= for abre_parenteses <expressaoFinalMesmo> ponto_virgula <expressaoOpcional> ponto_virgula <expressaoOpcional> fecha_parenteses <statementFinal>
+<expressaoOpcional>		::= <expressaoFinalMesmo> |
+							ε
+<statementWhile>		::= while abre_parenteses <expressaoFinalMesmo> fecha_parenteses <statementFinal>
+<parteElse>				::= else <statementFinal> |
+							ε
+<statementEscopo>		::= abre_chaves <listaStatement> fecha_chaves
+<listaStatement>		::= <statementFinal> <listaStatementLinha>
+<listaStatementLinha>	::= <statementFinal> <listaStatementLinha> |
+							ε
 						
 						
 						
