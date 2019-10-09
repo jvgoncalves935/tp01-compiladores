@@ -19,23 +19,16 @@ void verificarListaArg(int cont);
 void verificarArg(int cont);
 void verificarDeclaracao(int cont);
 void verificarListaIdentificadores(int cont);
-int verificarStatementFinal(int cont);
+int verificarStatement(int cont);
 void verificarStatementFor(int cont);
 void verificarStatementWhile(int cont);
-void verificarExpressaoFinalMesmo(int cont);
+void verificarExpressao(int cont);
 void verificarStatementIf(int cont);
 void verificarStatementEscopo(int cont);
 void verificarExpressaoOpcional(int cont);
 void verificarParteElse(int cont);
 void verificarListaStatement(int cont);
 void verificarListaStatementLinha(int cont);
-
-void verificarStatement(int cont);
-void verificarCondicao(int cont);
-void verificarExpressao(int cont);
-void verificarExpressaoFinal(int cont);
-void verificarCondicaoLinha(int cont);
-void verificarExpressaoLinha(int cont);
 
 
 #endif // SINTATICO_H_INCLUDED
