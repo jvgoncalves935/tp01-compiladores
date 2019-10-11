@@ -171,16 +171,7 @@ void verificarFuncao(int cont){
 void verificarTipo(int cont){
     printfSintatico(cont,"verificarTipo");
     Token *aux = getToken();
-    if(tokenIgual(aux,"int")){
-        consumirToken(cont); return;
-    }
-    if(tokenIgual(aux,"float")){
-        consumirToken(cont); return;
-    }
-    if(tokenIgual(aux,"char")){
-        consumirToken(cont); return;
-    }
-    if(tokenIgual(aux,"double")){
+    if(tokenIgual(aux,"int") || tokenIgual(aux,"float") || tokenIgual(aux,"char") || tokenIgual(aux,"double") || tokenIgual(aux,"void")){
         consumirToken(cont); return;
     }
     erroSintatico(aux,"Tipo invalido para funcao.");
@@ -253,7 +244,10 @@ int verificarStatement(int cont){
         verificarStatementWhile(cont+1);
         return 1;
     }
-    //FAZER O EXPRESSAOFINALMESMO AAAAAAAAAAAAAAAAAAAAAAAAAA
+    if(tokenIgual(aux,"identificador")){
+        verificarExpressao(cont+1);
+        return 1;
+    }
     if(tokenIgual(aux,"if")){
         verificarStatementIf(cont+1);
         return 1;
@@ -262,7 +256,11 @@ int verificarStatement(int cont){
         verificarStatementEscopo(cont+1);
         return 1;
     }
-    //FAZER O DECLARACAO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    if(isTipoDeclaracao(cont)){
+        consumirToken(cont);
+        verificarDeclaracao(cont+1);
+        return 1;
+    }
     if(tokenIgual(aux,"ponto_virgula")){
         consumirToken(cont);
         return 1;
@@ -346,6 +344,20 @@ void verificarStatementWhile(int cont){
 
 void verificarExpressao(int cont){
     printfSintatico(cont,"verificarExpressao");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"identificador")){
+        consumirToken(cont);
+        aux = getToken();
+        if(tokenIgual(aux,"igual")){
+            consumirToken(cont);
+        }else{
+            erroSintatico(aux,"Caracter invalido em expressao (era esperado um igual).");
+        }
+
+        verificarExpressao(cont+1);
+    }
+
+    verificarValorR(cont+1);
 }
 
 void verificarStatementIf(int cont){
@@ -416,8 +428,152 @@ void verificarListaStatement(int cont){
 }
 
 void verificarListaStatementLinha(int cont){
+    printfSintatico(cont,"verificarListaStatementLinha");
     int res = verificarStatement(cont+1);
     if(res == 1){
         verificarListaStatementLinha(cont+1);
     }
+}
+
+void verificarValorR(int cont){
+    printfSintatico(cont,"verificarValorR");
+    Token *aux = getToken();
+    if(isComparacao(aux)){
+        verificarComparacao(cont+1);
+        verificarMagnitude(cont+1);
+        verificarValorRLinha(cont+1); 
+    }else{
+        verificarMagnitude(cont+1);
+        return;
+    }
+
+}
+
+void verificarValorRLinha(int cont){
+    printfSintatico(cont,"verificarRLinha");
+    Token *aux = getToken();
+    if(isComparacao(aux)){
+        verificarComparacao(cont+1);
+        verificarMagnitude(cont+1);
+        verificarValorRLinha(cont+1);
+    }
+}
+
+void verificarComparacao(int cont){
+    printfSintatico(cont,"verificarComparacao");
+    Token *aux = getToken();
+    if(isComparacao(aux)){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Comparador invalido encontrado em expressao.");
+    }
+}
+
+void verificarMagnitude(int cont){
+    printfSintatico(cont,"verificarMagnitude");
+    verificarTermo(cont+1);
+    verificarMagnitudeLinha(cont+1);
+}
+
+void verificarMagnitudeLinha(int cont){
+    printfSintatico(cont,"verificarMagnitudeLinha");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"mais")){
+        consumirToken(cont);
+        verificarTermo(cont+1);
+        verificarMagnitudeLinha(cont+1);
+        return;
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"menos")){
+        consumirToken(cont);
+        verificarTermo(cont+1);
+        verificarMagnitudeLinha(cont+1);
+        return;
+    }
+}
+
+void verificarTermo(int cont){
+    printfSintatico(cont,"verificarTermo");
+    verificarFator(cont+1);
+    verificarTermoLinha(cont+1);
+}
+
+void verificarTermoLinha(int cont){
+    printfSintatico(cont,"verificarTermoLinha");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"vezes")){
+        consumirToken(cont);
+        verificarFator(cont+1);
+        verificarTermoLinha(cont+1);
+        return;
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"barra")){
+        consumirToken(cont);
+        verificarFator(cont+1);
+        verificarTermoLinha(cont+1);
+        return;
+    }
+
+}
+
+void verificarFator(int cont){
+    printfSintatico(cont,"verificarFator");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"abre_parenteses")){
+        consumirToken(cont);
+        verificarExpressao(cont+1);
+        aux = getToken();
+        if(tokenIgual(aux,"fecha_parenteses")){
+            consumirToken(cont);
+        }else{
+            erroSintatico(aux,"Caracter invalido encontrado apos expressao (era esperado um fecha_parenteses).");
+        }
+        return;
+    }
+
+    if(tokenIgual(aux,"mais")){
+        consumirToken(cont);
+        verificarFator(cont+1);
+        return;
+    }
+
+    if(tokenIgual(aux,"identificador")){
+        consumirToken(cont);
+        return;
+    }
+
+    if(tokenIgual(aux,"numero")){
+        consumirToken(cont);
+        return;
+    }
+
+    erroSintatico(aux,"Caracter invalido encontrado em fator de expressao.");
+    
+}
+
+int isComparacao(Token *aux){
+    if(tokenIgual(aux,"igual_igual") || tokenIgual(aux,"menor") || tokenIgual(aux,"maior") || tokenIgual(aux,"menor_igual") || tokenIgual(aux,"maior_igual") || tokenIgual(aux,"diferente")){
+        return 1;
+    }
+    return 0;
+}
+
+int isFator(Token *aux){
+    if(tokenIgual(aux,"abre_parenteses") || tokenIgual(aux,"menos") || tokenIgual(aux,"mais") || tokenIgual(aux,"identificador") || tokenIgual(aux,"numero")){
+        return 1;
+    }
+    return 0;
+}
+
+int isTipoDeclaracao(int cont){
+    Token *aux = getToken();
+    if(tokenIgual(aux,"int") || tokenIgual(aux,"float") || tokenIgual(aux,"char") || tokenIgual(aux,"double") || tokenIgual(aux,"void")){
+        return 1;
+    }
+    return 0;
+    
 }

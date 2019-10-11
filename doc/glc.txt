@@ -1,46 +1,56 @@
 ﻿<linguagem>				::= <funcao> /*enquanto lista de tokens não estiver vazia*/
-<funcao>				::= <tipo> identificador abre_parenteses <listaArg> fecha_parenteses abre_chaves fecha_chaves
+<funcao>				::= <tipo> identificador abre_parenteses <listaArg> fecha_parenteses <statementEscopo>
 <tipo>					::= int	|
 							float |
 							char |
-							double
+							double |
+							void
 <listaArg>				::= <arg> |
 							virgula <listaArg>
 <arg>					::= <tipo> identificador
 <declaracao>			::= <tipo> <listaIdentificadores>
 <listaIdentificadores>	::= identificador |
 							identificador virgula <listaIdentificadores>
-<statementFinal>		::= <statementFor> |
+<statement>				::= <statementFor> |
 							<statementWhile> |
-							<expressaoFinalMesmo> ponto_virgula |
+							<expressao> ponto_virgula |
 							<statementIf> |
 							<statementEscopo> |
 							<declaracao> |
 							ponto_virgula
-<statementFor>			::= for abre_parenteses <expressaoFinalMesmo> ponto_virgula <expressaoOpcional> ponto_virgula <expressaoOpcional> fecha_parenteses <statementFinal>
-<expressaoOpcional>		::= <expressaoFinalMesmo> |
+<statementFor>			::= for abre_parenteses <expressao> ponto_virgula <expressaoOpcional> ponto_virgula <expressaoOpcional> fecha_parenteses <statement>
+<expressaoOpcional>		::= <expressao> |
 							ε
-<statementWhile>		::= while abre_parenteses <expressaoFinalMesmo> fecha_parenteses <statementFinal>
-<parteElse>				::= else <statementFinal> |
+<statementWhile>		::= while abre_parenteses <expressao> fecha_parenteses <statement>
+<parteElse>				::= else <statement> |
 							ε
 <statementEscopo>		::= abre_chaves <listaStatement> fecha_chaves
-<listaStatement>		::= <statementFinal> <listaStatementLinha>
-<listaStatementLinha>	::= <statementFinal> <listaStatementLinha> |
+<listaStatement>		::= <statement> <listaStatementLinha>
+<listaStatementLinha>	::= <statement> <listaStatementLinha> |
 							ε
-						
-						
-						
-<statement>		 		::=	if <condicao>
-<condicao> 				::=	<expressao> <condicaoLinha>
-<expressao>				::=	<expressaoFinal> <expressaoLinha>
-<expressaoFinal> 		::= abre_parenteses <condicao> fecha_parenteses |
-							identificador
-<condicaoLinha>			::= mais <expressao> <condicaoLinha> |
+<expressao>				::= identificador = <expressao> |
+							<valorR>
+<valorR>				::=	<comparacao> <magnitude> <valorRLinha> |
+							<magnitude>
+<valorRLinha>			::= <comparacao> <magnitude> <valorRLinha> |
 							ε
-<expressaoLinha>		::= vezes <expressaoFinal> <condicaoLinha> |
+<comparacao>			::= igual_igual|
+							menor|
+							maior|
+							menor_igual|
+							maior_igual|
+							diferente
+<magnitude>				::= <termo> <magnitudeLinha>
+<termo>					::= <fator> <termoLinha>
+<magnitudeLinha>		::= mais <termo> <magnitudeLinha> |
+							menos <termo> <magnitudeLinha> |
 							ε
-
----------------------------------------------------------------------------------
-<funcao>				::= <tipo> identificador ( <listaArg> ) <statementComposto> 
-
+<termoLinha>			::= vezes <fator> <termoLinha> |
+							barra <fator> <termoLinha> |
+							ε
+<fator>					::= abre_parenteses <expressao> fecha_parenteses |
+							menos <fator> |
+							mais <fator> |
+							identificador |
+							numero
 |ε		

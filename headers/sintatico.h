@@ -29,6 +29,18 @@ void verificarExpressaoOpcional(int cont);
 void verificarParteElse(int cont);
 void verificarListaStatement(int cont);
 void verificarListaStatementLinha(int cont);
+void verificarValorR(int cont);
+void verificarValorRLinha(int cont);
+void verificarComparacao(int cont);
+void verificarMagnitude(int cont);
+void verificarMagnitudeLinha(int cont);
+void verificarTermo(int cont);
+void verificarTermoLinha(int cont);
+void verificarFator(int cont);
+
+int isComparacao(Token *aux);
+int isFator(Token *aux);
+int isTipoDeclaracao(int cont);
 
 
 #endif // SINTATICO_H_INCLUDED

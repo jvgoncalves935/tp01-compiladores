@@ -298,6 +298,7 @@ char *tipoOperador(char *str){
     if(!strcmp(str,"**")){ return "vezes_vezes"; }
     if(!strcmp(str,"/=")){ return "barra_igual"; }
     if(!strcmp(str,"==")){ return "igual_igual"; }
+    if(!strcmp(str,"!=")){ return "diferente"; }
     if(!strcmp(str,"<=")){ return "menor_igual"; }
     if(!strcmp(str,">=")){ return "maior_igual"; }
     if(!strcmp(str,"||")){ return "or_duplo"; }
