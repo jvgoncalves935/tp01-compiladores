@@ -1,0 +1,6 @@
+abre_parenteses,"(",1,13
+virgula,",",1,22
+virgula,",",1,35
+fecha_parenteses,")",1,46
+abre_chaves,"{",1,47
+fecha_chaves,"}",1,48

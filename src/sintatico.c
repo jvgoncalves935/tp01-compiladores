@@ -113,7 +113,7 @@ void erroSintatico(Token *token, char *erro){
     if(!FLAG_SINTATICO){
         return;
     }
-    printf("Analise Sintatica: ERRO. %s Linha %d, Coluna %d\n",erro,token->linha,token->coluna);
+    printf("Analise Sintatica: ERRO. %s Linha %d, Coluna %d.\nToken encontrado: %s\n",erro,token->linha,token->coluna,token->valor);
     exit(0);
 }
 
@@ -131,9 +131,12 @@ void verificarFuncao(int cont){
     Token *aux = getToken();
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
-    }else{
+    }
+    /*
+    else{
         erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um identificador).");
     }
+    */
 
     aux = getToken();
     if(tokenIgual(aux,"abre_parenteses")){
@@ -150,7 +153,7 @@ void verificarFuncao(int cont){
     }else{
         erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um fecha_parenteses).");
     }
-
+    /*
     aux = getToken();
     if(tokenIgual(aux,"abre_chaves")){
         consumirToken(cont);
@@ -164,6 +167,9 @@ void verificarFuncao(int cont){
     }else{
         erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um fecha_chaves).");
     }
+    */
+
+    verificarStatementEscopo(cont+1);
     
     //verificarStatement(cont+1);
 }
@@ -174,7 +180,7 @@ void verificarTipo(int cont){
     if(tokenIgual(aux,"int") || tokenIgual(aux,"float") || tokenIgual(aux,"char") || tokenIgual(aux,"double") || tokenIgual(aux,"void")){
         consumirToken(cont); return;
     }
-    erroSintatico(aux,"Tipo invalido para funcao.");
+    //erroSintatico(aux,"Tipo invalido para funcao.");
     
 }
 
@@ -188,9 +194,13 @@ void verificarListaArg(int cont){
     Token *aux = getToken();
     if(tokenIgual(aux,"virgula")){
         consumirToken(cont);
-    }else{
+        return;
+    }
+    /*
+    else{
         erroSintatico(aux,"Expressao invalida em parametro de funcao (era esperado uma virgula).");
     }
+    */
 
     verificarListaArg(cont+1);
 
@@ -204,9 +214,12 @@ void verificarArg(int cont){
     Token *aux = getToken();
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
-    }else{
+    }
+    /*
+    else{
         erroSintatico(aux,"Expressao invalida em parametro de funcao (era esperado um identificador).");
     }
+    */
 }
 
 void verificarDeclaracao(int cont){
@@ -347,17 +360,36 @@ void verificarExpressao(int cont){
     Token *aux = getToken();
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
+        /*
         aux = getToken();
         if(tokenIgual(aux,"igual")){
             consumirToken(cont);
         }else{
             erroSintatico(aux,"Caracter invalido em expressao (era esperado um igual).");
         }
-
         verificarExpressao(cont+1);
+        */
+        verificarExpressao02(cont+1);
+        return;
     }
 
     verificarValorR(cont+1);
+}
+
+void verificarExpressao02(int cont){
+    printfSintatico(cont,"verificarExpressao02");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"igual")){
+        consumirToken(cont);
+        verificarExpressao(cont+1);
+        return;
+    }
+
+    if(isComparacao(aux)){
+        verificarComparacao(cont+1);
+        verificarExpressao(cont+1);
+    }
+    
 }
 
 void verificarStatementIf(int cont){
@@ -551,7 +583,7 @@ void verificarFator(int cont){
         return;
     }
 
-    erroSintatico(aux,"Caracter invalido encontrado em fator de expressao.");
+    //erroSintatico(aux,"Caracter invalido encontrado em fator de expressao.");
     
 }
 

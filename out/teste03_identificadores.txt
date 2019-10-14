@@ -1,0 +1,4 @@
+identificador,"comeVaiem",1,5
+identificador,"come",1,19
+identificador,"vaiem",1,31
+identificador,"xd",1,45

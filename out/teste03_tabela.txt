@@ -1,0 +1,14 @@
+int,"int",1,1
+identificador,"comeVaiem",1,5
+abre_parenteses,"(",1,13
+int,"int",1,15
+identificador,"come",1,19
+virgula,",",1,22
+float,"float",1,25
+identificador,"vaiem",1,31
+virgula,",",1,35
+double,"double",1,38
+identificador,"xd",1,45
+fecha_parenteses,")",1,46
+abre_chaves,"{",1,47
+fecha_chaves,"}",1,48

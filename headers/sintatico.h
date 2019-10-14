@@ -23,6 +23,7 @@ int verificarStatement(int cont);
 void verificarStatementFor(int cont);
 void verificarStatementWhile(int cont);
 void verificarExpressao(int cont);
+void verificarExpressao02(int cont);
 void verificarStatementIf(int cont);
 void verificarStatementEscopo(int cont);
 void verificarExpressaoOpcional(int cont);

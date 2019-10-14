@@ -1,4 +1,3 @@
 int,"int",1,1
-int,"int",1,15
-float,"float",1,25
-double,"double",1,38
+float,"float",2,2
+while,"while",11,2

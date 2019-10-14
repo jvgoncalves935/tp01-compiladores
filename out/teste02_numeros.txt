@@ -1,0 +1,8 @@
+numero,"3.14159",5,6
+numero,"0.1",6,8
+numero,"1",7,6
+numero,"1",8,8
+numero,"1",9,9
+numero,"1",10,9
+numero,"1",12,32
+numero,"2",15,11

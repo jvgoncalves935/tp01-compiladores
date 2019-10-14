@@ -6,9 +6,11 @@
 							double |
 							void
 <listaArg>				::= <arg> |
-							virgula <listaArg>
-<arg>					::= <tipo> identificador
-<declaracao>			::= <tipo> <listaIdentificadores>
+							virgula <listaArg> |
+							ε
+<arg>					::= <tipo> identificador |
+<declaracao>			::= <tipo> <listaIdentificadores> |
+							ε
 <listaIdentificadores>	::= identificador |
 							identificador virgula <listaIdentificadores>
 <statement>				::= <statementFor> |
@@ -28,8 +30,10 @@
 <listaStatement>		::= <statement> <listaStatementLinha>
 <listaStatementLinha>	::= <statement> <listaStatementLinha> |
 							ε
-<expressao>				::= identificador = <expressao> |
+<expressao>				::= identificador <expressao02> |
 							<valorR>
+<expressao02>			::= igual <expressao> |
+							<comparacao> <expressao>
 <valorR>				::=	<comparacao> <magnitude> <valorRLinha> |
 							<magnitude>
 <valorRLinha>			::= <comparacao> <magnitude> <valorRLinha> |
