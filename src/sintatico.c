@@ -194,6 +194,7 @@ void verificarListaArg(int cont){
     Token *aux = getToken();
     if(tokenIgual(aux,"virgula")){
         consumirToken(cont);
+        verificarListaArg(cont+1);
         return;
     }
     /*
@@ -202,7 +203,7 @@ void verificarListaArg(int cont){
     }
     */
 
-    verificarListaArg(cont+1);
+    
 
 
 }
@@ -269,7 +270,7 @@ int verificarStatement(int cont){
         verificarStatementEscopo(cont+1);
         return 1;
     }
-    if(isTipoDeclaracao(cont)){
+    if(isTipoDeclaracao(aux)){
         consumirToken(cont);
         verificarDeclaracao(cont+1);
         return 1;
@@ -387,6 +388,11 @@ void verificarExpressao02(int cont){
 
     if(isComparacao(aux)){
         verificarComparacao(cont+1);
+        verificarExpressao(cont+1);
+    }
+
+    if(isAritmetica(aux)){
+        verificarAritmetica(cont+1);
         verificarExpressao(cont+1);
     }
     
@@ -587,6 +593,14 @@ void verificarFator(int cont){
     
 }
 
+void verificarAritmetica(int cont){
+    printfSintatico(cont,"verificarAritmetica");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"mais") || tokenIgual(aux,"menos") || tokenIgual(aux,"vezes") || tokenIgual(aux,"barra")){
+        consumirToken(cont);
+    }
+}
+
 int isComparacao(Token *aux){
     if(tokenIgual(aux,"igual_igual") || tokenIgual(aux,"menor") || tokenIgual(aux,"maior") || tokenIgual(aux,"menor_igual") || tokenIgual(aux,"maior_igual") || tokenIgual(aux,"diferente")){
         return 1;
@@ -601,11 +615,19 @@ int isFator(Token *aux){
     return 0;
 }
 
-int isTipoDeclaracao(int cont){
-    Token *aux = getToken();
+int isTipoDeclaracao(Token *aux){
+    //Token *aux = getToken();
     if(tokenIgual(aux,"int") || tokenIgual(aux,"float") || tokenIgual(aux,"char") || tokenIgual(aux,"double") || tokenIgual(aux,"void")){
         return 1;
     }
     return 0;
     
+}
+
+int isAritmetica(Token *aux){
+    //Token *aux = getToken();
+    if(tokenIgual(aux,"mais") || tokenIgual(aux,"menos") || tokenIgual(aux,"vezes") || tokenIgual(aux,"barra")){
+        return 1;
+    }
+    return 0;
 }

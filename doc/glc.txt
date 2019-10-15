@@ -33,7 +33,8 @@
 <expressao>				::= identificador <expressao02> |
 							<valorR>
 <expressao02>			::= igual <expressao> |
-							<comparacao> <expressao>
+							<comparacao> <expressao> |
+							<aritmetica> <expressao>
 <valorR>				::=	<comparacao> <magnitude> <valorRLinha> |
 							<magnitude>
 <valorRLinha>			::= <comparacao> <magnitude> <valorRLinha> |
@@ -57,4 +58,8 @@
 							mais <fator> |
 							identificador |
 							numero
+<aritmetica>			::= mais |
+							menos |
+							vezes |
+							barra |
 |ε		

@@ -38,10 +38,12 @@ void verificarMagnitudeLinha(int cont);
 void verificarTermo(int cont);
 void verificarTermoLinha(int cont);
 void verificarFator(int cont);
+void verificarAritmetica(int cont);
 
+int isAritmetica(Token *aux);
 int isComparacao(Token *aux);
 int isFator(Token *aux);
-int isTipoDeclaracao(int cont);
+int isTipoDeclaracao(Token *aux);
 
 
 #endif // SINTATICO_H_INCLUDED
