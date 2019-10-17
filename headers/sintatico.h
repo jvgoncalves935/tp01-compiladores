@@ -39,11 +39,15 @@ void verificarTermo(int cont);
 void verificarTermoLinha(int cont);
 void verificarFator(int cont);
 void verificarAritmetica(int cont);
+void verificarAritmeticaOperadorDuplicado(int cont);
+void verificarAritmeticaOperadorIgualComposto(int cont);
 
 int isAritmetica(Token *aux);
 int isComparacao(Token *aux);
 int isFator(Token *aux);
 int isTipoDeclaracao(Token *aux);
+int isAritmeticaOperadorDuplicado(Token *aux);
+int isAritmeticaOperadorIgualComposto(Token *aux);
 
 
 #endif // SINTATICO_H_INCLUDED

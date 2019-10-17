@@ -119,8 +119,12 @@ void erroSintatico(Token *token, char *erro){
 
 void verificarLinguagem(int cont){
     while(LISTATOKEN->primeira != NULL){
-        printfSintatico(cont,"verificarLinguagem");
-        verificarFuncao(cont+1);
+        if(!strcmp(LISTATOKEN->primeira->valor,"negacao")){
+            consumirToken(0);
+        }else{
+            printfSintatico(cont,"verificarLinguagem");
+            verificarFuncao(cont+1);
+        }
     }
 }
 
@@ -389,11 +393,24 @@ void verificarExpressao02(int cont){
     if(isComparacao(aux)){
         verificarComparacao(cont+1);
         verificarExpressao(cont+1);
+        return;
     }
 
     if(isAritmetica(aux)){
         verificarAritmetica(cont+1);
         verificarExpressao(cont+1);
+        return;
+    }
+
+    if(isAritmeticaOperadorDuplicado(aux)){
+        verificarAritmeticaOperadorDuplicado(cont+1);
+        return;
+    }
+
+    if(isAritmeticaOperadorIgualComposto(aux)){
+        verificarAritmeticaOperadorIgualComposto(cont+1);
+        verificarExpressao(cont+1);
+        return;
     }
     
 }
@@ -601,6 +618,22 @@ void verificarAritmetica(int cont){
     }
 }
 
+void verificarAritmeticaOperadorDuplicado(int cont){
+    printfSintatico(cont,"verificarAritmeticaOperadorDuplicado");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"mais_mais") || tokenIgual(aux,"menos_menos") || tokenIgual(aux,"vezes_vezes")){
+        consumirToken(cont);
+    }
+}
+
+void verificarAritmeticaOperadorIgualComposto(int cont){
+    printfSintatico(cont,"verificarAritmeticaOperadorIgualComposto");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"mais_igual") || tokenIgual(aux,"menos_igual") || tokenIgual(aux,"vezes_igual") || tokenIgual(aux,"barra_igual")){
+        consumirToken(cont);
+    }
+}
+
 int isComparacao(Token *aux){
     if(tokenIgual(aux,"igual_igual") || tokenIgual(aux,"menor") || tokenIgual(aux,"maior") || tokenIgual(aux,"menor_igual") || tokenIgual(aux,"maior_igual") || tokenIgual(aux,"diferente")){
         return 1;
@@ -627,6 +660,20 @@ int isTipoDeclaracao(Token *aux){
 int isAritmetica(Token *aux){
     //Token *aux = getToken();
     if(tokenIgual(aux,"mais") || tokenIgual(aux,"menos") || tokenIgual(aux,"vezes") || tokenIgual(aux,"barra")){
+        return 1;
+    }
+    return 0;
+}
+
+int isAritmeticaOperadorDuplicado(Token *aux){
+    if(tokenIgual(aux,"mais_mais") || tokenIgual(aux,"menos_menos") || tokenIgual(aux,"vezes_vezes")){
+        return 1;
+    }
+    return 0;
+}
+
+int isAritmeticaOperadorIgualComposto(Token *aux){
+    if(tokenIgual(aux,"mais_igual") || tokenIgual(aux,"menos_igual") || tokenIgual(aux,"vezes_igual") || tokenIgual(aux,"barra_igual")){
         return 1;
     }
     return 0;

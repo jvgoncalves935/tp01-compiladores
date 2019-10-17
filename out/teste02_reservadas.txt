@@ -1,3 +1,6 @@
 int,"int",1,1
 float,"float",2,2
 while,"while",11,2
+if,"if",17,2
+else,"else",19,3
+for,"for",22,2

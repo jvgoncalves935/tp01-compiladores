@@ -14,4 +14,14 @@ int main (){
 		alt = -alt;
 		n = n + 2;
 	}
+	if(x<10){
+		x = x + 10;
+	}else{
+		x = 1;
+	}
+	for(i=0;i<10;i+1){
+		x = 2;
+		x += 1;
+		x++;
+	}
 }

@@ -27,3 +27,13 @@ identificador,"alt",14,3
 identificador,"alt",14,10
 identificador,"n",15,3
 identificador,"n",15,7
+identificador,"x",17,5
+identificador,"x",18,3
+identificador,"x",18,7
+identificador,"x",20,3
+identificador,"i",22,6
+identificador,"i",22,10
+identificador,"i",22,15
+identificador,"x",23,3
+identificador,"x",24,3
+identificador,"x",25,3
