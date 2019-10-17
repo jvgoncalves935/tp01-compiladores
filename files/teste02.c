@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 int main (){
 	float cos, x, n, term, eps, alt;
 	// compute the cosine of x to within tolerance eps
@@ -24,4 +27,7 @@ int main (){
 		x += 1;
 		x++;
 	}
+	do{
+		x += 2;
+	}while(x < 4);
 }

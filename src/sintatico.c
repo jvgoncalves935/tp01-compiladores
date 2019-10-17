@@ -12,6 +12,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
         freePosicao(aux);
         */
     //}
+    verificarListaDiretivas(0);
     verificarLinguagem(0);
 
     if(LISTATOKEN->primeira == NULL){
@@ -115,6 +116,19 @@ void erroSintatico(Token *token, char *erro){
     }
     printf("Analise Sintatica: ERRO. %s Linha %d, Coluna %d.\nToken encontrado: %s\n",erro,token->linha,token->coluna,token->valor);
     exit(0);
+}
+
+void verificarListaDiretivas(int cont){
+    printfSintatico(cont,"verificarListaDiretivas");
+    Token *aux = LISTATOKEN->primeira;
+    if(aux != NULL){
+        if(tokenIgual(aux,"diretiva")){
+            consumirToken(0);
+            verificarListaDiretivas(cont+1);
+        }
+    }else{
+        erroSintatico(aux,"Final do arquivo inesperado em declaracoes de diretivas.");
+    }
 }
 
 void verificarLinguagem(int cont){
@@ -275,8 +289,12 @@ int verificarStatement(int cont){
         return 1;
     }
     if(isTipoDeclaracao(aux)){
-        consumirToken(cont);
+        //consumirToken(cont);
         verificarDeclaracao(cont+1);
+        return 1;
+    }
+    if(tokenIgual(aux,"do")){
+        verificarStatementDoWhile(cont+1);
         return 1;
     }
     if(tokenIgual(aux,"ponto_virgula")){
@@ -631,6 +649,36 @@ void verificarAritmeticaOperadorIgualComposto(int cont){
     Token *aux = getToken();
     if(tokenIgual(aux,"mais_igual") || tokenIgual(aux,"menos_igual") || tokenIgual(aux,"vezes_igual") || tokenIgual(aux,"barra_igual")){
         consumirToken(cont);
+    }
+}
+
+void verificarStatementDoWhile(int cont){
+    printfSintatico(cont,"verificarStatementDoWhile");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"do")){
+        consumirToken(cont);
+        verificarStatementEscopo(cont+1);
+
+        aux = getToken();
+        if(tokenIgual(aux,"while")){
+            consumirToken(cont);
+            aux = getToken();
+
+            if(tokenIgual(aux,"abre_parenteses")){
+                consumirToken(cont);
+                verificarExpressao(cont+1);
+
+                aux = getToken();
+                if(tokenIgual(aux,"fecha_parenteses")){
+                    consumirToken(cont);
+                }else{
+                    erroSintatico(aux,"Esperado fecha_parenteses apos while de uma instrucao 'do'.");
+                }
+            }else{
+                erroSintatico(aux,"Esperado abre_parenteses apos while de uma instrucao 'do'.");
+            }
+
+        }
     }
 }
 

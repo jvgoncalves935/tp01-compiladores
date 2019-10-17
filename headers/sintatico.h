@@ -12,6 +12,7 @@ void erroSintatico(Token *token, char *erro);
 Token *getToken();
 void printfSintatico(int cont, char *str);
 
+void verificarListaDiretivas(int cont);
 void verificarLinguagem(int cont);
 void verificarFuncao(int cont);
 void verificarTipo(int cont);
@@ -41,6 +42,7 @@ void verificarFator(int cont);
 void verificarAritmetica(int cont);
 void verificarAritmeticaOperadorDuplicado(int cont);
 void verificarAritmeticaOperadorIgualComposto(int cont);
+void verificarStatementDoWhile(int cont);
 
 int isAritmetica(Token *aux);
 int isComparacao(Token *aux);

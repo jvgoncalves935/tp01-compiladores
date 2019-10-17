@@ -1,4 +1,7 @@
-﻿<linguagem>							::= <funcao> /*enquanto lista de tokens não estiver vazia*/
+﻿<listaDiretivas>					::= diretiva <listaDiretivas> |
+										ε
+
+<linguagem>							::= <funcao> /*enquanto lista de tokens não estiver vazia*/
 <funcao>							::= <tipo> identificador abre_parenteses <listaArg> fecha_parenteses <statementEscopo>
 <tipo>								::= int	|
 										float |
@@ -19,11 +22,13 @@
 										<statementIf> |
 										<statementEscopo> |
 										<declaracao> |
+										<statementDoWhile>
 										ponto_virgula
 <statementFor>						::= for abre_parenteses <expressao> ponto_virgula <expressaoOpcional> ponto_virgula <expressaoOpcional> fecha_parenteses <statement>
 <expressaoOpcional>					::= <expressao> |
 										ε
 <statementWhile>					::= while abre_parenteses <expressao> fecha_parenteses <statement>
+<statementDoWhile>					::= do <statementEscopo> while abre_parenteses <expressao> fecha_parenteses
 <parteElse>							::= else <statement> |
 										ε
 <statementEscopo>					::= abre_chaves <listaStatement> fecha_chaves
