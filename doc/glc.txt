@@ -22,7 +22,9 @@
 										<statementIf> |
 										<statementEscopo> |
 										<declaracao> |
-										<statementDoWhile>
+										<statementDoWhile> |
+										return <statementReturn> ponto_virgula |
+										break ponto_virgula |
 										ponto_virgula
 <statementFor>						::= for abre_parenteses <expressao> ponto_virgula <expressaoOpcional> ponto_virgula <expressaoOpcional> fecha_parenteses <statement>
 <expressaoOpcional>					::= <expressao> |
@@ -30,6 +32,11 @@
 <statementWhile>					::= while abre_parenteses <expressao> fecha_parenteses <statement>
 <statementDoWhile>					::= do <statementEscopo> while abre_parenteses <expressao> fecha_parenteses
 <parteElse>							::= else <statement> |
+										ε
+<statementReturn>					::= identificador |
+										numero |
+										literal_simples |
+										literal_duplo |
 										ε
 <statementEscopo>					::= abre_chaves <listaStatement> fecha_chaves
 <listaStatement>					::= <statement> <listaStatementLinha>

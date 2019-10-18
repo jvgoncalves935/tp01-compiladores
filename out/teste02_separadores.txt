@@ -79,5 +79,13 @@ abre_parenteses,"(",32,7
 menor,"<",32,11
 fecha_parenteses,")",32,13
 ponto_virgula,";",32,14
-fecha_chaves,"}",33,0
-negacao,"!",33,2
+ponto_virgula,";",33,6
+ponto_virgula,";",34,9
+fecha_chaves,"}",35,0
+abre_parenteses,"(",37,12
+fecha_parenteses,")",37,21
+abre_chaves,"{",37,22
+ponto_virgula,";",38,6
+igual,"=",39,4
+ponto_virgula,";",39,6
+fecha_chaves,"}",40,0

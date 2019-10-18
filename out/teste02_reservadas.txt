@@ -6,3 +6,8 @@ else,"else",22,3
 for,"for",25,2
 do,"do",30,2
 while,"while",32,3
+break,"break",33,2
+return,"return",34,2
+void,"void",37,1
+int,"int",37,14
+int,"int",38,2

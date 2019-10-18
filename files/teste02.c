@@ -30,4 +30,11 @@ int main (){
 	do{
 		x += 2;
 	}while(x < 4);
+	break;
+	return 0;
+}
+
+void testexd(int cont){
+	int a;
+	a = 2;
 }

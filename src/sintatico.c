@@ -297,6 +297,31 @@ int verificarStatement(int cont){
         verificarStatementDoWhile(cont+1);
         return 1;
     }
+    if(tokenIgual(aux,"return")){
+        consumirToken(cont);
+
+        verificarStatementReturn(cont+1);
+
+        aux = getToken();
+        if(tokenIgual(aux,"ponto_virgula")){
+            consumirToken(cont);
+            return 1;
+        }else{
+            erroSintatico(aux,"Esperado ponto_virgula apos 'return'.");
+            return 0;
+        }   
+    }
+    if(tokenIgual(aux,"break")){
+        consumirToken(cont);
+        aux = getToken();
+        if(tokenIgual(aux,"ponto_virgula")){
+            consumirToken(cont);
+            return 1;
+        }else{
+            erroSintatico(aux,"Esperado ponto_virgula apos 'break'.");
+            return 0;
+        }   
+    }
     if(tokenIgual(aux,"ponto_virgula")){
         consumirToken(cont);
         return 1;
@@ -376,6 +401,14 @@ void verificarStatementWhile(int cont){
     }
 
     verificarStatement(cont+1);
+}
+
+void verificarStatementReturn(int cont){
+    printfSintatico(cont,"verificarStatementReturn");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"identificador") || tokenIgual(aux,"numero") || tokenIgual(aux,"aspas_simples") || tokenIgual(aux,"aspas_duplas")){
+        consumirToken(cont);
+    }
 }
 
 void verificarExpressao(int cont){

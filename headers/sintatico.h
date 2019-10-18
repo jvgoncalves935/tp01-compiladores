@@ -23,6 +23,7 @@ void verificarListaIdentificadores(int cont);
 int verificarStatement(int cont);
 void verificarStatementFor(int cont);
 void verificarStatementWhile(int cont);
+void verificarStatementReturn(int cont);
 void verificarExpressao(int cont);
 void verificarExpressao02(int cont);
 void verificarStatementIf(int cont);
