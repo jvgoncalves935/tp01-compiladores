@@ -52,7 +52,33 @@ Instruções:
 | ponto                | Separador     | '.'                                                                      |
 | virgula              | Separador     | ','                                                                      |
 | dois_pontos          | Separador     | ':'                                                                      |
-| operador             | Operador      | '+','*','%','/','=','<','>','!','(pipeline)','&','~','^','-','?'         |
+| mais	               | Operador      | '+'                                                                      |
+| vezes	               | Operador      | '*'                                                                      |
+| porcento             | Operador      | '%'                                                                      |
+| barra	               | Operador      | '/'                                                                      |
+| igual	               | Operador      | '='                                                                      |
+| menor	               | Operador      | '<'                                                                      |
+| maior	               | Operador      | '>'                                                                      |
+| negacao              | Operador      | '!'                                                                      |
+| or_simples           | Operador      | '(pipeline)'															  |
+| and_simples          | Operador      | '&'                                                                      |
+| til	               | Operador      | '~'                                                                      |
+| circunflexo          | Operador      | '^'                                                                      |
+| menos	               | Operador      | '-'                                                                      |
+| interrogacao         | Operador      | '?'													         		  |
+| mais_igual	       | Operador      | '+='													         		  |
+| mais_mais		       | Operador      | '++'													         		  |
+| menos_igual          | Operador      | '-='													         		  |
+| menos_menos          | Operador      | '--'													         		  |
+| vezes_igual          | Operador      | '*='													         		  |
+| vezes_vezes	       | Operador      | '**'													         		  |
+| barra_igual          | Operador      | '/='													         		  |
+| igual_igual          | Operador      | '=='													         		  |
+| diferente	           | Operador      | '!='													         		  |
+| menor_igual	       | Operador      | '<='													         		  |
+| maior_igual          | Operador      | '>='													         		  |
+| or_duplo             | Operador      | '(pipeline)(pipeline)'									         		  |
+| and_igual            | Operador      | '&&'													         		  |
 | (nome da palavra)    | Reservada     | (conjunto de palavras reservadas)                                        |
 
 # Lista de Palavras Reservadas

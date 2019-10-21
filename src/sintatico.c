@@ -322,6 +322,11 @@ int verificarStatement(int cont){
             return 0;
         }   
     }
+    if(tokenIgual(aux,"switch")){
+        verificarSwitch01(cont+1);
+        return 1;
+    }
+
     if(tokenIgual(aux,"ponto_virgula")){
         consumirToken(cont);
         return 1;
@@ -711,6 +716,109 @@ void verificarStatementDoWhile(int cont){
                 erroSintatico(aux,"Esperado abre_parenteses apos while de uma instrucao 'do'.");
             }
 
+        }
+    }
+}
+
+void verificarSwitch01(int cont){
+    printfSintatico(cont,"verificarSwitch01");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"switch")){
+        consumirToken(cont);
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"abre_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Esperado abre_parenteses dentro do parametro de uma instrucao 'switch'.");
+    }
+
+    verificarSwitch02(cont+1);
+
+    aux = getToken();
+    if(tokenIgual(aux,"fecha_parenteses")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Esperado fecha_parenteses dentro do parametro de uma instrucao 'switch'.");
+    }
+
+    aux = getToken();
+    if(tokenIgual(aux,"abre_chaves")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Esperado abre_chaves apos parametro de uma instrucao 'switch'.");
+    }
+
+    verificarListaCase(cont+1);
+
+    aux = getToken();
+    if(tokenIgual(aux,"fecha_chaves")){
+        consumirToken(cont);
+    }else{
+        erroSintatico(aux,"Esperado fecha_chaves apos instrucao 'switch'.");
+    }
+
+}
+
+void verificarSwitch02(int cont){
+    printfSintatico(cont,"verificarSwitch02");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"numero") || tokenIgual(aux,"identificador")  || tokenIgual(aux,"aspas_simples")  || tokenIgual(aux,"aspas_duplas")){
+        consumirToken(cont);
+        return;
+    }
+
+    erroSintatico(aux,"Tipo de parametro invalido em instrucao 'switch'.");
+}
+
+void verificarListaCase(int cont){
+    printfSintatico(cont,"verificarListaCase");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"case")){
+        consumirToken(cont);
+
+        verificarSwitch02(cont+1);
+
+        aux = getToken();
+        if(tokenIgual(aux,"dois_pontos")){
+            consumirToken(cont);
+            
+            verificarListaStatement(cont+1);
+            verificarListaCaseLinha(cont+1);
+            return;
+        }
+    }
+
+    erroSintatico(aux,"Erro na primeira em instrucao 'case'.");
+}
+
+void verificarListaCaseLinha(int cont){
+    printfSintatico(cont,"verificarListaCaseLinha");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"case")){
+        consumirToken(cont);
+
+        verificarSwitch02(cont+1);
+
+        aux = getToken();
+        if(tokenIgual(aux,"dois_pontos")){
+            consumirToken(cont);
+            
+            verificarListaStatement(cont+1);
+            verificarListaCaseLinha(cont+1);
+            return;
+        }
+    }
+
+    if(tokenIgual(aux,"default")){
+        consumirToken(cont);
+        aux = getToken();
+        if(tokenIgual(aux,"dois_pontos")){
+            consumirToken(cont);
+
+            verificarListaStatement(cont+1);
+            return;
         }
     }
 }

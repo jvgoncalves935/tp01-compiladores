@@ -16,5 +16,10 @@ numero,"2",26,7
 numero,"1",27,8
 numero,"2",31,8
 numero,"4",32,13
-numero,"0",34,9
-numero,"2",39,6
+numero,"1",36,8
+numero,"1",36,20
+numero,"2",37,8
+numero,"2",37,20
+numero,"0",38,20
+numero,"0",42,9
+numero,"2",47,6

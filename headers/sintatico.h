@@ -44,6 +44,10 @@ void verificarAritmetica(int cont);
 void verificarAritmeticaOperadorDuplicado(int cont);
 void verificarAritmeticaOperadorIgualComposto(int cont);
 void verificarStatementDoWhile(int cont);
+void verificarSwitch01(int cont);
+void verificarSwitch02(int cont);
+void verificarListaCase(int cont);
+void verificarListaCaseLinha(int cont);
 
 int isAritmetica(Token *aux);
 int isComparacao(Token *aux);

@@ -30,6 +30,14 @@ int main (){
 	do{
 		x += 2;
 	}while(x < 4);
+	
+	
+	switch(xd){
+		case 1:{ cont += 1; break;}
+		case 2:{ cont += 2; break;}
+		default:{ cont = 0;}
+	}
+	
 	break;
 	return 0;
 }

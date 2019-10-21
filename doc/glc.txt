@@ -25,6 +25,7 @@
 										<statementDoWhile> |
 										return <statementReturn> ponto_virgula |
 										break ponto_virgula |
+										<switch01> |
 										ponto_virgula
 <statementFor>						::= for abre_parenteses <expressao> ponto_virgula <expressaoOpcional> ponto_virgula <expressaoOpcional> fecha_parenteses <statement>
 <expressaoOpcional>					::= <expressao> |
@@ -83,4 +84,14 @@
 										menos_igual |
 										vezes_igual |
 										barra_igual
+<switch01>							::= switch abre_parenteses	<switch02> fecha_parenteses abre_chaves <listaCase> fecha_chaves
+<switch02>							::= numero
+										identificador
+										aspas_simples
+										aspas_duplas 
+<listaCase>							::= case <switch02> dois_pontos <listaStatement> <listaCaseLinha>
+<listaCaseLinha>					::= case <switch02> dois_pontos <listaStatement> <listaCaseLinha> |
+										default dois_pontos <listaStatement> |
+										ε
+
 |ε		
