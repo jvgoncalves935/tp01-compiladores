@@ -9,9 +9,9 @@ Instruções:
 
 - Compilar: Comando "make" em algum terminal, na pasta raiz do projeto.
   
-- Executar: ./tp1 -a (diretorio_do_arquivo)
-  
-- Exemplo: ./tp1 -a files/teste01.c
+- Executar: ./tp1 -a (diretorio_do_arquivo)		(Árvore sintática omitida)
+			./tp1 -a (diretorio_do_arquivo) -s  (Árvore sintática visível)
+- Exemplo: ./tp1 -a files/teste01.c -s
   
 - Resultados:
     - Se houverem erros léxicos: Serão exibidas as linhas e colunas de onde ocorreram caracteres não reconhecidos pelo analisador. Sem saída em arquivos.

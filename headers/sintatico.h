@@ -48,6 +48,9 @@ void verificarSwitch01(int cont);
 void verificarSwitch02(int cont);
 void verificarListaCase(int cont);
 void verificarListaCaseLinha(int cont);
+void verificarChamadaFuncao(int cont);
+void verificarListaArgChamadaFuncao(int cont);
+void verificarListaArgChamadaFuncaoLinha(int cont);
 
 int isAritmetica(Token *aux);
 int isComparacao(Token *aux);

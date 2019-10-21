@@ -10,7 +10,7 @@ int main(int argc,char **argv){
 	char *argv1 = NULL;
 
 	// Funcao getopt(), (entrada por parametros).
-	while((optc = getopt(argc, argv, "hc:a:")) != -1){
+	while((optc = getopt(argc, argv, "hc:a:s")) != -1){
 		switch(optc){
 			case 'a':
 				argv1 = optarg;
@@ -19,7 +19,10 @@ int main(int argc,char **argv){
 				printf("%s -h \"Ajuda\".\nExemplo de entrada:\n./tp1 -a ARQUIVO\n-a arquivo .c para "
 				"analise.\n",argv[0]);
 				exit(0);
-			default:
+			case 's':
+                FLAG_EXIBIR_ARVORE = 1;
+                break;
+            default:
 				printf("Opcao invalida.\nUtilize -h para ajuda.\n");
 				exit(0);
 		}

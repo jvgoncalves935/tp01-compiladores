@@ -13,7 +13,7 @@ case,"case",37,3
 break,"break",37,23
 default,"default",38,3
 break,"break",41,2
-return,"return",42,2
-void,"void",45,1
-int,"int",45,14
-int,"int",46,2
+return,"return",49,2
+void,"void",52,1
+int,"int",52,14
+int,"int",53,2

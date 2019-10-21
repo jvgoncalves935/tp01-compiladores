@@ -21,5 +21,7 @@ numero,"1",36,20
 numero,"2",37,8
 numero,"2",37,20
 numero,"0",38,20
-numero,"0",42,9
-numero,"2",47,6
+numero,"123",46,24
+numero,"935",47,10
+numero,"0",49,9
+numero,"2",54,6

@@ -12,6 +12,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
         freePosicao(aux);
         */
     //}
+
     verificarListaDiretivas(0);
     verificarLinguagem(0);
 
@@ -86,6 +87,10 @@ void consumirToken(int cont){
 }
 
 void printfSintatico(int cont, char *str){
+    if(!FLAG_EXIBIR_ARVORE){
+        return;
+    }
+
     char aux[1024];
     sprintf(aux,"%c",'\0');
     int i;
@@ -276,8 +281,12 @@ int verificarStatement(int cont){
         verificarStatementWhile(cont+1);
         return 1;
     }
-    if(tokenIgual(aux,"identificador")){
+    if(tokenIgual(aux,"identificador") && tokenDiferente(aux->proxima,"abre_parenteses")){
         verificarExpressao(cont+1);
+        return 1;
+    }
+    if(tokenIgual(aux,"identificador") && tokenIgual(aux->proxima,"abre_parenteses")){
+        verificarChamadaFuncao(cont+1);
         return 1;
     }
     if(tokenIgual(aux,"if")){
@@ -662,6 +671,16 @@ void verificarFator(int cont){
         return;
     }
 
+    if(tokenIgual(aux,"aspas_simples")){
+        consumirToken(cont);
+        return;
+    }
+
+    if(tokenIgual(aux,"aspas_duplas")){
+        consumirToken(cont);
+        return;
+    }
+
     //erroSintatico(aux,"Caracter invalido encontrado em fator de expressao.");
     
 }
@@ -820,6 +839,55 @@ void verificarListaCaseLinha(int cont){
             verificarListaStatement(cont+1);
             return;
         }
+    }
+}
+
+void verificarChamadaFuncao(int cont){
+    printfSintatico(cont,"verificarChamadaFuncao");
+    Token *aux = getToken();
+
+    if(tokenIgual(aux,"identificador")){
+        consumirToken(cont);
+
+        aux = getToken();
+        if(tokenIgual(aux,"abre_parenteses")){
+            consumirToken(cont);
+            aux = getToken();
+            if(tokenDiferente(aux,"fecha_parenteses")){
+                verificarListaArgChamadaFuncao(cont+1);
+            }
+            
+            aux = getToken();
+            if(tokenIgual(aux,"fecha_parenteses")){
+                consumirToken(cont);
+                
+                aux = getToken();
+                if(tokenIgual(aux,"ponto_virgula")){
+                    consumirToken(cont);
+                    return;
+                }
+            }else{
+                erroSintatico(aux,"Esperado fecha_parenteses apos chamada de funcao.");
+            }
+        }
+    }
+}
+
+void verificarListaArgChamadaFuncao(int cont){
+    printfSintatico(cont,"verificarListaArgChamadaFuncao");
+    
+    verificarSwitch02(cont+1);
+    verificarListaArgChamadaFuncaoLinha(cont+1);
+}
+
+void verificarListaArgChamadaFuncaoLinha(int cont){
+    printfSintatico(cont,"verificarListaArgChamadaFuncaoLinha");
+    Token *aux = getToken();
+    if(tokenIgual(aux,"virgula")){
+        consumirToken(cont);
+        
+        verificarSwitch02(cont+1);
+        verificarListaArgChamadaFuncaoLinha(cont+1);
     }
 }
 

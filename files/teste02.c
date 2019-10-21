@@ -39,6 +39,13 @@ int main (){
 	}
 	
 	break;
+	
+	cont = "teste xd";
+	cont = 'x';
+	
+	printf("flavio xd %d",123);
+	testexd(935);
+	nada();
 	return 0;
 }
 

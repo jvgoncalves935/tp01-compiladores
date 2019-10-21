@@ -26,6 +26,7 @@ char BUFFER[1024];
 int NUM_ESTADOS = 26;
 ListaToken *LISTATOKEN;
 int FLAG_SINTATICO = 1;
+int FLAG_EXIBIR_ARVORE = 0;
 
 void iniciarPalavrasReservadas(char **matriz){
     matriz[0] = "auto";

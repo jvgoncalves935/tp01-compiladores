@@ -72,7 +72,9 @@
 										menos <fator> |
 										mais <fator> |
 										identificador |
-										numero
+										numero |
+										aspas_simples |
+										aspas_duplas
 <aritmetica>						::= mais |
 										menos |
 										vezes |
@@ -93,5 +95,8 @@
 <listaCaseLinha>					::= case <switch02> dois_pontos <listaStatement> <listaCaseLinha> |
 										default dois_pontos <listaStatement> |
 										ε
-
-|ε		
+<chamadaFuncao>						::= identificador abre_parenteses <listaArgChamadaFuncao> fecha_parenteses ponto_virgula
+<listaArgChamadaFuncao>				::= <switch02> <listaArgChamadaFuncaoLinha> |
+										ε
+<listaArgChamadaFuncaoLinha>		::= virgula <switch02> <listaArgChamadaFuncaoLinha> |
+										ε

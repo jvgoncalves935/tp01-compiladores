@@ -43,7 +43,12 @@ identificador,"xd",35,9
 identificador,"cont",36,12
 identificador,"cont",37,12
 identificador,"cont",38,13
-identificador,"testexd",45,6
-identificador,"cont",45,18
-identificador,"a",46,6
-identificador,"a",47,2
+identificador,"cont",43,2
+identificador,"cont",44,2
+identificador,"printf",46,2
+identificador,"testexd",47,2
+identificador,"nada",48,2
+identificador,"testexd",52,6
+identificador,"cont",52,18
+identificador,"a",53,6
+identificador,"a",54,2
