@@ -19,6 +19,8 @@ extern int NUM_ESTADOS;
 extern ListaToken *LISTATOKEN;
 extern int FLAG_SINTATICO;
 extern int FLAG_EXIBIR_ARVORE;
+extern int IGNORAR_TOKEN;
+extern int ERRO_SINTATICO;
 
 
 //void iniciarPalavrasReservadas(char **matriz);

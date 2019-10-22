@@ -2,11 +2,6 @@ identificador,"comeVaiem",1,5
 identificador,"come",1,19
 identificador,"vaiem",1,31
 identificador,"xd",1,45
-identificador,"term",2,8
-identificador,"eps",2,15
-identificador,"term",3,3
-identificador,"term",3,10
-identificador,"x",3,17
-identificador,"x",3,21
-identificador,"n",3,25
-identificador,"n",3,30
+identificador,"term",2,2
+identificador,"term",2,9
+identificador,"printf",3,2

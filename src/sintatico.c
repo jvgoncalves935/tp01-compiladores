@@ -16,7 +16,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     verificarListaDiretivas(0);
     verificarLinguagem(0);
 
-    if(LISTATOKEN->primeira == NULL){
+    if(!ERRO_SINTATICO){
         //freePosicao(LISTATOKEN->primeira);
         free(LISTATOKEN);
         printf("Analise Sintatica: SUCESSO.\n");
@@ -51,7 +51,7 @@ Token *getToken(){
 }
 
 void consumirToken(int cont){
-    if(!FLAG_SINTATICO){
+    if(!FLAG_SINTATICO || IGNORAR_TOKEN){
         return;
     }
     if(LISTATOKEN == NULL){
@@ -116,11 +116,32 @@ int tokenDiferente(Token *token, char *str){
 }
 
 void erroSintatico(Token *token, char *erro){
+    ERRO_SINTATICO = 1;
     if(!FLAG_SINTATICO){
         return;
     }
     printf("Analise Sintatica: ERRO. %s Linha %d, Coluna %d.\nToken encontrado: %s\n",erro,token->linha,token->coluna,token->valor);
-    exit(0);
+    //exit(0);
+    
+    IGNORAR_TOKEN = 1;
+    proximoPontoVirgula();
+}
+
+void proximoPontoVirgula(){
+    Token *aux = LISTATOKEN->primeira;
+    while(strcmp(LISTATOKEN->primeira->valor,"ponto_virgula") != 0){
+        if(LISTATOKEN->primeira == NULL){
+            printf("LISTATOKEN vazia.\n");
+            exit(0);
+        }
+        aux = LISTATOKEN->primeira;
+        LISTATOKEN->primeira = LISTATOKEN->primeira->proxima;
+
+        free(aux->valor);
+        free(aux->valorBruto);
+        free(aux);
+        //LISTATOKEN->primeira = LISTATOKEN->primeira->proxima;
+    }
 }
 
 int verificarListaDiretivas(int cont){
@@ -277,76 +298,82 @@ int verificarListaIdentificadores(int cont){
 
 int verificarStatement(int cont){
     printfSintatico(cont,"verificarStatement");
-    Token *aux = getToken();
+    Token *aux;
+    aux = getToken();
 
-    if(tokenIgual(aux,"for")){
-        verificarStatementFor(cont+1);
-        return 1;
-    }
-    if(tokenIgual(aux,"while")){
-        verificarStatementWhile(cont+1);
-        return 1;
-    }
-    if(tokenIgual(aux,"identificador") && tokenDiferente(aux->proxima,"abre_parenteses")){
-        verificarExpressao(cont+1);
-        return 1;
-    }
-    if(tokenIgual(aux,"identificador") && tokenIgual(aux->proxima,"abre_parenteses")){
-        verificarChamadaFuncao(cont+1);
-        return 1;
-    }
-    if(tokenIgual(aux,"if")){
-        verificarStatementIf(cont+1);
-        return 1;
-    }
-    if(tokenIgual(aux,"abre_chaves")){
-        verificarStatementEscopo(cont+1);
-        return 1;
-    }
-    if(isTipoDeclaracao(aux)){
-        //consumirToken(cont);
-        verificarDeclaracao(cont+1);
-        return 1;
-    }
-    if(tokenIgual(aux,"do")){
-        verificarStatementDoWhile(cont+1);
-        return 1;
-    }
-    if(tokenIgual(aux,"return")){
-        consumirToken(cont);
+    do{
+        if(tokenIgual(aux,"for")){
+            verificarStatementFor(cont+1);
+            return 1;
+        }
+        if(tokenIgual(aux,"while")){
+            verificarStatementWhile(cont+1);
+            return 1;
+        }
+        if(tokenIgual(aux,"identificador") && tokenDiferente(aux->proxima,"abre_parenteses")){
+            verificarExpressao(cont+1);
+            return 1;
+        }
+        if(tokenIgual(aux,"identificador") && tokenIgual(aux->proxima,"abre_parenteses")){
+            verificarChamadaFuncao(cont+1);
+            return 1;
+        }
+        if(tokenIgual(aux,"if")){
+            verificarStatementIf(cont+1);
+            return 1;
+        }
+        if(tokenIgual(aux,"abre_chaves")){
+            verificarStatementEscopo(cont+1);
+            return 1;
+        }
+        if(isTipoDeclaracao(aux)){
+            //consumirToken(cont);
+            verificarDeclaracao(cont+1);
+            return 1;
+        }
+        if(tokenIgual(aux,"do")){
+            verificarStatementDoWhile(cont+1);
+            return 1;
+        }
+        if(tokenIgual(aux,"return")){
+            consumirToken(cont);
 
-        verificarStatementReturn(cont+1);
+            verificarStatementReturn(cont+1);
 
-        aux = getToken();
+            aux = getToken();
+            if(tokenIgual(aux,"ponto_virgula")){
+                consumirToken(cont);
+                return 1;
+            }else{
+                erroSintatico(aux,"Esperado ponto_virgula apos 'return'.");
+                return 0;
+            }   
+        }
+        if(tokenIgual(aux,"break")){
+            consumirToken(cont);
+            aux = getToken();
+            if(tokenIgual(aux,"ponto_virgula")){
+                consumirToken(cont);
+                return 1;
+            }else{
+                erroSintatico(aux,"Esperado ponto_virgula apos 'break'.");
+                return 0;
+            }   
+        }
+        if(tokenIgual(aux,"switch")){
+            verificarSwitch01(cont+1);
+            return 1;
+        }
+
         if(tokenIgual(aux,"ponto_virgula")){
+            if(IGNORAR_TOKEN){
+                IGNORAR_TOKEN = 0;
+                continue;
+            }
             consumirToken(cont);
             return 1;
-        }else{
-            erroSintatico(aux,"Esperado ponto_virgula apos 'return'.");
-            return 0;
-        }   
-    }
-    if(tokenIgual(aux,"break")){
-        consumirToken(cont);
-        aux = getToken();
-        if(tokenIgual(aux,"ponto_virgula")){
-            consumirToken(cont);
-            return 1;
-        }else{
-            erroSintatico(aux,"Esperado ponto_virgula apos 'break'.");
-            return 0;
-        }   
-    }
-    if(tokenIgual(aux,"switch")){
-        verificarSwitch01(cont+1);
-        return 1;
-    }
-
-    if(tokenIgual(aux,"ponto_virgula")){
-        consumirToken(cont);
-        return 1;
-    }
-
+        }
+    }while(IGNORAR_TOKEN);
     return 0;
 
     //Erro no statement

@@ -11,6 +11,8 @@ int tokenDiferente(Token *token, char *str);
 void erroSintatico(Token *token, char *erro);
 Token *getToken();
 void printfSintatico(int cont, char *str);
+void proximoPontoVirgula();
+
 int verificarListaDiretivas(int cont);
 int verificarLinguagem(int cont);
 int verificarFuncao(int cont);
