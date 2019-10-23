@@ -2,47 +2,31 @@
 #include <stdlib.h>
 #include "../headers/sintatico.h"
 
+//Funcao principal da analise sintatica.
 void analiseSintatica(ListaToken *listaTokenIdentificadores){
-    
-    //while(LISTATOKEN->primeira != NULL){
-        //Token *aux = NULL;
-        /*
-        Token *aux = consumirToken();
-        printf("Consumir Token %s\n",aux->valorBruto);
-        freePosicao(aux);
-        */
-    //}
-
     verificarListaDiretivas(0);
     verificarLinguagem(0);
 
     if(!ERRO_SINTATICO){
-        //freePosicao(LISTATOKEN->primeira);
         free(LISTATOKEN);
         printf("Analise Sintatica: SUCESSO.\n");
     }else{
-        //printf("come vaiem %s\n",LISTATOKEN->primeira->valorBruto);
         printf("Analise Sintatica: ERRO.\n");
     }
-    
-    //freeLISTATOKEN(LISTATOKEN);
-    //freeLISTATOKEN(LISTATOKENIdentificadores);
 }
 
+//Funcao que apenas recupera o token atual da primeira posicao da lista.
 Token *getToken(){
     if(!FLAG_SINTATICO){
         return NULL;
     }
     if(LISTATOKEN == NULL){
-        //printf("Lista de tokens vazia!");
         FLAG_SINTATICO = 0;
         return NULL;
     }
 
     Token *aux = LISTATOKEN->primeira;
-    //memcpy(tok,aux,sizeof(Token));
     if(aux == NULL){
-        //printf("Lista de tokens vazia!");
         FLAG_SINTATICO = 0;
         return NULL;
     }
@@ -50,21 +34,18 @@ Token *getToken(){
     return aux;
 }
 
+//Consome o token atual e avança para o próximo token da lista.
 void consumirToken(int cont){
     if(!FLAG_SINTATICO || IGNORAR_TOKEN){
         return;
     }
     if(LISTATOKEN == NULL){
-        //printf("Lista de tokens vazia!");
         FLAG_SINTATICO = 0;
         return;
     }
 
     Token *aux = LISTATOKEN->primeira;
-    
-    //memcpy(tok,aux,sizeof(Token));
     if(aux == NULL){
-        //printf("Lista de tokens vazia!");
         FLAG_SINTATICO = 0;
         return;
     }
@@ -75,10 +56,7 @@ void consumirToken(int cont){
     }else{
         
         LISTATOKEN->primeira = NULL;
-        //return NULL;
     }
-
-    //printf("Consumir Token %s\n",aux->valorBruto);
     printfSintatico(cont,aux->valorBruto);
 
     free(aux->valor);
@@ -86,6 +64,7 @@ void consumirToken(int cont){
     free(aux);
 }
 
+//Funcao que exibe os niveis da arvore.
 void printfSintatico(int cont, char *str){
     if(!FLAG_EXIBIR_ARVORE){
         return;
@@ -101,6 +80,7 @@ void printfSintatico(int cont, char *str){
     getchar();
 }
 
+//Retorna se um token eh igual uma string.
 int tokenIgual(Token *token, char *str){
     if(!FLAG_SINTATICO){
         return 0;
@@ -108,6 +88,7 @@ int tokenIgual(Token *token, char *str){
     return !strcmp(token->valor,str);
 }
 
+//Retorna se um token eh diferente uma string.
 int tokenDiferente(Token *token, char *str){
     if(!FLAG_SINTATICO){
         return 0;
@@ -115,18 +96,23 @@ int tokenDiferente(Token *token, char *str){
     return strcmp(token->valor,str);
 }
 
+/*
+Funcao que faz a recuperacao de erros. Os erros sao tratados dentro de statements, portanto, esta funcao eh ativada uma vez
+que eh encontrado um erro e soh poderah ser chamada novamente quando outro erro acontecer. Enquanto o erro nao for resolvido,
+essa funcao sempre serah ignorada.
+*/
 void erroSintatico(Token *token, char *erro){
     ERRO_SINTATICO = 1;
     if(!FLAG_SINTATICO || IGNORAR_TOKEN){
         return;
     }
-    printf("Analise Sintatica: ERRO. %s Linha %d, Coluna %d.\nToken encontrado: %s\n",erro,token->linha,token->coluna,token->valor);
-    //exit(0);
+    printf("ERRO. %s Linha %d, Coluna %d.\nToken encontrado: %s\n",erro,token->linha,token->coluna,token->valor);
     
     IGNORAR_TOKEN = 1;
     proximoPontoVirgula();
 }
 
+//Enquanto nao encontrar um "ponto_virgula", todos os tokens serao consumidos.
 void proximoPontoVirgula(){
     Token *aux = LISTATOKEN->primeira;
     while(strcmp(LISTATOKEN->primeira->valor,"ponto_virgula") != 0){
@@ -140,11 +126,10 @@ void proximoPontoVirgula(){
         free(aux->valor);
         free(aux->valorBruto);
         free(aux);
-        //LISTATOKEN->primeira = LISTATOKEN->primeira->proxima;
     }
-    //printf("teste %s %d %d\n",LISTATOKEN->primeira->valor,LISTATOKEN->primeira->linha,LISTATOKEN->primeira->coluna);
 }
 
+//Tratamento de diretivas (somente no inicio do arquivo).
 int verificarListaDiretivas(int cont){
     printfSintatico(cont,"verificarListaDiretivas");
     Token *aux = LISTATOKEN->primeira;
@@ -159,6 +144,8 @@ int verificarListaDiretivas(int cont){
     return 0;
 }
 
+//Enquanto o arquivo nao estiver vazio, esta funcao sempre serah chamada.
+//Todas as funcoes que iniciam o nome com "verificar" sao regras do analisador sintatico.
 int verificarLinguagem(int cont){
     while(LISTATOKEN->primeira != NULL){
         IGNORAR_TOKEN = 0;
@@ -180,11 +167,6 @@ int verificarFuncao(int cont){
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
     }
-    /*
-    else{
-        erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um identificador).");
-    }
-    */
 
     aux = getToken();
     if(tokenIgual(aux,"abre_parenteses")){
@@ -201,25 +183,8 @@ int verificarFuncao(int cont){
     }else{
         erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um fecha_parenteses).");
     }
-    /*
-    aux = getToken();
-    if(tokenIgual(aux,"abre_chaves")){
-        consumirToken(cont);
-    }else{
-        erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um abre_chaves).");
-    }
-
-    aux = getToken();
-    if(tokenIgual(aux,"fecha_chaves")){
-        consumirToken(cont);
-    }else{
-        erroSintatico(aux,"Expressao invalida em declaracao de funcao (era esperado um fecha_chaves).");
-    }
-    */
 
     verificarStatementEscopo(cont+1);
-    
-    //verificarStatement(cont+1);
     return 0;
 }
 
@@ -230,8 +195,6 @@ int verificarTipo(int cont){
         consumirToken(cont); return 0;
     }
     return 0;
-    //erroSintatico(aux,"Tipo invalido para funcao.");
-    
 }
 
 int verificarListaArg(int cont){
@@ -247,14 +210,6 @@ int verificarListaArg(int cont){
         verificarListaArg(cont+1);
         return 0;
     }
-    /*
-    else{
-        erroSintatico(aux,"Expressao invalida em parametro de funcao (era esperado uma virgula).");
-    }
-    */
-
-    
-
     return 0;
 }
 
@@ -266,11 +221,6 @@ int verificarArg(int cont){
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
     }
-    /*
-    else{
-        erroSintatico(aux,"Expressao invalida em parametro de funcao (era esperado um identificador).");
-    }
-    */
     return 0;
 }
 
@@ -342,7 +292,6 @@ int verificarStatement(int cont){
             }
         }
         if(isTipoDeclaracao(aux)){
-            //consumirToken(cont);
             verificarDeclaracao(cont+1);
             if(!IGNORAR_TOKEN){
                 return 1;
@@ -398,13 +347,10 @@ int verificarStatement(int cont){
             consumirToken(cont);
             return 1;
         }
-        //printf("COME VAIEM");
         aux = getToken();
     }while(IGNORAR_TOKEN);
     return 0;
 
-    //Erro no statement
-    //erroSintatico(aux,"Expressao invalida em statement.");
 }
 
 int verificarStatementFor(int cont){
@@ -493,15 +439,7 @@ int verificarExpressao(int cont){
     Token *aux = getToken();
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
-        /*
-        aux = getToken();
-        if(tokenIgual(aux,"igual")){
-            consumirToken(cont);
-        }else{
-            erroSintatico(aux,"Caracter invalido em expressao (era esperado um igual).");
-        }
-        verificarExpressao(cont+1);
-        */
+        
         verificarExpressao02(cont+1);
         return 0;
     }
@@ -759,9 +697,6 @@ int verificarFator(int cont){
         return 0;
     }
     return 0;
-
-    //erroSintatico(aux,"Caracter invalido encontrado em fator de expressao.");
-    
 }
 
 int verificarAritmetica(int cont){
@@ -996,7 +931,6 @@ int isFator(Token *aux){
 }
 
 int isTipoDeclaracao(Token *aux){
-    //Token *aux = getToken();
     if(tokenIgual(aux,"int") || tokenIgual(aux,"float") || tokenIgual(aux,"char") || tokenIgual(aux,"double") || tokenIgual(aux,"void")){
         return 1;
     }
@@ -1005,7 +939,6 @@ int isTipoDeclaracao(Token *aux){
 }
 
 int isAritmetica(Token *aux){
-    //Token *aux = getToken();
     if(tokenIgual(aux,"mais") || tokenIgual(aux,"menos") || tokenIgual(aux,"vezes") || tokenIgual(aux,"barra")){
         return 1;
     }
