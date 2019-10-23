@@ -2,7 +2,12 @@
 
 Descrição:
 
-Um analisador léxico de códigos de C que gera uma lista de todos os tokens de um código .C. Projeto implementado em C.
+Compilador de C implementado em C. NÃO abrange a gramática completa do C e foi desenvolvido apenas por fins de aprendizado.
+
+Analisador léxico: gera uma lista de todos os tokens de um código .C.
+Analisador sintático: monta uma árvore sintática à partir da lista de tokens. A árvore é montada à partir de funções recursivas, utilizando a própria pilha do SO.
+Analisador semântico: (WIP).
+
 Projeto foi testado apenas no Bash do Ubuntu para Windows 10. Outras plataformas como distribuições nativas de Linux ou Windows podem gerar comportamentos desconhecidos.
 
 Instruções:
@@ -103,105 +108,179 @@ Instruções:
 
 ### Gramática Livre de Contexto
 
-<listaDiretivas>					::= diretiva <listaDiretivas> |
-										ε
+- (listaDiretivas) ::= diretiva (listaDiretivas) |
+- (listaDiretivas) ::= ε
+<br/>
 
-<linguagem>							::= <funcao> /*enquanto lista de tokens não estiver vazia*/
-<funcao>							::= <tipo> identificador abre_parenteses <listaArg> fecha_parenteses <statementEscopo>
-<tipo>								::= int	|
-										float |
-										char |
-										double |
-										void
-<listaArg>							::= <arg> |
-										virgula <listaArg> |
-										ε
-<arg>								::= <tipo> identificador |
-<declaracao>						::= <tipo> <listaIdentificadores> |
-										ε
-<listaIdentificadores>				::= identificador |
-										identificador virgula <listaIdentificadores>
-<statement>							::= <statementFor> |
-										<statementWhile> |
-										<expressao> ponto_virgula |
-										<statementIf> |
-										<statementEscopo> |
-										<declaracao> |
-										<statementDoWhile> |
-										return <statementReturn> ponto_virgula |
-										break ponto_virgula |
-										<switch01> |
-										ponto_virgula
-<statementFor>						::= for abre_parenteses <expressao> ponto_virgula <expressaoOpcional> ponto_virgula <expressaoOpcional> fecha_parenteses <statement>
-<expressaoOpcional>					::= <expressao> |
-										ε
-<statementWhile>					::= while abre_parenteses <expressao> fecha_parenteses <statement>
-<statementDoWhile>					::= do <statementEscopo> while abre_parenteses <expressao> fecha_parenteses
-<parteElse>							::= else <statement> |
-										ε
-<statementReturn>					::= identificador |
-										numero |
-										literal_simples |
-										literal_duplo |
-										ε
-<statementEscopo>					::= abre_chaves <listaStatement> fecha_chaves
-<listaStatement>					::= <statement> <listaStatementLinha>
-<listaStatementLinha>				::= <statement> <listaStatementLinha> |
-										ε
-<expressao>							::= identificador <expressao02> |
-										<valorR>
-<expressao02>						::= igual <expressao> |
-										<comparacao> <expressao> |
-										<aritmetica> <expressao> |
-										<aritmeticaOperadorDuplicado> |
-										<aritmeticaOperadorIgualComposto> <expressao>
-<valorR>							::=	<comparacao> <magnitude> <valorRLinha> |
-										<magnitude>
-<valorRLinha>						::= <comparacao> <magnitude> <valorRLinha> |
-										ε
-<comparacao>						::= igual_igual|
-										menor |
-										maior |
-										menor_igual |
-										maior_igual |
-										diferente
-<magnitude>							::= <termo> <magnitudeLinha>
-<termo>								::= <fator> <termoLinha>
-<magnitudeLinha>					::= mais <termo> <magnitudeLinha> |
-										menos <termo> <magnitudeLinha> |
-										ε
-<termoLinha>						::= vezes <fator> <termoLinha> |
-										barra <fator> <termoLinha> |
-										ε
-<fator>								::= abre_parenteses <expressao> fecha_parenteses |
-										menos <fator> |
-										mais <fator> |
-										identificador |
-										numero |
-										aspas_simples |
-										aspas_duplas
-<aritmetica>						::= mais |
-										menos |
-										vezes |
-										barra |
-<aritmeticaOperadorDuplicado> 		::= mais_mais |
-										menos_menos |
-										vezes_vezes
-<aritmeticaOperadorIgualComposto>	::= mais_igual |
-										menos_igual |
-										vezes_igual |
-										barra_igual
-<switch01>							::= switch abre_parenteses	<switch02> fecha_parenteses abre_chaves <listaCase> fecha_chaves
-<switch02>							::= numero
-										identificador
-										aspas_simples
-										aspas_duplas 
-<listaCase>							::= case <switch02> dois_pontos <listaStatement> <listaCaseLinha>
-<listaCaseLinha>					::= case <switch02> dois_pontos <listaStatement> <listaCaseLinha> |
-										default dois_pontos <listaStatement> |
-										ε
-<chamadaFuncao>						::= identificador abre_parenteses <listaArgChamadaFuncao> fecha_parenteses ponto_virgula
-<listaArgChamadaFuncao>				::= <switch02> <listaArgChamadaFuncaoLinha> |
-										ε
-<listaArgChamadaFuncaoLinha>		::= virgula <switch02> <listaArgChamadaFuncaoLinha> |
-										ε
+- (linguagem) ::= (funcao) /*enquanto lista de tokens não estiver vazia*/
+<br/>
+
+- (funcao) ::= (tipo) identificador abre_parenteses (listaArg) fecha_parenteses (statementEscopo)
+<br/>
+
+- (tipo) ::= int |
+- (tipo) ::= float |
+- (tipo) ::= char |
+- (tipo) ::= double |
+- (tipo) ::= void
+<br/>
+
+- (listaArg) ::= (arg) |
+- (listaArg) ::= virgula (listaArg) |
+- (listaArg) ::= ε
+<br/>
+
+- (arg) ::= (tipo) identificador |
+<br/>
+
+- (declaracao) ::= (tipo) (listaIdentificadores) |
+- (declaracao) ::= ε
+<br/>
+
+- (listaIdentificadores) ::= identificador |
+- (listaIdentificadores) ::= identificador virgula (listaIdentificadores)
+<br/>
+
+- (statement) ::= (statementFor) |
+- (statement) ::= (statementWhile) |
+- (statement) ::= (expressao) ponto_virgula |
+- (statement) ::= (statementIf) |
+- (statement) ::= (statementEscopo) |
+- (statement) ::= (declaracao) |
+- (statement) ::= (statementDoWhile) |
+- (statement) ::= return (statementReturn) ponto_virgula |
+- (statement) ::= break ponto_virgula |
+- (statement) ::= (switch01) |
+- (statement) ::= ponto_virgula
+<br/>
+
+- (statementFor) ::= for abre_parenteses (expressao) ponto_virgula (expressaoOpcional) ponto_virgula (expressaoOpcional) fecha_parenteses (statement)
+<br/>
+
+- (expressaoOpcional) ::= (expressao) |
+- (expressaoOpcional) ::= ε
+<br/>
+
+- (statementWhile) ::= while abre_parenteses (expressao) fecha_parenteses (statement)
+<br/>
+
+- (statementDoWhile) ::= do (statementEscopo) while abre_parenteses (expressao) fecha_parenteses
+<br/>
+
+- (parteElse) ::= else (statement) |
+- (parteElse) ::= ε
+<br/>
+
+- (statementReturn) := identificador |
+- (statementReturn) := numero |
+- (statementReturn) := literal_simples |
+- (statementReturn) := literal_duplo |
+- (statementReturn) := ε
+<br/>
+
+- (statementEscopo) ::= abre_chaves (listaStatement) fecha_chaves
+<br/>
+
+- (listaStatement) ::= (statement) (listaStatementLinha)
+<br/>
+
+- (listaStatementLinha) ::= (statement) (listaStatementLinha) |
+- (listaStatementLinha) ::= ε
+<br/>
+
+- (expressao) ::= identificador (expressao02) |
+- (expressao) ::= (valorR)
+<br/>
+
+- (expressao02) ::= igual (expressao) |
+- (expressao02) ::= (comparacao) (expressao) |
+- (expressao02) ::= (aritmetica) (expressao) |
+- (expressao02) ::= (aritmeticaOperadorDuplicado) |
+- (expressao02) ::= (aritmeticaOperadorIgualComposto) (expressao)
+<br/>
+
+- (valorR) ::= (comparacao) (magnitude) (valorRLinha) |
+- (valorR) ::= (magnitude)
+<br/>
+
+- (valorRLinha) ::= (comparacao) (magnitude) (valorRLinha) |
+- (valorRLinha) ::= ε
+<br/>
+
+- (comparacao) ::= igual_igual|
+- (comparacao) ::= menor |
+- (comparacao) ::= maior |
+- (comparacao) ::= menor_igual |
+- (comparacao) ::= maior_igual |
+- (comparacao) ::= diferente
+<br/>
+
+- (magnitude) ::= (termo) (magnitudeLinha)
+<br/>
+
+- (termo) ::= (fator) (termoLinha)
+<br/>
+
+- (magnitudeLinha) ::= mais (termo) (magnitudeLinha) |
+- (magnitudeLinha) ::= menos (termo) (magnitudeLinha) |
+- (magnitudeLinha) ::= ε
+<br/>
+
+- (termoLinha) ::= vezes (fator) (termoLinha) |
+- (termoLinha) ::= barra (fator) (termoLinha) |
+- (termoLinha) ::= ε
+<br/>
+
+- (fator) ::= abre_parenteses (expressao) fecha_parenteses |
+- (fator) ::= menos (fator) |
+- (fator) ::= mais (fator) |
+- (fator) ::= identificador |
+- (fator) ::= numero |
+- (fator) ::= aspas_simples |
+- (fator) ::= aspas_duplas
+<br/>
+
+- (aritmetica) := mais |
+- (aritmetica) := menos |
+- (aritmetica) := vezes |
+- (aritmetica) := barra
+<br/>
+
+- (aritmeticaOperadorDuplicado) ::= mais_mais |
+- (aritmeticaOperadorDuplicado) ::= menos_menos |
+- (aritmeticaOperadorDuplicado) ::= vezes_vezes
+<br/>
+
+- (aritmeticaOperadorIgualComposto)	::= mais_igual |
+- (aritmeticaOperadorIgualComposto)	::= menos_igual |
+- (aritmeticaOperadorIgualComposto)	::= vezes_igual |
+- (aritmeticaOperadorIgualComposto)	::= barra_igual
+<br/>
+
+- (switch01) ::= switch abre_parenteses	(switch02) fecha_parenteses abre_chaves (listaCase) fecha_chaves
+<br/>
+
+- (switch02) ::= numero
+- (switch02) ::= identificador
+- (switch02) ::= aspas_simples
+- (switch02) ::= aspas_duplas 
+<br/>
+
+- (listaCase) ::= case (switch02) dois_pontos (listaStatement) (listaCaseLinha)
+<br/>
+
+- (listaCaseLinha) ::= case (switch02) dois_pontos (listaStatement) (listaCaseLinha) |
+- (listaCaseLinha) ::= default dois_pontos (listaStatement) |
+- (listaCaseLinha) ::= ε
+<br/>
+
+- (chamadaFuncao) ::= identificador abre_parenteses (listaArgChamadaFuncao) fecha_parenteses ponto_virgula
+<br/>
+
+- (listaArgChamadaFuncao) ::= (switch02) (listaArgChamadaFuncaoLinha) |
+- (listaArgChamadaFuncao) ::= ε
+<br/>
+
+- (listaArgChamadaFuncaoLinha) ::= virgula (switch02) (listaArgChamadaFuncaoLinha) |
+- (listaArgChamadaFuncaoLinha) ::= ε
+<br/>
