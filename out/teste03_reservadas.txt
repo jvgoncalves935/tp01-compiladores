@@ -1,4 +1,5 @@
 int,"int",1,1
-int,"int",1,15
-float,"float",1,25
-double,"double",1,38
+int,"int",1,11
+float,"float",1,22
+double,"double",1,36
+void,"void",7,2

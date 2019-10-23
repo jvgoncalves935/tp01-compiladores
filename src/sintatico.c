@@ -117,7 +117,7 @@ int tokenDiferente(Token *token, char *str){
 
 void erroSintatico(Token *token, char *erro){
     ERRO_SINTATICO = 1;
-    if(!FLAG_SINTATICO){
+    if(!FLAG_SINTATICO || IGNORAR_TOKEN){
         return;
     }
     printf("Analise Sintatica: ERRO. %s Linha %d, Coluna %d.\nToken encontrado: %s\n",erro,token->linha,token->coluna,token->valor);
@@ -142,6 +142,7 @@ void proximoPontoVirgula(){
         free(aux);
         //LISTATOKEN->primeira = LISTATOKEN->primeira->proxima;
     }
+    //printf("teste %s %d %d\n",LISTATOKEN->primeira->valor,LISTATOKEN->primeira->linha,LISTATOKEN->primeira->coluna);
 }
 
 int verificarListaDiretivas(int cont){
@@ -160,6 +161,7 @@ int verificarListaDiretivas(int cont){
 
 int verificarLinguagem(int cont){
     while(LISTATOKEN->primeira != NULL){
+        IGNORAR_TOKEN = 0;
         if(!strcmp(LISTATOKEN->primeira->valor,"negacao")){
             consumirToken(0);
         }else{
@@ -304,36 +306,53 @@ int verificarStatement(int cont){
     do{
         if(tokenIgual(aux,"for")){
             verificarStatementFor(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
+            
         }
         if(tokenIgual(aux,"while")){
             verificarStatementWhile(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
         }
         if(tokenIgual(aux,"identificador") && tokenDiferente(aux->proxima,"abre_parenteses")){
             verificarExpressao(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
         }
         if(tokenIgual(aux,"identificador") && tokenIgual(aux->proxima,"abre_parenteses")){
             verificarChamadaFuncao(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
         }
         if(tokenIgual(aux,"if")){
             verificarStatementIf(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
         }
         if(tokenIgual(aux,"abre_chaves")){
             verificarStatementEscopo(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
         }
         if(isTipoDeclaracao(aux)){
             //consumirToken(cont);
             verificarDeclaracao(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
         }
         if(tokenIgual(aux,"do")){
             verificarStatementDoWhile(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
         }
         if(tokenIgual(aux,"return")){
             consumirToken(cont);
@@ -343,7 +362,9 @@ int verificarStatement(int cont){
             aux = getToken();
             if(tokenIgual(aux,"ponto_virgula")){
                 consumirToken(cont);
-                return 1;
+                if(!IGNORAR_TOKEN){
+                    return 1;
+                }
             }else{
                 erroSintatico(aux,"Esperado ponto_virgula apos 'return'.");
                 return 0;
@@ -354,7 +375,9 @@ int verificarStatement(int cont){
             aux = getToken();
             if(tokenIgual(aux,"ponto_virgula")){
                 consumirToken(cont);
-                return 1;
+                if(!IGNORAR_TOKEN){
+                    return 1;
+                }
             }else{
                 erroSintatico(aux,"Esperado ponto_virgula apos 'break'.");
                 return 0;
@@ -362,7 +385,9 @@ int verificarStatement(int cont){
         }
         if(tokenIgual(aux,"switch")){
             verificarSwitch01(cont+1);
-            return 1;
+            if(!IGNORAR_TOKEN){
+                return 1;
+            }
         }
 
         if(tokenIgual(aux,"ponto_virgula")){
@@ -373,6 +398,8 @@ int verificarStatement(int cont){
             consumirToken(cont);
             return 1;
         }
+        //printf("COME VAIEM");
+        aux = getToken();
     }while(IGNORAR_TOKEN);
     return 0;
 
