@@ -154,6 +154,9 @@ Instruções:
 - (statement) ::= ponto_virgula
 <br/>
 
+- (statementIf) ::= if abre_parenteses (expressao) fecha_parenteses (statement) (parteElse)
+<br/>
+
 - (statementFor) ::= for abre_parenteses (expressao) ponto_virgula (expressaoOpcional) ponto_virgula (expressaoOpcional) fecha_parenteses (statement)
 <br/>
 
