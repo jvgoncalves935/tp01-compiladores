@@ -22,12 +22,18 @@ Token *getToken(){
     }
     if(LISTATOKEN == NULL){
         FLAG_SINTATICO = 0;
+        printf("ERRO: Final de funcao inesperada na analise sintatica.\nAnalise Sintatica: ERRO.\n");
+        exit(0);
+
         return NULL;
     }
 
     Token *aux = LISTATOKEN->primeira;
     if(aux == NULL){
         FLAG_SINTATICO = 0;
+        printf("ERRO: Final de funcao inesperada na analise sintatica.\nAnalise Sintatica: ERRO.\n");
+        exit(0);
+
         return NULL;
     }
 
@@ -116,7 +122,7 @@ void erroSintatico(Token *token, char *erro){
 void proximoPontoVirgula(){
     Token *aux = LISTATOKEN->primeira;
     while(strcmp(LISTATOKEN->primeira->valor,"ponto_virgula") != 0){
-        if(LISTATOKEN->primeira == NULL){
+        if(aux == NULL){
             printf("LISTATOKEN vazia.\n");
             exit(0);
         }

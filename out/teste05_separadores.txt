@@ -1,0 +1,4 @@
+abre_parenteses,"(",1,8
+fecha_parenteses,")",1,9
+abre_chaves,"{",1,11
+ponto_virgula,";",2,12

@@ -1,0 +1,8 @@
+int,"int",1,1
+identificador,"main",1,5
+abre_parenteses,"(",1,8
+fecha_parenteses,")",1,9
+abre_chaves,"{",1,11
+return,"return",2,5
+numero,"0",2,12
+ponto_virgula,";",2,12
