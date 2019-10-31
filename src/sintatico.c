@@ -4,6 +4,12 @@
 
 //Funcao principal da analise sintatica.
 void analiseSintatica(ListaToken *listaTokenIdentificadores){
+    
+    TabelaIdentificadores *tabelaIdentificadores = malloc(sizeof(TabelaIdentificadores));
+    iniciarTabelaIdentificadores(tabelaIdentificadores);
+    inserirTabelaIdentificadores(tabelaIdentificadores,"int","come",1,2);
+    inserirTabelaIdentificadores(tabelaIdentificadores,"int","vaiem",1,2);
+    
     verificarListaDiretivas(0);
     verificarLinguagem(0);
 

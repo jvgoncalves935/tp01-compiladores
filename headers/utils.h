@@ -2,6 +2,7 @@
 #define UTILS_H_INCLUDED
 
 #include "../headers/lexico.h"
+#include "../headers/semantico.h"
 #include <string.h>
 
 extern int TAM_ASCII;
@@ -39,6 +40,10 @@ void iniciarListaToken(ListaToken *aux);
 int listaVaziaToken(ListaToken *f);
 void inserirListaToken(ListaToken *f, char *valor, char *valorBruto, int _linha, int _coluna);
 void setEstadoFinal(MaquinaEstados *maquinaEstados, int estado);
+
+int tabelaVaziaIdentificadores(TabelaIdentificadores *f);
+void iniciarTabelaIdentificadores(TabelaIdentificadores *aux);
+void inserirTabelaIdentificadores(TabelaIdentificadores *f, char *tipo, char *nome, int _linha, int _coluna);
 
 void freePalavrasReservadas(char **palavrasReservadas);
 void freeListaToken(ListaToken *listaToken);

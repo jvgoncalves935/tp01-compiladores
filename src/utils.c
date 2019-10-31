@@ -209,6 +209,65 @@ void inserirListaToken(ListaToken *f, char *valor, char *valorBruto, int _linha,
 	}
 }
 
+int tabelaVaziaIdentificadores(TabelaIdentificadores *f){
+	if(f->numIdentificadores == 0){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+//Inicia uma celula para receber um lista.
+void iniciarTabelaIdentificadores(TabelaIdentificadores *aux){
+    aux->primeira = malloc(sizeof(Identificador));
+    aux->primeira->proxima = NULL;
+    aux->primeira->anterior = NULL;
+    aux->primeira->linha = 0;
+    aux->primeira->coluna = 0;
+	aux->numIdentificadores = 0;
+}
+
+//Insere valores em uma lista.
+void inserirTabelaIdentificadores(TabelaIdentificadores *f, char *tipo, char *nome, int _linha, int _coluna){
+	Identificador *aux;
+	aux = malloc(1*sizeof(Identificador));
+
+    //printf("%ld -- %d %d\n",strlen(valor),LINHA,COLUNA);
+    aux->tipo = malloc((strlen(tipo)+1)*(sizeof(char)));
+    
+	strcpy(aux->tipo,tipo);
+
+    aux->nome = malloc((strlen(nome)+1)*(sizeof(char)));
+	strcpy(aux->nome,nome);
+
+    aux->valor = malloc(1);
+    strcpy(aux->valor,"");
+
+    /*
+    if(!strcmp(aux->valor,"")){
+        aux->valor = realloc(aux->valor,4);
+        strcpy(aux->valor,"xdd");
+        printf("%s\n",aux->valor);
+    }
+    */
+
+	aux->proxima = NULL;
+    aux->anterior = NULL;
+    aux->linha = _linha;
+    aux->coluna = _coluna;
+
+	if(tabelaVaziaIdentificadores(f)){
+		f->primeira = aux;
+        f->ultima = aux;
+		f->numIdentificadores++;
+	}else{
+        aux->anterior = f->ultima;
+        f->ultima->proxima = aux;
+        f->ultima = aux;
+		f->numIdentificadores++;
+	}
+}
+
 void setEstadoFinal(MaquinaEstados *maquinaEstados, int estado){
     maquinaEstados->estados[estado].final = 1;
 }

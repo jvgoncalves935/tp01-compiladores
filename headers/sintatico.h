@@ -3,6 +3,7 @@
 
 #include "../headers/automato.h"
 #include "../headers/utils.h"
+#include "../headers/semantico.h"
 
 void analiseSintatica(ListaToken *listaTokenIdentificadores);
 void consumirToken(int cont);
