@@ -9,6 +9,14 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     iniciarTabelaIdentificadores(tabelaIdentificadores);
     preencherTabelaIdentificadores(listaTokenIdentificadores,tabelaIdentificadores);
     printTabelaIdentificadores(tabelaIdentificadores);
+
+    /*alterarTabelaIdTipo(tabelaIdentificadores,"main","come");
+    alterarTabelaIdValor(tabelaIdentificadores,"a","vaiem");
+    alterarTabelaIdValor(tabelaIdentificadores,"cos","sen");
+    alterarTabelaIdLinhaColuna(tabelaIdentificadores,"cos",1,2);
+    alterarTabelaIdLinhaColuna(tabelaIdentificadores,"main",1,2);
+    printTabelaIdentificadores(tabelaIdentificadores);
+    */
     //inserirTabelaIdentificadores(tabelaIdentificadores,"int","come",1,2);
     //inserirTabelaIdentificadores(tabelaIdentificadores,"int","vaiem",1,2);
     
