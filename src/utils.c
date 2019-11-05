@@ -29,6 +29,7 @@ int FLAG_SINTATICO = 1;
 int FLAG_EXIBIR_ARVORE = 0;
 int IGNORAR_TOKEN = 0;
 int ERRO_SINTATICO = 0;
+int ERRO_SEMANTICO = 0;
 
 void iniciarPalavrasReservadas(char **matriz){
     matriz[0] = "auto";

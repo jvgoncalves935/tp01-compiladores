@@ -1,8 +1,6 @@
 #ifndef SEMANTICO_H_INCLUDED
 #define SEMANTICO_H_INCLUDED
 
-int consultarTabelaIdentificadores(char *identificador);
-
 typedef struct identificador{
     char *nome;
     char *valor;
@@ -18,5 +16,8 @@ typedef struct tabelaIdentificadores{
     Identificador *ultima;
     int numIdentificadores;
 }TabelaIdentificadores;
+
+int consultarTabelaIdentificadores(TabelaIdentificadores *tabela, char *identificador);
+void printTabelaIdentificadores(TabelaIdentificadores *tabela);
 
 #endif // SEMANTICO_H_INCLUDED

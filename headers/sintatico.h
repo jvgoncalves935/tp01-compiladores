@@ -6,6 +6,7 @@
 #include "../headers/semantico.h"
 
 void analiseSintatica(ListaToken *listaTokenIdentificadores);
+void preencherTabelaIdentificadores(ListaToken *listaTokenIdentificadores, TabelaIdentificadores *tabelaIdentificadores);
 void consumirToken(int cont);
 int tokenIgual(Token *token, char *str);
 int tokenDiferente(Token *token, char *str);

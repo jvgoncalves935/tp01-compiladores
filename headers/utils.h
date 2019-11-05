@@ -22,6 +22,7 @@ extern int FLAG_SINTATICO;
 extern int FLAG_EXIBIR_ARVORE;
 extern int IGNORAR_TOKEN;
 extern int ERRO_SINTATICO;
+extern int ERRO_SEMANTICO;
 
 
 //void iniciarPalavrasReservadas(char **matriz);

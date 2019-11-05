@@ -7,8 +7,10 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     
     TabelaIdentificadores *tabelaIdentificadores = malloc(sizeof(TabelaIdentificadores));
     iniciarTabelaIdentificadores(tabelaIdentificadores);
-    inserirTabelaIdentificadores(tabelaIdentificadores,"int","come",1,2);
-    inserirTabelaIdentificadores(tabelaIdentificadores,"int","vaiem",1,2);
+    preencherTabelaIdentificadores(listaTokenIdentificadores,tabelaIdentificadores);
+    printTabelaIdentificadores(tabelaIdentificadores);
+    //inserirTabelaIdentificadores(tabelaIdentificadores,"int","come",1,2);
+    //inserirTabelaIdentificadores(tabelaIdentificadores,"int","vaiem",1,2);
     
     verificarListaDiretivas(0);
     verificarLinguagem(0);
@@ -18,6 +20,23 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
         printf("Analise Sintatica: SUCESSO.\n");
     }else{
         printf("Analise Sintatica: ERRO.\n");
+        exit(0);
+    }
+
+    if(!ERRO_SEMANTICO){
+        printf("Analise Semantica: SUCESSO.\n");
+    }else{
+        printf("Analise Semantica: ERRO.\n");
+    }
+}
+
+void preencherTabelaIdentificadores(ListaToken *listaTokenIdentificadores, TabelaIdentificadores *tabelaIdentificadores){
+    Token *aux = listaTokenIdentificadores->primeira;
+    while(aux != NULL){
+        if(consultarTabelaIdentificadores(tabelaIdentificadores,aux->valorBruto) == 0){
+            inserirTabelaIdentificadores(tabelaIdentificadores,"",aux->valorBruto,0,0);
+        }
+        aux = aux->proxima;
     }
 }
 
