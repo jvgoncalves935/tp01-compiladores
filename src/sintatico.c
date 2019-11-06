@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../headers/sintatico.h"
 
 //Funcao principal da analise sintatica.
@@ -32,6 +33,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     }
 
     printTabelaIdentificadores();
+    warningsSemanticos();
 
     if(!ERRO_SEMANTICO){
         printf("Analise Semantica: SUCESSO.\n");
@@ -207,9 +209,12 @@ int verificarLinguagem(int cont){
 
 int verificarFuncao(int cont){
     printfSintatico(cont,"verificarFuncao");
-    verificarTipo(cont+1);
-
     Token *aux = getToken();
+    char *tipo = malloc((strlen(aux->valorBruto)+1)*sizeof(char));
+    verificarTipo(cont+1,tipo);
+    free(tipo);
+
+    aux = getToken();
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
     }
@@ -234,10 +239,11 @@ int verificarFuncao(int cont){
     return 0;
 }
 
-int verificarTipo(int cont){
+int verificarTipo(int cont, char *tipo){
     printfSintatico(cont,"verificarTipo");
     Token *aux = getToken();
     if(tokenIgual(aux,"int") || tokenIgual(aux,"float") || tokenIgual(aux,"char") || tokenIgual(aux,"double") || tokenIgual(aux,"void")){
+        strcpy(tipo,aux->valorBruto);
         consumirToken(cont); return 0;
     }
     return 0;
@@ -261,29 +267,35 @@ int verificarListaArg(int cont){
 
 int verificarArg(int cont){
     printfSintatico(cont,"verificarArg");
-    verificarTipo(cont+1);
-
     Token *aux = getToken();
+    char *tipo = malloc((strlen(aux->valorBruto)+1)*sizeof(char));
+    verificarTipo(cont+1,tipo);
+
+    aux = getToken();
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
     }
+    free(tipo);
     return 0;
 }
 
 int verificarDeclaracao(int cont){
     printfSintatico(cont,"verificarDeclaracao");
-    verificarTipo(cont+1);
-    verificarListaIdentificadores(cont+1);
+    Token *aux = getToken();
+    char *tipo = malloc((strlen(aux->valorBruto)+1)*sizeof(char));
+    verificarTipo(cont+1,tipo);
+    verificarListaIdentificadores(cont+1,tipo);
+    free(tipo);
     return 0;
 }
 
-int verificarListaIdentificadores(int cont){
+int verificarListaIdentificadores(int cont, char *tipo){
     printfSintatico(cont,"verificarListaIdentificadores");
 
     Token *aux = getToken();
     if(tokenIgual(aux,"identificador")){
         if(consultarTabelaIdentificadores(aux->valorBruto) == 0){
-            inserirTabelaIdentificadores(tabelaIdentificadores,"",aux->valorBruto,aux->linha,aux->coluna);
+            inserirTabelaIdentificadores(tabelaIdentificadores,tipo,aux->valorBruto,aux->linha,aux->coluna);
         }else{
             erroSemantico(aux,"Re-declaracao de variavel.");
             Identificador *aux2 = tabelaLinhaColunaVariavel(aux->valorBruto);
@@ -297,7 +309,7 @@ int verificarListaIdentificadores(int cont){
     aux = getToken();
     if(tokenIgual(aux,"virgula")){
         consumirToken(cont);
-        verificarListaIdentificadores(cont+1);
+        verificarListaIdentificadores(cont+1,tipo);
     }
     return 0;
 }

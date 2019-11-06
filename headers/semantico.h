@@ -18,6 +18,8 @@ typedef struct tabelaIdentificadores{
     int numIdentificadores;
 }TabelaIdentificadores;
 
+extern TabelaIdentificadores *tabelaIdentificadores;
+
 int consultarTabelaIdentificadores(char *identificador);
 void printTabelaIdentificadores();
 void alterarTabelaIdTipo(char *nome, char *tipo);
@@ -25,6 +27,8 @@ void alterarTabelaIdValor(char *nome, char *valor);
 void alterarTabelaIdLinhaColuna(char *nome, int linha, int coluna);
 Identificador *tabelaLinhaColunaVariavel(char *nome);
 
-extern TabelaIdentificadores *tabelaIdentificadores;
+void warningsSemanticos();
+void validarVariaveisInutilizadas();
+
 
 #endif // SEMANTICO_H_INCLUDED

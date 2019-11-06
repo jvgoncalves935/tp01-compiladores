@@ -72,3 +72,18 @@ Identificador *tabelaLinhaColunaVariavel(char *nome){
 	return aux;
 
 }
+
+void warningsSemanticos(){
+	validarVariaveisInutilizadas();
+}
+
+void validarVariaveisInutilizadas(){
+	Identificador *aux = tabelaIdentificadores->primeira;
+	while(aux != NULL){
+		if(!strcmp("",aux->valor)){
+			printf("AVISO: Variavel %s foi declarada, porem nao foi inicializada. Linha %d, Coluna %d\n",aux->nome,aux->linha,aux->coluna);
+		}
+		aux = aux->proxima;
+	}
+}
+
