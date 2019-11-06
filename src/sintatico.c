@@ -5,10 +5,10 @@
 //Funcao principal da analise sintatica.
 void analiseSintatica(ListaToken *listaTokenIdentificadores){
     
-    TabelaIdentificadores *tabelaIdentificadores = malloc(sizeof(TabelaIdentificadores));
+    tabelaIdentificadores = malloc(sizeof(TabelaIdentificadores));
     iniciarTabelaIdentificadores(tabelaIdentificadores);
-    preencherTabelaIdentificadores(listaTokenIdentificadores,tabelaIdentificadores);
-    printTabelaIdentificadores(tabelaIdentificadores);
+    //preencherTabelaIdentificadores(listaTokenIdentificadores);
+    //printTabelaIdentificadores();
 
     /*alterarTabelaIdTipo(tabelaIdentificadores,"main","come");
     alterarTabelaIdValor(tabelaIdentificadores,"a","vaiem");
@@ -31,6 +31,8 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
         exit(0);
     }
 
+    printTabelaIdentificadores();
+
     if(!ERRO_SEMANTICO){
         printf("Analise Semantica: SUCESSO.\n");
     }else{
@@ -38,11 +40,11 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     }
 }
 
-void preencherTabelaIdentificadores(ListaToken *listaTokenIdentificadores, TabelaIdentificadores *tabelaIdentificadores){
+void preencherTabelaIdentificadores(ListaToken *listaTokenIdentificadores){
     Token *aux = listaTokenIdentificadores->primeira;
     while(aux != NULL){
-        if(consultarTabelaIdentificadores(tabelaIdentificadores,aux->valorBruto) == 0){
-            inserirTabelaIdentificadores(tabelaIdentificadores,"",aux->valorBruto,0,0);
+        if(consultarTabelaIdentificadores(aux->valorBruto) == 0){
+            inserirTabelaIdentificadores(tabelaIdentificadores,"",aux->valorBruto,-1,-1);
         }
         aux = aux->proxima;
     }
@@ -149,6 +151,11 @@ void erroSintatico(Token *token, char *erro){
     
     IGNORAR_TOKEN = 1;
     proximoPontoVirgula();
+}
+
+void erroSemantico(Token *token, char *erro){
+	ERRO_SEMANTICO = 1;
+	printf("ERRO. %s Linha %d, Coluna %d.\nValor encontrado: %s\n",erro,token->linha,token->coluna,token->valorBruto);
 }
 
 //Enquanto nao encontrar um "ponto_virgula", todos os tokens serao consumidos.
@@ -275,10 +282,18 @@ int verificarListaIdentificadores(int cont){
 
     Token *aux = getToken();
     if(tokenIgual(aux,"identificador")){
+        if(consultarTabelaIdentificadores(aux->valorBruto) == 0){
+            inserirTabelaIdentificadores(tabelaIdentificadores,"",aux->valorBruto,aux->linha,aux->coluna);
+        }else{
+            erroSemantico(aux,"Re-declaracao de variavel.");
+            Identificador *aux2 = tabelaLinhaColunaVariavel(aux->valorBruto);
+            printf("Declaracao anterior: Linha %d, Coluna %d\n\n",aux2->linha,aux2->coluna);
+        }
         consumirToken(cont);
     }else{
         erroSintatico(aux,"Expressao invalida em declaracao (era esperado um identificador).");
     }
+
     aux = getToken();
     if(tokenIgual(aux,"virgula")){
         consumirToken(cont);

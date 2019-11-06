@@ -1,6 +1,7 @@
 #ifndef SEMANTICO_H_INCLUDED
 #define SEMANTICO_H_INCLUDED
 
+
 typedef struct identificador{
     char *nome;
     char *valor;
@@ -17,10 +18,13 @@ typedef struct tabelaIdentificadores{
     int numIdentificadores;
 }TabelaIdentificadores;
 
-int consultarTabelaIdentificadores(TabelaIdentificadores *tabela, char *identificador);
-void printTabelaIdentificadores(TabelaIdentificadores *tabela);
-void alterarTabelaIdTipo(TabelaIdentificadores *tabela, char *nome, char *tipo);
-void alterarTabelaIdValor(TabelaIdentificadores *tabela, char *nome, char *valor);
-void alterarTabelaIdLinhaColuna(TabelaIdentificadores *tabela, char *nome, int linha, int coluna);
+int consultarTabelaIdentificadores(char *identificador);
+void printTabelaIdentificadores();
+void alterarTabelaIdTipo(char *nome, char *tipo);
+void alterarTabelaIdValor(char *nome, char *valor);
+void alterarTabelaIdLinhaColuna(char *nome, int linha, int coluna);
+Identificador *tabelaLinhaColunaVariavel(char *nome);
+
+extern TabelaIdentificadores *tabelaIdentificadores;
 
 #endif // SEMANTICO_H_INCLUDED

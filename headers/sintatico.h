@@ -6,7 +6,7 @@
 #include "../headers/semantico.h"
 
 void analiseSintatica(ListaToken *listaTokenIdentificadores);
-void preencherTabelaIdentificadores(ListaToken *listaTokenIdentificadores, TabelaIdentificadores *tabelaIdentificadores);
+void preencherTabelaIdentificadores(ListaToken *listaTokenIdentificadores);
 void consumirToken(int cont);
 int tokenIgual(Token *token, char *str);
 int tokenDiferente(Token *token, char *str);
@@ -14,6 +14,7 @@ void erroSintatico(Token *token, char *erro);
 Token *getToken();
 void printfSintatico(int cont, char *str);
 void proximoPontoVirgula();
+void erroSemantico(Token *token, char *erro);
 
 int verificarListaDiretivas(int cont);
 int verificarLinguagem(int cont);

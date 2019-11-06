@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main (){
-	float cos, x, n, term, eps, alt;
+	float cos, x, n, term, eps, alt,alt;
 	// compute the cosine of x to within tolerance eps
 	// use an alternating series
 	x = 3.14159;

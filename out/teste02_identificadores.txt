@@ -5,6 +5,7 @@ identificador,"n",5,16
 identificador,"term",5,19
 identificador,"eps",5,25
 identificador,"alt",5,30
+identificador,"alt",5,34
 identificador,"x",8,2
 identificador,"eps",9,2
 identificador,"n",10,2
