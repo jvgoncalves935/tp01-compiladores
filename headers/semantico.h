@@ -29,6 +29,9 @@ Identificador *tabelaLinhaColunaVariavel(char *nome);
 
 void warningsSemanticos();
 void validarVariaveisInutilizadas();
+char *descobrirTipo(char *valor);
+int validarLetra(char valor);
+int validarNumero(char valor);
 
 
 #endif // SEMANTICO_H_INCLUDED

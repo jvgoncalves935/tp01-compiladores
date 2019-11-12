@@ -87,3 +87,47 @@ void validarVariaveisInutilizadas(){
 	}
 }
 
+char *descobrirTipo(char *valor){
+	int tamanho = strlen(valor);
+	printf("%s\n",valor);
+	if(tamanho > 2){
+		if(validarNumero(valor[0]) && valor[1] == '.'){
+			return "float";
+		}
+	}
+
+	if(valor[0] == 39){
+		sprintf(valor,"%c",valor[1]);
+		return "char";
+	}
+
+	int i;
+
+	if(valor[0] == '"'){
+		char aux[tamanho-1];
+		for(i=0;i<tamanho-2;i++){
+			aux[i] = valor[i+1];
+		}
+		aux[i] = '\0';
+		sprintf(valor,"%s",aux);
+		return "string";
+	}
+
+	return "int";
+
+}
+
+int validarLetra(char valor){
+	if((valor >= 65 && valor <= 90) || (valor >= 97 && valor <= 122)){
+		return 1;
+	}
+	return 0;
+}
+
+int validarNumero(char valor){
+	if(valor >= 48 && valor <= 57){
+		return 1;
+	}
+	return 0;
+}
+

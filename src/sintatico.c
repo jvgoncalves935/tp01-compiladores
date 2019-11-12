@@ -737,6 +737,10 @@ int verificarFator(int cont){
         return 0;
     }
 
+    char tipo[10];
+    strcpy(tipo,descobrirTipo(aux->valorBruto));
+    printf("TIPO: %s - %s\n",tipo,aux->valorBruto);
+
     if(tokenIgual(aux,"mais")){
         consumirToken(cont);
         verificarFator(cont+1);
