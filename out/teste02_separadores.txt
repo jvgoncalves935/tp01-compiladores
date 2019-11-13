@@ -6,8 +6,7 @@ virgula,",",5,13
 virgula,",",5,16
 virgula,",",5,22
 virgula,",",5,27
-virgula,",",5,32
-ponto_virgula,";",5,36
+ponto_virgula,";",5,32
 igual,"=",8,4
 ponto_virgula,";",8,12
 igual,"=",9,6
