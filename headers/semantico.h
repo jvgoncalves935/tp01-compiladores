@@ -32,7 +32,7 @@ void validarVariaveisInutilizadas();
 char *descobrirTipo(char *valor);
 int validarLetra(char valor);
 int validarNumero(char valor);
-int tipoValidoTabela(char *nome, char *tipo);
+int tipoValidoTabela(char *nome, char *tipo, int linha, int coluna);
 
 
 #endif // SEMANTICO_H_INCLUDED

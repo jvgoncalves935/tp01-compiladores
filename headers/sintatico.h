@@ -4,6 +4,7 @@
 #include "../headers/automato.h"
 #include "../headers/utils.h"
 #include "../headers/semantico.h"
+#include "../headers/gerador.h"
 
 void analiseSintatica(ListaToken *listaTokenIdentificadores);
 void preencherTabelaIdentificadores(ListaToken *listaTokenIdentificadores);

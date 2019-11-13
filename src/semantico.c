@@ -131,7 +131,7 @@ int validarNumero(char valor){
 	return 0;
 }
 
-int tipoValidoTabela(char *nome, char *tipo){
+int tipoValidoTabela(char *nome, char *tipo, int linha, int coluna){
 	Identificador *aux = tabelaIdentificadores->primeira;
 	while(aux != NULL){
 		if(!strcmp(nome,aux->nome)){
@@ -142,6 +142,7 @@ int tipoValidoTabela(char *nome, char *tipo){
 		}
 		aux = aux->proxima;
 	}
-	printf("tipoValidoTabela: VARIAVEL INEXISTENTE.\n");
+	printf("ERRO: Atribuicao em variavel nao declarada: '%s'. Linha %d, Coluna %d.\nAnalise Semantica: ERRO.\n",nome,linha,coluna);
+	exit(0);
 	return 0;
 }
