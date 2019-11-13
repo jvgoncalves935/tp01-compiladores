@@ -89,7 +89,7 @@ void validarVariaveisInutilizadas(){
 
 char *descobrirTipo(char *valor){
 	int tamanho = strlen(valor);
-	printf("%s\n",valor);
+	//printf("%s\n",valor);
 	if(tamanho > 2){
 		if(validarNumero(valor[0]) && valor[1] == '.'){
 			return "float";
@@ -110,7 +110,7 @@ char *descobrirTipo(char *valor){
 		}
 		aux[i] = '\0';
 		sprintf(valor,"%s",aux);
-		return "string";
+		return "char";
 	}
 
 	return "int";
@@ -131,3 +131,17 @@ int validarNumero(char valor){
 	return 0;
 }
 
+int tipoValidoTabela(char *nome, char *tipo){
+	Identificador *aux = tabelaIdentificadores->primeira;
+	while(aux != NULL){
+		if(!strcmp(nome,aux->nome)){
+			if(!strcmp(tipo,aux->tipo)){
+				return 1;
+			}
+			return 0;
+		}
+		aux = aux->proxima;
+	}
+	printf("tipoValidoTabela: VARIAVEL INEXISTENTE.\n");
+	return 0;
+}

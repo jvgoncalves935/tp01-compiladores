@@ -334,7 +334,7 @@ int verificarStatement(int cont){
             }
         }
         if(tokenIgual(aux,"identificador") && tokenDiferente(aux->proxima,"abre_parenteses")){
-            verificarExpressao(cont+1);
+            verificarExpressao(cont+1,"");
             if(!IGNORAR_TOKEN){
                 return 1;
             }
@@ -433,7 +433,7 @@ int verificarStatementFor(int cont){
         erroSintatico(aux,"Caracter invalido em declaracao for (era esperado um abre_parenteses).");
     }
 
-    verificarExpressao(cont+1);
+    verificarExpressao(cont+1,"");
 
     aux = getToken();
     if(tokenIgual(aux,"ponto_virgula")){
@@ -478,7 +478,7 @@ int verificarStatementWhile(int cont){
         erroSintatico(aux,"Caracter invalido em declaracao while (era esperado um abre_parenteses).");
     }
 
-    verificarExpressao(cont+1);
+    verificarExpressao(cont+1,"");
 
     aux = getToken();
     if(tokenIgual(aux,"fecha_parenteses")){
@@ -500,38 +500,50 @@ int verificarStatementReturn(int cont){
     return 0;
 }
 
-int verificarExpressao(int cont){
+int verificarExpressao(int cont, char *iden){
     printfSintatico(cont,"verificarExpressao");
     Token *aux = getToken();
+    char *iden2;
+    if(!strcmp(iden,"")){
+        iden2 = malloc((strlen(aux->valorBruto)+1)*sizeof(char));
+        strcpy(iden2,aux->valorBruto);
+    }else{
+        iden2 = malloc((strlen(iden)+1)*sizeof(char));
+        strcpy(iden2,iden);
+    }
+    
+    
     if(tokenIgual(aux,"identificador")){
         consumirToken(cont);
         
-        verificarExpressao02(cont+1);
+        verificarExpressao02(cont+1,iden2);
+        free(iden2);
         return 0;
     }
 
-    verificarValorR(cont+1);
+    verificarValorR(cont+1,iden2);
+    free(iden2);
     return 0;
 }
 
-int verificarExpressao02(int cont){
+int verificarExpressao02(int cont, char *iden){
     printfSintatico(cont,"verificarExpressao02");
     Token *aux = getToken();
     if(tokenIgual(aux,"igual")){
         consumirToken(cont);
-        verificarExpressao(cont+1);
+        verificarExpressao(cont+1,iden);
         return 0;
     }
 
     if(isComparacao(aux)){
         verificarComparacao(cont+1);
-        verificarExpressao(cont+1);
+        verificarExpressao(cont+1,iden);
         return 0;
     }
 
     if(isAritmetica(aux)){
         verificarAritmetica(cont+1);
-        verificarExpressao(cont+1);
+        verificarExpressao(cont+1,iden);
         return 0;
     }
 
@@ -542,7 +554,7 @@ int verificarExpressao02(int cont){
 
     if(isAritmeticaOperadorIgualComposto(aux)){
         verificarAritmeticaOperadorIgualComposto(cont+1);
-        verificarExpressao(cont+1);
+        verificarExpressao(cont+1,iden);
         return 0;
     }
     return 0;
@@ -563,7 +575,7 @@ int verificarStatementIf(int cont){
         erroSintatico(aux,"Caracter invalido em declaracao if (era esperado um abre_parenteses).");
     }
 
-    verificarExpressao(cont+1);
+    verificarExpressao(cont+1,"");
 
     aux = getToken();
     if(tokenIgual(aux,"fecha_parenteses")){
@@ -600,7 +612,7 @@ int verificarStatementEscopo(int cont){
 
 int verificarExpressaoOpcional(int cont){
     printfSintatico(cont,"verificarExpressaoOpcional");
-    verificarExpressao(cont+1);
+    verificarExpressao(cont+1,"");
     return 0;
 }
 
@@ -630,28 +642,29 @@ int verificarListaStatementLinha(int cont){
     return 0;
 }
 
-int verificarValorR(int cont){
+int verificarValorR(int cont, char *iden){
     printfSintatico(cont,"verificarValorR");
+    //printf("IDEN %s\n",iden);
     Token *aux = getToken();
     if(isComparacao(aux)){
         verificarComparacao(cont+1);
-        verificarMagnitude(cont+1);
-        verificarValorRLinha(cont+1); 
+        verificarMagnitude(cont+1,iden);
+        verificarValorRLinha(cont+1,iden); 
     }else{
-        verificarMagnitude(cont+1);
+        verificarMagnitude(cont+1,iden);
         return 0;
     }
     return 0;
 
 }
 
-int verificarValorRLinha(int cont){
+int verificarValorRLinha(int cont, char *iden){
     printfSintatico(cont,"verificarRLinha");
     Token *aux = getToken();
     if(isComparacao(aux)){
         verificarComparacao(cont+1);
-        verificarMagnitude(cont+1);
-        verificarValorRLinha(cont+1);
+        verificarMagnitude(cont+1,iden);
+        verificarValorRLinha(cont+1,iden);
     }
     return 0;
 }
@@ -667,67 +680,69 @@ int verificarComparacao(int cont){
     return 0;
 }
 
-int verificarMagnitude(int cont){
+int verificarMagnitude(int cont, char *iden){
     printfSintatico(cont,"verificarMagnitude");
-    verificarTermo(cont+1);
-    verificarMagnitudeLinha(cont+1);
+    verificarTermo(cont+1,iden);
+    verificarMagnitudeLinha(cont+1,iden);
     return 0;
 }
 
-int verificarMagnitudeLinha(int cont){
+int verificarMagnitudeLinha(int cont, char *iden){
     printfSintatico(cont,"verificarMagnitudeLinha");
     Token *aux = getToken();
     if(tokenIgual(aux,"mais")){
         consumirToken(cont);
-        verificarTermo(cont+1);
-        verificarMagnitudeLinha(cont+1);
+        verificarTermo(cont+1,iden);
+        verificarMagnitudeLinha(cont+1,iden);
         return 0;
     }
 
     aux = getToken();
     if(tokenIgual(aux,"menos")){
         consumirToken(cont);
-        verificarTermo(cont+1);
-        verificarMagnitudeLinha(cont+1);
+        verificarTermo(cont+1,iden);
+        verificarMagnitudeLinha(cont+1,iden);
         return 0;
     }
     return 0;
 }
 
-int verificarTermo(int cont){
+int verificarTermo(int cont, char *iden){
     printfSintatico(cont,"verificarTermo");
-    verificarFator(cont+1);
-    verificarTermoLinha(cont+1);
+    verificarFator(cont+1,iden);
+    verificarTermoLinha(cont+1,iden);
     return 0;
 }
 
-int verificarTermoLinha(int cont){
+int verificarTermoLinha(int cont, char *iden){
     printfSintatico(cont,"verificarTermoLinha");
     Token *aux = getToken();
     if(tokenIgual(aux,"vezes")){
         consumirToken(cont);
-        verificarFator(cont+1);
-        verificarTermoLinha(cont+1);
+        verificarFator(cont+1,iden);
+        verificarTermoLinha(cont+1,iden);
         return 0;
     }
 
     aux = getToken();
     if(tokenIgual(aux,"barra")){
         consumirToken(cont);
-        verificarFator(cont+1);
-        verificarTermoLinha(cont+1);
+        verificarFator(cont+1,iden);
+        verificarTermoLinha(cont+1,iden);
         return 0;
     }
     return 0;
 
 }
 
-int verificarFator(int cont){
+int verificarFator(int cont, char *iden){
     printfSintatico(cont,"verificarFator");
+    //printf("IDEN %s\n",iden);
     Token *aux = getToken();
     if(tokenIgual(aux,"abre_parenteses")){
         consumirToken(cont);
-        verificarExpressao(cont+1);
+        //ALTERAR
+        verificarExpressao(cont+1,"");
         aux = getToken();
         if(tokenIgual(aux,"fecha_parenteses")){
             consumirToken(cont);
@@ -739,11 +754,19 @@ int verificarFator(int cont){
 
     char tipo[10];
     strcpy(tipo,descobrirTipo(aux->valorBruto));
-    printf("TIPO: %s - %s\n",tipo,aux->valorBruto);
+    //printf("TIPO: %s - %s\n",tipo,aux->valorBruto);
+    if(tipoValidoTabela(iden,tipo)){
+        alterarTabelaIdValor(iden,aux->valorBruto);
+    }else{
+        char aux3[256];
+        Identificador *aux4 = tabelaLinhaColunaVariavel(iden);
+        sprintf(aux3,"Atribuicao de valores com tipos inconpativeis (variavel declarada como '%s' mas atribuida como '%s').",aux4->tipo,tipo);
+        erroSemantico(aux,aux3);
+    }
 
     if(tokenIgual(aux,"mais")){
         consumirToken(cont);
-        verificarFator(cont+1);
+        verificarFator(cont+1,iden);
         return 0;
     }
 
@@ -810,7 +833,7 @@ int verificarStatementDoWhile(int cont){
 
             if(tokenIgual(aux,"abre_parenteses")){
                 consumirToken(cont);
-                verificarExpressao(cont+1);
+                verificarExpressao(cont+1,"");
 
                 aux = getToken();
                 if(tokenIgual(aux,"fecha_parenteses")){

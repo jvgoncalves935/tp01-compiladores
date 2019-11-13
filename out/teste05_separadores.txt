@@ -12,10 +12,11 @@ ponto_virgula,";",6,10
 igual,"=",7,6
 ponto_virgula,";",7,17
 igual,"=",8,6
-ponto_virgula,";",8,10
+ponto_virgula,";",8,8
 igual,"=",9,6
-mais,"+",9,12
-ponto_virgula,";",9,16
-ponto_virgula,";",10,9
-fecha_chaves,"}",11,0
-negacao,"!",11,5
+ponto_virgula,";",9,10
+igual,"=",10,6
+mais,"+",10,12
+ponto_virgula,";",10,16
+ponto_virgula,";",11,9
+fecha_chaves,"}",12,0

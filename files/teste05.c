@@ -5,6 +5,7 @@ int main(){
     teste = 2;
 	aaa = 'a';
 	bbb = "bbb come";
+	bbb = 2;
 	ccc = 3.4;
 	ccc = 1.5 + 2.0;
 	return 0;
