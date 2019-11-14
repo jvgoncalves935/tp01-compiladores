@@ -8,27 +8,21 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     
     tabelaIdentificadores = malloc(sizeof(TabelaIdentificadores));
     iniciarTabelaIdentificadores(tabelaIdentificadores);
-    //preencherTabelaIdentificadores(listaTokenIdentificadores);
-    //printTabelaIdentificadores();
-
-    /*alterarTabelaIdTipo(tabelaIdentificadores,"main","come");
-    alterarTabelaIdValor(tabelaIdentificadores,"a","vaiem");
-    alterarTabelaIdValor(tabelaIdentificadores,"cos","sen");
-    alterarTabelaIdLinhaColuna(tabelaIdentificadores,"cos",1,2);
-    alterarTabelaIdLinhaColuna(tabelaIdentificadores,"main",1,2);
-    printTabelaIdentificadores(tabelaIdentificadores);
-    */
-    //inserirTabelaIdentificadores(tabelaIdentificadores,"int","come",1,2);
-    //inserirTabelaIdentificadores(tabelaIdentificadores,"int","vaiem",1,2);
+    
+    iniciarArquivoAssembly();
     
     verificarListaDiretivas(0);
     verificarLinguagem(0);
 
+    geradorPop("come");
+    geradorPush("vaiem");
+    
     if(!ERRO_SINTATICO){
         free(LISTATOKEN);
         printf("Analise Sintatica: SUCESSO.\n");
     }else{
         printf("Analise Sintatica: ERRO.\n");
+        invalidarArquivoAssembly();
         exit(0);
     }
 
@@ -37,8 +31,10 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
 
     if(!ERRO_SEMANTICO){
         printf("Analise Semantica: SUCESSO.\n");
+        fecharArquivoAssembly();
     }else{
         printf("Analise Semantica: ERRO.\n");
+        invalidarArquivoAssembly();
     }
 }
 
@@ -149,6 +145,7 @@ void erroSintatico(Token *token, char *erro){
     if(!FLAG_SINTATICO || IGNORAR_TOKEN){
         return;
     }
+    fecharArquivoAssembly();
     printf("ERRO. %s Linha %d, Coluna %d.\nToken encontrado: %s\n",erro,token->linha,token->coluna,token->valor);
     
     IGNORAR_TOKEN = 1;
@@ -157,6 +154,7 @@ void erroSintatico(Token *token, char *erro){
 
 void erroSemantico(Token *token, char *erro){
 	ERRO_SEMANTICO = 1;
+    fecharArquivoAssembly();
 	printf("ERRO. %s Linha %d, Coluna %d.\nValor encontrado: %s\n",erro,token->linha,token->coluna,token->valorBruto);
 }
 

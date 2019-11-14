@@ -43,8 +43,8 @@ int main(int argc,char **argv){
     int tamanho_arquivo = 0;
 
     //Iniciar nome do arquivo
-    printf("%s\n",argv1);
-    //iniciarNomeArquivoAssembly(argv1);
+    //printf("%s\n",argv1);
+    iniciarNomeArquivoAssembly(argv1);
 
     //Descobrir tamanho do arquivo
     FILE *arq = fopen(argv1,"r");

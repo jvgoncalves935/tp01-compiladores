@@ -1,0 +1,5 @@
+numero,"2",5,13
+numero,"3.4",8,8
+numero,"1.5",9,8
+numero,"2.0",9,14
+numero,"0",10,9
