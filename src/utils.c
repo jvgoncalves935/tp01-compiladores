@@ -66,59 +66,6 @@ void iniciarPalavrasReservadas(char **matriz){
     matriz[31] = "if";
 }
 
-/*
-void iniciarLetras(char *vetor){
-    int i;
-    for(i = 0; i < 128; i++){
-        vetor[i] = '-';
-    }
-
-    for(i = 65; i <= 90; i++){
-        vetor[i] = LETRA;
-    }
-    for(i = 97; i <= 122; i++){
-        vetor[i] = LETRA;
-    }
-}
-
-void iniciarNumeros(char *vetor){
-    int i;
-
-    for(i = 48; i <= 57; i++){
-        vetor[i] = NUMERO;
-    }
-}
-
-void iniciarOperadores(char *vetor){
-    vetor[43] = OPERADOR;
-    vetor[42] = OPERADOR;
-    vetor[47] = OPERADOR;
-    vetor[37] = OPERADOR;
-    vetor[61] = OPERADOR;
-    vetor[60] = OPERADOR;
-    vetor[62] = OPERADOR;
-    vetor[33] = OPERADOR;
-    vetor[124] = OPERADOR;
-    vetor[38] = OPERADOR;
-    vetor[126] = OPERADOR;
-    vetor[94] = OPERADOR;
-    vetor[45] = OPERADOR;
-    vetor[63] = OPERADOR;
-}
-
-void iniciarSeparadores(char *vetor){
-    vetor[94] = SEPARADOR;
-    vetor[59] = SEPARADOR;
-}
-
-void iniciarTabelaAscii(char *vetor){
-    iniciarLetras(vetor);
-    iniciarNumeros(vetor);
-    iniciarOperadores(vetor);
-    iniciarSeparadores(vetor);
-}
-*/
-
 int listaVazia(Estado *f){
 	if(f->numTransicoes == 0){
 		return 1;
@@ -269,6 +216,86 @@ void inserirTabelaIdentificadores(TabelaIdentificadores *f, char *tipo, char *no
 	}
 }
 
+int pilhaVaziaAssembly(PilhaAssembly *f){
+	if(f->numElementosPilha == 0){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+//Inicia uma celula para receber um lista.
+void iniciarPilhaAssembly(PilhaAssembly *aux){
+    aux->primeira = malloc(sizeof(ElementoPilhaAssembly));
+    aux->primeira->proxima = NULL;
+    aux->primeira->anterior = NULL;
+	aux->numElementosPilha = 0;
+}
+
+//Insere valores em uma lista.
+void inserirPilhaAssembly(PilhaAssembly *f, char *comando, char *arg1, char *arg2, char *arg3){
+	ElementoPilhaAssembly *aux;
+	aux = malloc(1*sizeof(ElementoPilhaAssembly));
+
+    //printf("%ld -- %d %d\n",strlen(valor),LINHA,COLUNA);
+    aux->comando = malloc((strlen(comando)+1)*(sizeof(char)));  
+	strcpy(aux->comando,comando);
+
+    aux->arg1 = malloc((strlen(arg1)+1)*(sizeof(char)));
+	strcpy(aux->arg1,arg1);
+
+    aux->arg2 = malloc((strlen(arg2)+1)*(sizeof(char)));
+	strcpy(aux->arg2,arg2);
+
+    aux->arg3 = malloc((strlen(arg3)+1)*(sizeof(char)));
+	strcpy(aux->arg3,arg3);
+
+	aux->proxima = NULL;
+    aux->anterior = NULL;
+
+	if(pilhaVaziaAssembly(f)){
+		f->primeira = aux;
+        f->ultima = aux;
+		f->numElementosPilha++;
+	}else{
+        aux->anterior = f->ultima;
+        f->ultima->proxima = aux;
+        f->ultima = aux;
+		f->numElementosPilha++;
+	}
+}
+
+void desempilharPilhaAssembly(PilhaAssembly *f){
+    if(pilhaVaziaAssembly(f)){
+        return;
+    }
+
+    //Pilha vai ficar vazia
+    if(f->ultima->anterior == NULL){
+        free(f->ultima);
+        f->ultima = NULL;
+        f->primeira = NULL;
+        f->numElementosPilha = 0;
+    }else{
+        ElementoPilhaAssembly *aux = f->ultima;
+        f->ultima = f->ultima->anterior;
+        free(aux);
+        f->numElementosPilha--;
+    }
+}
+
+void printfPilhaAssembly(PilhaAssembly *f){
+    if(pilhaVaziaAssembly(f)){
+        printf("Pilha vazia.\n");
+        return;
+    }
+    ElementoPilhaAssembly *aux = f->primeira;
+    while(aux != NULL){
+        printf("%s\n",aux->comando);
+        aux = aux->proxima;
+    }
+}
+
 void setEstadoFinal(MaquinaEstados *maquinaEstados, int estado){
     maquinaEstados->estados[estado].final = 1;
 }
@@ -280,7 +307,6 @@ void freePalavrasReservadas(char **palavrasReservadas){
         free(&palavrasReservadas[i]);
     }
     free(palavrasReservadas);
-    printf("come vaiem\n");
 }
 
 void freeListaToken(ListaToken *listaToken){
@@ -344,17 +370,3 @@ void freeMaquinaEstados(MaquinaEstados *maquinaEstados){
     free(maquinaEstados);
 }
 
-/*
-Transicao *ultimoLista(Transicao *primeiro){
-    Transicao *aux = primeiro;
-    if(aux == NULL){
-        return NULL;
-    }
-    while(true){
-        if(aux->proxima == NULL){
-            return aux;
-        }
-        aux = aux->proxima;
-    }
-}
-*/

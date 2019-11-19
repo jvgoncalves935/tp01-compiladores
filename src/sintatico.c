@@ -10,12 +10,16 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     iniciarTabelaIdentificadores(tabelaIdentificadores);
     
     iniciarArquivoAssembly();
+
+    pilhaAssembly = malloc(sizeof(PilhaAssembly));
+    iniciarPilhaAssembly(pilhaAssembly);
     
     verificarListaDiretivas(0);
     verificarLinguagem(0);
 
-    geradorPop("come");
-    geradorPush("vaiem");
+    geradorPush("push t2");
+    geradorPop("pop t1");
+    
     
     if(!ERRO_SINTATICO){
         free(LISTATOKEN);
@@ -26,7 +30,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
         exit(0);
     }
 
-    printTabelaIdentificadores();
+    //printTabelaIdentificadores();
     warningsSemanticos();
 
     if(!ERRO_SEMANTICO){

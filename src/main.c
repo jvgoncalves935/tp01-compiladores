@@ -48,6 +48,10 @@ int main(int argc,char **argv){
 
     //Descobrir tamanho do arquivo
     FILE *arq = fopen(argv1,"r");
+    if(arq == NULL){
+        printf("ERRO na leitura do arquivo %s.\n",argv1);
+        exit(0);
+    }
     while(fscanf(arq,"%c",&temp)!=EOF){
         tamanho_arquivo++;
     }

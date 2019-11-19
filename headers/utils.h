@@ -3,6 +3,7 @@
 
 #include "../headers/lexico.h"
 #include "../headers/semantico.h"
+#include "../headers/gerador.h"
 #include <string.h>
 
 extern int TAM_ASCII;
@@ -45,6 +46,12 @@ void setEstadoFinal(MaquinaEstados *maquinaEstados, int estado);
 int tabelaVaziaIdentificadores(TabelaIdentificadores *f);
 void iniciarTabelaIdentificadores(TabelaIdentificadores *aux);
 void inserirTabelaIdentificadores(TabelaIdentificadores *f, char *tipo, char *nome, int _linha, int _coluna);
+
+int pilhaVaziaAssembly(PilhaAssembly *f);
+void iniciarPilhaAssembly(PilhaAssembly *aux);
+void inserirPilhaAssembly(PilhaAssembly *f, char *comando, char *arg1, char *arg2, char *arg3);
+void desempilharPilhaAssembly(PilhaAssembly *f);
+void printfPilhaAssembly(PilhaAssembly *f);
 
 void freePalavrasReservadas(char **palavrasReservadas);
 void freeListaToken(ListaToken *listaToken);

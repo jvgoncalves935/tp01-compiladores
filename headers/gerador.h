@@ -4,6 +4,23 @@
 extern FILE *ARQ_ASSEMBLY;
 extern char NOME_ARQ_ASSEMBLY[300];
 
+typedef struct elementoPilhaAssembly{
+    char *comando;
+    char *arg1;
+    char *arg2;
+    char *arg3;
+    struct elementoPilhaAssembly *proxima;
+    struct elementoPilhaAssembly *anterior;
+}ElementoPilhaAssembly;
+
+typedef struct pilhaAssembly{
+    ElementoPilhaAssembly *primeira;
+    ElementoPilhaAssembly *ultima;
+    int numElementosPilha;
+}PilhaAssembly;
+
+extern PilhaAssembly *pilhaAssembly;
+
 void iniciarNomeArquivoAssembly(char *nome);
 void iniciarArquivoAssembly();
 void fecharArquivoAssembly();

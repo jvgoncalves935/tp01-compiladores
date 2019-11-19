@@ -5,6 +5,7 @@
 
 FILE *ARQ_ASSEMBLY;
 char NOME_ARQ_ASSEMBLY[300];
+PilhaAssembly *pilhaAssembly;
 
 void iniciarNomeArquivoAssembly(char *nome){
     char nomeArquivoTemp[300];
