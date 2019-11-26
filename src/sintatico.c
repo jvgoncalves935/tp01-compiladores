@@ -30,7 +30,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
         exit(0);
     }
 
-    //printTabelaIdentificadores();
+    printTabelaIdentificadores();
     warningsSemanticos();
 
     if(!ERRO_SEMANTICO){

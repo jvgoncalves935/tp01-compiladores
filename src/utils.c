@@ -30,6 +30,7 @@ int FLAG_EXIBIR_ARVORE = 0;
 int IGNORAR_TOKEN = 0;
 int ERRO_SINTATICO = 0;
 int ERRO_SEMANTICO = 0;
+int NUM_REGISTRADORES = 0;
 
 void iniciarPalavrasReservadas(char **matriz){
     matriz[0] = "auto";
@@ -190,6 +191,11 @@ void inserirTabelaIdentificadores(TabelaIdentificadores *f, char *tipo, char *no
 
     aux->valor = malloc(1);
     strcpy(aux->valor,"");
+
+    aux->registrador = malloc(5*sizeof(char));
+    sprintf(aux->registrador,"t%d",NUM_REGISTRADORES);
+    NUM_REGISTRADORES++;
+    //strcpy(aux->registrador,"");
 
     /*
     if(!strcmp(aux->valor,"")){

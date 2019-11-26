@@ -8,6 +8,7 @@ typedef struct identificador{
     char *tipo;
     int linha;
     int coluna;
+    char *registrador;
     struct identificador *proxima;
     struct identificador *anterior;
 }Identificador;

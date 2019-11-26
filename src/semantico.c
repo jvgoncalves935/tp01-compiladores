@@ -20,7 +20,7 @@ int consultarTabelaIdentificadores(char *identificador){
 void printTabelaIdentificadores(){
 	Identificador *aux = tabelaIdentificadores->primeira;
 	while(aux != NULL){
-		printf("%s\t\t%s\t\t%s\t\t%d\t\t%d\t\n",aux->nome,aux->tipo,aux->valor,aux->linha,aux->coluna);
+		printf("%s\t\t%s\t\t%s\t\t%d\t\t%d\t%s\t\n",aux->nome,aux->tipo,aux->valor,aux->linha,aux->coluna,aux->registrador);
 		aux = aux->proxima;
 	}
 }
