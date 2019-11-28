@@ -87,6 +87,18 @@ void validarVariaveisInutilizadas(){
 	}
 }
 
+int nomeRegistradorVariavel(char *nome, char *saida){
+	Identificador *aux = tabelaIdentificadores->primeira;
+	while(aux != NULL){
+		if(!strcmp(nome,aux->nome)){
+			strcpy(saida,aux->registrador);
+			return 1;
+		}
+		aux = aux->proxima;
+	}
+	return 0;
+}
+
 char *descobrirTipo(char *valor){
 	int tamanho = strlen(valor);
 	//printf("%s\n",valor);

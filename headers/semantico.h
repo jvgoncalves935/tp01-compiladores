@@ -34,6 +34,7 @@ char *descobrirTipo(char *valor);
 int validarLetra(char valor);
 int validarNumero(char valor);
 int tipoValidoTabela(char *nome, char *tipo, int linha, int coluna);
+int nomeRegistradorVariavel(char *nome, char *saida);
 
 
 #endif // SEMANTICO_H_INCLUDED

@@ -17,9 +17,10 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     verificarListaDiretivas(0);
     verificarLinguagem(0);
 
-    geradorPush("push t2");
-    geradorPop("pop t1");
+    //geradorPush("push t2");
+    //geradorPop("pop t1");
     
+    //printfPilhaAssembly(pilhaAssembly);
     
     if(!ERRO_SINTATICO){
         free(LISTATOKEN);
@@ -30,7 +31,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
         exit(0);
     }
 
-    printTabelaIdentificadores();
+    //printTabelaIdentificadores();
     warningsSemanticos();
 
     if(!ERRO_SEMANTICO){
@@ -530,6 +531,7 @@ int verificarExpressao(int cont, char *iden){
 
 int verificarExpressao02(int cont, char *iden){
     printfSintatico(cont,"verificarExpressao02");
+    geradorSintPush(iden);
     Token *aux = getToken();
     if(tokenIgual(aux,"igual")){
         consumirToken(cont);
@@ -544,8 +546,22 @@ int verificarExpressao02(int cont, char *iden){
     }
 
     if(isAritmetica(aux)){
-        verificarAritmetica(cont+1);
+        //int operacao = verificarAritmetica(cont+1);
+        char *registrador1 = malloc(5*sizeof(char));
+        char *registrador2 = malloc(5*sizeof(char));
+        
         verificarExpressao(cont+1,iden);
+
+        ElementoPilhaAssembly *reg1 = topoPilhaAssembly(pilhaAssembly);
+        geradorSintPop(reg1->arg1);
+        ElementoPilhaAssembly *reg2 = topoPilhaAssembly(pilhaAssembly);
+        geradorSintPop(reg2->arg1);
+        if(nomeRegistradorVariavel(reg1->arg1,registrador1) && nomeRegistradorVariavel(reg2->arg1,registrador2)){ 
+            //printf("op %d reg1 %s reg2 %s\n",operacao,reg1->arg1,reg2->arg1);
+        }
+        //else printf("NOMEREGISTADORVARIAVEL ERRO");
+        free(registrador1);
+        free(registrador2);
         return 0;
     }
 
@@ -797,10 +813,24 @@ int verificarFator(int cont, char *iden){
 int verificarAritmetica(int cont){
     printfSintatico(cont,"verificarAritmetica");
     Token *aux = getToken();
-    if(tokenIgual(aux,"mais") || tokenIgual(aux,"menos") || tokenIgual(aux,"vezes") || tokenIgual(aux,"barra")){
+    if(tokenIgual(aux,"mais")){
         consumirToken(cont);
+        return 1;
+    }
+    if(tokenIgual(aux,"menos")){
+        consumirToken(cont);
+        return 2;
+    }
+    if(tokenIgual(aux,"vezes")){
+        consumirToken(cont);
+        return 3;
+    }
+    if(tokenIgual(aux,"barra")){
+        consumirToken(cont);
+        return 4;
     }
     return 0;
+    
 }
 
 int verificarAritmeticaOperadorDuplicado(int cont){
@@ -1052,4 +1082,14 @@ int isAritmeticaOperadorIgualComposto(Token *aux){
         return 1;
     }
     return 0;
+}
+
+void geradorSintPush(char *iden){
+    inserirPilhaAssembly(pilhaAssembly,"push",iden,"","");
+    geradorPush(iden);
+}
+
+void geradorSintPop(char *iden){
+    desempilharPilhaAssembly(pilhaAssembly);
+    geradorPop(iden);
 }

@@ -64,5 +64,7 @@ int isTipoDeclaracao(Token *aux);
 int isAritmeticaOperadorDuplicado(Token *aux);
 int isAritmeticaOperadorIgualComposto(Token *aux);
 
+void geradorSintPush(char *iden);
+void geradorSintPop(char *iden);
 
 #endif // SINTATICO_H_INCLUDED

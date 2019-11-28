@@ -52,6 +52,7 @@ int pilhaVaziaAssembly(PilhaAssembly *f);
 void iniciarPilhaAssembly(PilhaAssembly *aux);
 void inserirPilhaAssembly(PilhaAssembly *f, char *comando, char *arg1, char *arg2, char *arg3);
 void desempilharPilhaAssembly(PilhaAssembly *f);
+ElementoPilhaAssembly *topoPilhaAssembly(PilhaAssembly *f);
 void printfPilhaAssembly(PilhaAssembly *f);
 
 void freePalavrasReservadas(char **palavrasReservadas);

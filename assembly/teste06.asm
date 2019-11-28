@@ -1,2 +1,5 @@
-push push t2
-pop pop t1
+push teste
+push aaa
+push bbb
+push ccc
+push ccc

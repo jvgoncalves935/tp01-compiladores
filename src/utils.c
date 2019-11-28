@@ -290,6 +290,10 @@ void desempilharPilhaAssembly(PilhaAssembly *f){
     }
 }
 
+ElementoPilhaAssembly *topoPilhaAssembly(PilhaAssembly *f){
+    return f->ultima;
+}
+
 void printfPilhaAssembly(PilhaAssembly *f){
     if(pilhaVaziaAssembly(f)){
         printf("Pilha vazia.\n");
@@ -297,7 +301,7 @@ void printfPilhaAssembly(PilhaAssembly *f){
     }
     ElementoPilhaAssembly *aux = f->primeira;
     while(aux != NULL){
-        printf("%s\n",aux->comando);
+        printf("%s %s %s %s\n",aux->comando,aux->arg1,aux->arg2,aux->arg3);
         aux = aux->proxima;
     }
 }
