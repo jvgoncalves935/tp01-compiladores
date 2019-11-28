@@ -6,9 +6,10 @@ Compilador de C implementado em C. NÃO abrange a gramática completa do C e foi
 
 Analisador léxico: gera uma lista de todos os tokens de um código .C.
 Analisador sintático: monta uma árvore sintática à partir da lista de tokens. A árvore é montada à partir de funções recursivas, utilizando a própria pilha do SO.
-Analisador semântico: (WIP).
+Analisador semântico: analisa erros semânticos durante a análise sintática.
+Gerador de código assembly: (WIP).
 
-Projeto foi testado apenas no Bash do Ubuntu para Windows 10. Outras plataformas como distribuições nativas de Linux ou Windows podem gerar comportamentos desconhecidos.
+Projeto foi testado apenas no Bash do Ubuntu para Windows 10. Outras plataformas como distribuições nativas de Linux ou Windows podem gerar undefined behaviors.
 
 Instruções:
 
@@ -106,7 +107,7 @@ Instruções:
 
 # Analisador Sintático
 
-### Gramática Livre de Contexto
+### Gramática Livre de Contexto - "JVGLC"
 
 - (listaDiretivas) ::= diretiva (listaDiretivas) |
 - (listaDiretivas) ::= ε
@@ -287,3 +288,13 @@ Instruções:
 - (listaArgChamadaFuncaoLinha) ::= virgula (switch02) (listaArgChamadaFuncaoLinha) |
 - (listaArgChamadaFuncaoLinha) ::= ε
 <br/>
+
+# Analisador Semântico
+
+### Erros Semânticos
+- Variáveis não declaradas.
+- Operações com tipos de variáveis distintas (não existe operações de alargamento e estreitamento).
+- Atribuições em variáveis não declaradas.
+
+### Warnings Semânticos
+- Variáveis declaradas porém não inicializadas.
