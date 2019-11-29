@@ -20,6 +20,7 @@ typedef struct tabelaIdentificadores{
 }TabelaIdentificadores;
 
 extern TabelaIdentificadores *tabelaIdentificadores;
+extern int FLAG_TABELA_SEMANTICO;
 
 int consultarTabelaIdentificadores(char *identificador);
 void printTabelaIdentificadores();

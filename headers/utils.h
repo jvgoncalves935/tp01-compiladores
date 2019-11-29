@@ -25,6 +25,7 @@ extern int IGNORAR_TOKEN;
 extern int ERRO_SINTATICO;
 extern int ERRO_SEMANTICO;
 extern int NUM_REGISTRADORES;
+extern int FLAG_TABELA_SEMANTICO;
 
 
 //void iniciarPalavrasReservadas(char **matriz);

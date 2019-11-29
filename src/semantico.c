@@ -18,7 +18,11 @@ int consultarTabelaIdentificadores(char *identificador){
 }
 
 void printTabelaIdentificadores(){
+	if(tabelaIdentificadores->numIdentificadores == 0){
+		return;
+	}
 	Identificador *aux = tabelaIdentificadores->primeira;
+	printf("\n");
 	while(aux != NULL){
 		printf("%s\t\t%s\t\t%s\t\t%d\t\t%d\t%s\t\n",aux->nome,aux->tipo,aux->valor,aux->linha,aux->coluna,aux->registrador);
 		aux = aux->proxima;
@@ -155,6 +159,9 @@ int tipoValidoTabela(char *nome, char *tipo, int linha, int coluna){
 		aux = aux->proxima;
 	}
 	printf("ERRO: Atribuicao em variavel nao declarada: '%s'. Linha %d, Coluna %d.\nAnalise Semantica: ERRO.\n",nome,linha,coluna);
+	if(FLAG_TABELA_SEMANTICO){
+        printTabelaIdentificadores();
+    }
 	exit(0);
 	return 0;
 }

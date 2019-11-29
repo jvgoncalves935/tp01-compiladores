@@ -31,6 +31,7 @@ int IGNORAR_TOKEN = 0;
 int ERRO_SINTATICO = 0;
 int ERRO_SEMANTICO = 0;
 int NUM_REGISTRADORES = 0;
+int FLAG_TABELA_SEMANTICO = 0;
 
 void iniciarPalavrasReservadas(char **matriz){
     matriz[0] = "auto";

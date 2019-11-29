@@ -21,7 +21,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     //geradorPop("pop t1");
     
     //printfPilhaAssembly(pilhaAssembly);
-    
+
     if(!ERRO_SINTATICO){
         free(LISTATOKEN);
         printf("Analise Sintatica: SUCESSO.\n");
@@ -31,7 +31,7 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
         exit(0);
     }
 
-    //printTabelaIdentificadores();
+    
     warningsSemanticos();
 
     if(!ERRO_SEMANTICO){
@@ -40,6 +40,9 @@ void analiseSintatica(ListaToken *listaTokenIdentificadores){
     }else{
         printf("Analise Semantica: ERRO.\n");
         invalidarArquivoAssembly();
+    }
+    if(FLAG_TABELA_SEMANTICO){
+        printTabelaIdentificadores();
     }
 }
 

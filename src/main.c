@@ -10,7 +10,7 @@ int main(int argc,char **argv){
 	char *argv1 = NULL;
 
 	// Funcao getopt(), (entrada por parametros).
-	while((optc = getopt(argc, argv, "hc:a:s")) != -1){
+	while((optc = getopt(argc, argv, "hc:a:s:t")) != -1){
 		switch(optc){
 			case 'a':
 				argv1 = optarg;
@@ -21,6 +21,9 @@ int main(int argc,char **argv){
 				exit(0);
 			case 's':
                 FLAG_EXIBIR_ARVORE = 1;
+                break;
+            case 't':
+                FLAG_TABELA_SEMANTICO = 1;
                 break;
             default:
 				printf("Opcao invalida.\nUtilize -h para ajuda.\n");

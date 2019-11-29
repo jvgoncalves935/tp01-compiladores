@@ -17,7 +17,11 @@ virgula,",",5,22
 identificador,"eps",5,25
 virgula,",",5,27
 identificador,"alt",5,30
-ponto_virgula,";",5,32
+virgula,",",5,32
+identificador,"i",5,34
+virgula,",",5,34
+identificador,"cont",5,36
+ponto_virgula,";",5,39
 identificador,"x",8,2
 igual,"=",8,4
 numero,"3.14159",8,6
