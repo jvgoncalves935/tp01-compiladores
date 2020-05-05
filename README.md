@@ -1,4 +1,4 @@
-# Compilador-C (código sujeito a mudanças)
+# DeliCia: um compilador simples (bem simples mesmo) em C.
 
 Descrição:
 
